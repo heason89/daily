@@ -1,4 +1,4 @@
-package com.example.quiz.exception;
+package com.example.daily.exception;
 
 import java.sql.SQLException;
 import java.util.HashMap;
