@@ -2,7 +2,7 @@ package com.example.daily.entity;
 
 import java.io.Serializable;
 
-public class FoodInfoId implements Serializable {
+public class FoodId implements Serializable {
 
     private String foodName;
 

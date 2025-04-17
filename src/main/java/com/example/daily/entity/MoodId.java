@@ -5,16 +5,16 @@ import java.time.LocalDate;
 
 public class MoodId implements Serializable {
 
-    private LocalDate time;
+    private LocalDate date;
 
     private String email;
 
     public LocalDate getTime() {
-        return time;
+        return date;
     }
 
     public void setTime(LocalDate time) {
-        this.time = time;
+        this.date = time;
     }
 
     public String getEmail() {

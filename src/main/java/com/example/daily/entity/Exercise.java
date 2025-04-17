@@ -17,14 +17,26 @@ public class Exercise {
     @Column(name ="email")
     private String email;
 
-    @Column(name ="exercise_name")
-    private String exerciseName;
-
-    @Column(name ="start_time")
-    private LocalDate startTime;
+    @Column(name ="date")
+    private LocalDate date;
 
     @Column(name ="duration")
     private int duration;
+
+    @Column(name ="exercise_name")
+    private String exerciseName;
+
+    public Exercise() {
+    }
+
+    public Exercise(int exerciseId, String email, LocalDate date,
+                    int duration, String exerciseName) {
+        this.exerciseId = exerciseId;
+        this.email = email;
+        this.date = date;
+        this.duration = duration;
+        this.exerciseName = exerciseName;
+    }
 
     public int getExerciseId() {
         return exerciseId;
@@ -42,20 +54,12 @@ public class Exercise {
         this.email = email;
     }
 
-    public String getExerciseName() {
-        return exerciseName;
+    public LocalDate getDate() {
+        return date;
     }
 
-    public void setExerciseName(String exerciseName) {
-        this.exerciseName = exerciseName;
-    }
-
-    public LocalDate getStartTime() {
-        return startTime;
-    }
-
-    public void setStartTime(LocalDate startTime) {
-        this.startTime = startTime;
+    public void setDate(LocalDate date) {
+        this.date = date;
     }
 
     public int getDuration() {
@@ -64,5 +68,13 @@ public class Exercise {
 
     public void setDuration(int duration) {
         this.duration = duration;
+    }
+
+    public String getExerciseName() {
+        return exerciseName;
+    }
+
+    public void setExerciseName(String exerciseName) {
+        this.exerciseName = exerciseName;
     }
 }

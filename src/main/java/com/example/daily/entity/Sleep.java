@@ -6,6 +6,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name="sleep")
@@ -18,16 +19,33 @@ public class Sleep {
     private String email;
 
     @Column(name ="sleep_time")
-    private LocalDate sleepTime;
+    private LocalDateTime sleepTime;
 
     @Column(name ="awake_time")
-    private LocalDate awakeTime;
+    private LocalDateTime awakeTime;
 
     @Column(name ="insomnia")
     private Boolean insomnia;
 
     @Column(name ="sleep_latency")
     private Boolean sleepLatency;
+
+    @Column(name ="phone")
+    private Boolean phone;
+
+    public Sleep() {
+    }
+
+    public Sleep(int sleepId, String email, LocalDateTime sleepTime, LocalDateTime awakeTime,
+                 Boolean insomnia, Boolean sleepLatency, Boolean phone) {
+        this.sleepId = sleepId;
+        this.email = email;
+        this.sleepTime = sleepTime;
+        this.awakeTime = awakeTime;
+        this.insomnia = insomnia;
+        this.sleepLatency = sleepLatency;
+        this.phone = phone;
+    }
 
     public int getSleepId() {
         return sleepId;
@@ -45,19 +63,19 @@ public class Sleep {
         this.email = email;
     }
 
-    public LocalDate getSleepTime() {
+    public LocalDateTime getSleepTime() {
         return sleepTime;
     }
 
-    public void setSleepTime(LocalDate sleepTime) {
+    public void setSleepTime(LocalDateTime sleepTime) {
         this.sleepTime = sleepTime;
     }
 
-    public LocalDate getAwakeTime() {
+    public LocalDateTime getAwakeTime() {
         return awakeTime;
     }
 
-    public void setAwakeTime(LocalDate awakeTime) {
+    public void setAwakeTime(LocalDateTime awakeTime) {
         this.awakeTime = awakeTime;
     }
 

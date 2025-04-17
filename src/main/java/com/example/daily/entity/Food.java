@@ -4,8 +4,8 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name="food")
-@IdClass(value=FoodInfoId.class)
-public class FoodInfo {
+@IdClass(value= FoodId.class)
+public class Food {
 
     @Id //@Id: 標示此欄位是 PK(primary key)
     @Column(name ="food_name")//@Column: 將此屬性關聯到指定的欄位，括號中的字串是欄位名稱
@@ -47,6 +47,27 @@ public class FoodInfo {
 
     @Column(name ="cholesterol")
     private int cholesterol;
+
+    public Food() {
+    }
+
+    public Food(String foodName, String cookingMethod, String type, int calorie,
+                int totalFat, int transFat, int saturatedFat, int totalCarbohydrate,
+                int sugar, int dietaryFiber, int protein, int sodium, int cholesterol) {
+        this.foodName = foodName;
+        this.cookingMethod = cookingMethod;
+        this.type = type;
+        this.calorie = calorie;
+        this.totalFat = totalFat;
+        this.transFat = transFat;
+        this.saturatedFat = saturatedFat;
+        this.totalCarbohydrate = totalCarbohydrate;
+        this.sugar = sugar;
+        this.dietaryFiber = dietaryFiber;
+        this.protein = protein;
+        this.sodium = sodium;
+        this.cholesterol = cholesterol;
+    }
 
     public String getFoodName() {
         return foodName;

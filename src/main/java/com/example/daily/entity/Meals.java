@@ -6,6 +6,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name="meals")
@@ -22,7 +23,17 @@ public class Meals {
     private String mealsName;
 
     @Column(name ="eat_time")
-    private LocalDate eatTime;
+    private LocalDateTime eatTime;
+
+    public Meals() {
+    }
+
+    public Meals(int mealsId, String email, String mealsName, LocalDateTime eatTime) {
+        this.mealsId = mealsId;
+        this.email = email;
+        this.mealsName = mealsName;
+        this.eatTime = eatTime;
+    }
 
     public int getMealsId() {
         return mealsId;
@@ -48,11 +59,11 @@ public class Meals {
         this.mealsName = mealsName;
     }
 
-    public LocalDate getEatTime() {
+    public LocalDateTime getEatTime() {
         return eatTime;
     }
 
-    public void setEatTime(LocalDate eatTime) {
+    public void setEatTime(LocalDateTime eatTime) {
         this.eatTime = eatTime;
     }
 }
