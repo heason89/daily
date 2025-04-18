@@ -3,6 +3,9 @@ package com.example.daily.constants;
 public enum ResMessage {
 
     SUCCESS(200,"Success!"),//
+    EMAIL_NOT_EXISTED(400,"Email not existed!"),//
+    EMAIL_EXISTED(400,"Email existed!"),//
+    PASSWORD_MISMATCH(400,"Password mismatch!"),//
     ;
     private int code;
 
@@ -31,7 +34,7 @@ public enum ResMessage {
 
     public static class ConstantsMessage{
         public static final String PARAM_EMAIL_ERROR = "Param email error!";
-
+        public static final String PARAM_PASSWORD_ERROR = "Param password error!";
     }
 
 }
