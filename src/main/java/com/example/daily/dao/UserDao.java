@@ -27,9 +27,9 @@ public interface UserDao extends JpaRepository<User, String> {
             @Param("password") String password,//
             @Param("admin")Boolean admin,//
             @Param("active") Boolean active,//
-            @Param("age")Integer age,//
-            @Param("height")Integer height,//
-            @Param("weight")Integer weight,//
+            @Param("age")int age,//
+            @Param("height")int height,//
+            @Param("weight")int weight,//
             @Param("workType") String workType,//
             @Param("gender")Boolean gender);
 
@@ -44,9 +44,10 @@ public interface UserDao extends JpaRepository<User, String> {
             @Param("password") String password,//
             @Param("admin")Boolean admin,//
             @Param("active") Boolean active,//
-            @Param("age")Integer age,//
-            @Param("height")Integer height,//
-            @Param("weight")Integer weight,//
+            @Param("age")int age,//
+            @Param("height")int height,//
+            @Param("weight")int weight,//
             @Param("workType") String workType,//
             @Param("gender")Boolean gender);
+
 }

@@ -5,7 +5,10 @@ public enum ResMessage {
     SUCCESS(200,"Success!"),//
     EMAIL_NOT_EXISTED(400,"Email not existed!"),//
     EMAIL_EXISTED(400,"Email existed!"),//
+    EMAIL_HAS_BEEN_CANCELED(400,"Email has been canceled!"),//
     PASSWORD_MISMATCH(400,"Password mismatch!"),//
+    FOOD_EXISTED(400,"Food existed!"),//
+    FOOD_NOT_EXISTED(400,"Food not existed!"),//
     ;
     private int code;
 
