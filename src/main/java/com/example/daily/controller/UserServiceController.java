@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class UserServiceController {
 
+
     @Autowired
     private UserService userService;
 
@@ -33,4 +34,5 @@ public class UserServiceController {
     public BasicRes updateUser(@Valid @RequestBody UpdateUserReq req){
         return userService.updateUserInfo(req);
     }
+
 }

@@ -3,6 +3,8 @@ package com.example.daily.entity;
 import java.io.Serializable;
 import java.time.LocalDate;
 
+
+@SuppressWarnings("serial")
 public class MoodId implements Serializable {
 
     private LocalDate date;
