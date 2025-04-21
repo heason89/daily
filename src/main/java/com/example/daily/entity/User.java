@@ -11,7 +11,7 @@ import jakarta.validation.constraints.NotBlank;
 @Table(name="user")
 public class User {
 
-    @Column(name ="name")
+    @Column(name ="user_name")
     private String name;
 
     @Id //@Id: 標示此欄位是 PK(primary key)
