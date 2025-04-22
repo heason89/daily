@@ -40,65 +40,80 @@ public class Sleep {
     @Column(name ="phone")
     private Boolean phone;
 
-    public Sleep() {
-    }
+	public Sleep() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
-    public Sleep(int sleepId, String email, LocalDateTime sleepTime, LocalDateTime awakeTime,
-                 Boolean insomnia, Boolean sleepLatency, Boolean phone) {
-        this.sleepId = sleepId;
-        this.email = email;
-        this.sleepTime = sleepTime;
-        this.awakeTime = awakeTime;
-        this.insomnia = insomnia;
-        this.sleepLatency = sleepLatency;
-        this.phone = phone;
-    }
+	public Sleep(int sleepId, @NotBlank(message = "Param email error!") String email,
+			@NotNull(message = "Param sleep_time error!") LocalDateTime sleepTime,
+			@NotNull(message = "Param awake_time error!") LocalDateTime awakeTime, Boolean insomnia,
+			Boolean sleepLatency, Boolean phone) {
+		super();
+		this.sleepId = sleepId;
+		this.email = email;
+		this.sleepTime = sleepTime;
+		this.awakeTime = awakeTime;
+		this.insomnia = insomnia;
+		this.sleepLatency = sleepLatency;
+		this.phone = phone;
+	}
 
-    public int getSleepId() {
-        return sleepId;
-    }
+	public int getSleepId() {
+		return sleepId;
+	}
 
-    public void setSleepId(int sleepId) {
-        this.sleepId = sleepId;
-    }
+	public void setSleepId(int sleepId) {
+		this.sleepId = sleepId;
+	}
 
-    public String getEmail() {
-        return email;
-    }
+	public String getEmail() {
+		return email;
+	}
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
-    public LocalDateTime getSleepTime() {
-        return sleepTime;
-    }
+	public LocalDateTime getSleepTime() {
+		return sleepTime;
+	}
 
-    public void setSleepTime(LocalDateTime sleepTime) {
-        this.sleepTime = sleepTime;
-    }
+	public void setSleepTime(LocalDateTime sleepTime) {
+		this.sleepTime = sleepTime;
+	}
 
-    public LocalDateTime getAwakeTime() {
-        return awakeTime;
-    }
+	public LocalDateTime getAwakeTime() {
+		return awakeTime;
+	}
 
-    public void setAwakeTime(LocalDateTime awakeTime) {
-        this.awakeTime = awakeTime;
-    }
+	public void setAwakeTime(LocalDateTime awakeTime) {
+		this.awakeTime = awakeTime;
+	}
 
-    public Boolean getInsomnia() {
-        return insomnia;
-    }
+	public Boolean getInsomnia() {
+		return insomnia;
+	}
 
-    public void setInsomnia(Boolean insomnia) {
-        this.insomnia = insomnia;
-    }
+	public void setInsomnia(Boolean insomnia) {
+		this.insomnia = insomnia;
+	}
 
-    public Boolean getSleepLatency() {
-        return sleepLatency;
-    }
+	public Boolean getSleepLatency() {
+		return sleepLatency;
+	}
 
-    public void setSleepLatency(Boolean sleepLatency) {
-        this.sleepLatency = sleepLatency;
-    }
+	public void setSleepLatency(Boolean sleepLatency) {
+		this.sleepLatency = sleepLatency;
+	}
+
+	public Boolean getPhone() {
+		return phone;
+	}
+
+	public void setPhone(Boolean phone) {
+		this.phone = phone;
+	}
+
+ 
 }

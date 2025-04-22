@@ -1,11 +1,14 @@
 package com.example.daily.dao;
 
+
 import com.example.daily.entity.Mood;
 import com.example.daily.entity.MoodId;
 
 import jakarta.transaction.Transactional;
 
 import java.time.LocalDate;
+
+import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -25,4 +28,23 @@ public interface MoodDao extends JpaRepository<Mood, MoodId> {
 			@Param("mood")int mood,//
 			@Param("diary")String diary//						
 			);
+	
+	@Modifying
+	@Transactional
+	@Query(value="update mood set mood = :mood, diary = :diary"
+			+ " where  email = :email and date = :date "
+			,nativeQuery = true)
+	public void updateByMood(//
+			@Param("email") String email, //			
+			@Param("date")LocalDate date, //
+			@Param("mood")int mood,//
+			@Param("diary")String diary//
+			//
+			);
+	
+	@Query(value="select count(email) from mood where email = ?1 ",nativeQuery = true)
+	public int selectCountByemail(String email);
+	
+	@Query(value="select * from mood where email = ?1 ",nativeQuery = true)
+	public List<Mood> selectByemail(String email);
 }

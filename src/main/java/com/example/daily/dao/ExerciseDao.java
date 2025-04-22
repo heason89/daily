@@ -5,7 +5,7 @@ import com.example.daily.entity.Exercise;
 import jakarta.transaction.Transactional;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -23,4 +23,25 @@ public interface ExerciseDao extends JpaRepository<Exercise, Integer> {
 			@Param("date")LocalDate date, //
 			@Param("duration")int duration, //
 			@Param("exerciseName")String exerciseName);//
+	
+	@Modifying
+	@Transactional
+	@Query(value="update exercise set date = :date, duration = :duration,"
+			+ "exercise_name = :exerciseName where  exercise_id = :exerciseId"
+			,nativeQuery = true)
+	public void updateByExercise(//
+			@Param("exerciseId") int exerciseId, //			
+			@Param("date")LocalDate date, //
+			@Param("duration")int duration,//
+			@Param("exerciseName")String exerciseName//
+			);
+	
+	@Query(value="select count(email) from exercise where email = ?1 ",nativeQuery = true)
+	public int selectCountByemail(String email);
+	
+	@Query(value="select * from exercise where email = ?1 ",nativeQuery = true)
+	public List<Exercise> selectByemail(String email);
+	
+	@Query(value="select * from exercise  ",nativeQuery = true)
+	public List<Exercise> select();
 }

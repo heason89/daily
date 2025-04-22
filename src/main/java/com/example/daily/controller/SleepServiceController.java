@@ -8,7 +8,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.daily.service.ifs.SleepService;
 import com.example.daily.vo.BasicRes;
+import com.example.daily.vo.SelectSleepRes;
 import com.example.daily.vo.SleepReq;
+import com.example.daily.vo.UpdateSleepReq;
 
 import jakarta.validation.Valid;
 
@@ -25,5 +27,14 @@ public class SleepServiceController {
 		return sleepService.fillinSleep(req);
 		
 	}
-
+	@PostMapping(value ="sleep/selectSleep")
+	public SelectSleepRes selectSleep(@Valid @RequestBody SleepReq req) {
+		return sleepService.selectSleep(req);
+		
+	}
+	@PostMapping(value ="sleep/updateSleep")
+	public BasicRes updateSleep(@Valid @RequestBody UpdateSleepReq req) {
+		return sleepService.updateSleep(req);
+		
+	}
 }
