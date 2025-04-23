@@ -1,9 +1,7 @@
 package com.example.daily.service.ifs;
 
-import com.example.daily.vo.BasicRes;
-import com.example.daily.vo.LoginReq;
-import com.example.daily.vo.RegisterReq;
-import com.example.daily.vo.UpdateUserReq;
+import com.example.daily.vo.*;
+
 
 public interface UserService {
 
@@ -12,4 +10,14 @@ public interface UserService {
     public BasicRes register(RegisterReq req);
 
     public BasicRes updateUserInfo(UpdateUserReq req);
+
+    public BasicRes updatePhoto(PhotoReq req);
+
+    public BasicRes sendResetPasswordEmail(String email);
+
+    public GetUserInfoRes getUserInfo(GetUserInfoReq req);
+
+    public BasicRes verifyToken(String token);
+
+    public BasicRes verifyTokenUpdatePassword(String token, String newPassword);
 }
