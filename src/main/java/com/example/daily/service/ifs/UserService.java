@@ -11,8 +11,6 @@ public interface UserService {
 
     public BasicRes updateUserInfo(UpdateUserReq req);
 
-    public BasicRes updatePhoto(PhotoReq req);
-
     public BasicRes sendResetPasswordEmail(String email);
 
     public GetUserInfoRes getUserInfo(GetUserInfoReq req);

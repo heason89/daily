@@ -34,6 +34,8 @@ public class RegisterReq {
 
     private String note ="";
 
+    private String bodyType ="";
+
     public String getEmail() {
         return email;
     }
@@ -128,5 +130,13 @@ public class RegisterReq {
 
     public void setNote(String note) {
         this.note = note;
+    }
+
+    public String getBodyType() {
+        return bodyType;
+    }
+
+    public void setBodyType(String bodyType) {
+        this.bodyType = bodyType;
     }
 }

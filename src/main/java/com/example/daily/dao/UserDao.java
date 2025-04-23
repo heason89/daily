@@ -20,9 +20,9 @@ public interface UserDao extends JpaRepository<User, String> {
     @Modifying
     @Transactional
     @Query(value ="insert into user(user_name, email, password, admin, active, birthdate, height, " +
-            " weight, work_type, gender, token, token_expiry, photo, note) values (:name, :email, " +
+            " weight, work_type, gender, token, photo, note, body_type) values (:name, :email, " +
             " :password, :admin, :active, :birthdate, :height, :weight, :workType, :gender, " +
-            " :token, :tokenExpiry, :photo, :note)", nativeQuery =true)
+            " :token, :photo, :note, :bodyType)", nativeQuery =true)
     public void insert(
             @Param("name") String name,//
             @Param("email") String email,//
@@ -35,15 +35,16 @@ public interface UserDao extends JpaRepository<User, String> {
             @Param("workType") String workType,//
             @Param("gender")String gender,//
             @Param("token") String token,//
-            @Param("tokenExpiry") LocalDateTime tokenExpiry,//
             @Param("photo")String photo,//
-            @Param("note")String note);
+            @Param("note")String note,//
+            @Param("bodyType")String bodyType);
 
     @Modifying
     @Transactional
     @Query(value ="update user set user_name = :name, password = :password, admin = :admin, " +
             " active = :active, birthdate = :birthdate, height = :height, weight = :weight, " +
-            " work_type = :workType, gender = :gender note = :note  where email = :email",
+            " work_type = :workType, gender = :gender, photo = :photo, note = :note, " +
+            " body_type = :bodyType where email = :email",
             nativeQuery =true)
     public void updateUserInfo(
             @Param("name") String name,//
@@ -56,14 +57,17 @@ public interface UserDao extends JpaRepository<User, String> {
             @Param("weight")int weight,//
             @Param("workType") String workType,//
             @Param("gender")String gender,//
-            @Param("note")String note);
+            @Param("photo")String photo,//
+            @Param("note")String note,//
+            @Param("bodyType")String bodyType);
 
     @Modifying
     @Transactional
     @Query(value ="update user set user_name = :name, password = :password, admin = :admin, " +
             " active = :active, birthdate = :birthdate, height = :height, weight = :weight, " +
-            " work_type = :workType, gender = :gender, token = :token, token_expiry = :tokenExpiry, " +
-            " photo = :photo, note = :note where email = :email", nativeQuery =true)
+            " work_type = :workType, gender = :gender, token = :token, " +
+            " photo = :photo, note = :note, body_type = :bodyType where email = :email",
+            nativeQuery =true)
     public void updateUserAndToken(
             @Param("name") String name,//
             @Param("email") String email,//
@@ -76,9 +80,9 @@ public interface UserDao extends JpaRepository<User, String> {
             @Param("workType") String workType,//
             @Param("gender")String gender,//
             @Param("token") String token,//
-            @Param("tokenExpiry") LocalDateTime tokenExpiry,//
             @Param("photo")String photo,//
-            @Param("note")String note);
+            @Param("note")String note,//
+            @Param("bodyType")String bodyType);
 
     @Modifying
     @Transactional
@@ -89,9 +93,4 @@ public interface UserDao extends JpaRepository<User, String> {
     @Transactional
     @Query(value ="update user set active = true, token = null where email = ?1", nativeQuery =true)
     public void updateActive(String email);
-
-    @Modifying
-    @Transactional
-    @Query(value ="update user set photo = ?2 where email = ?1", nativeQuery =true)
-    public void updatePhoto(String email,String photo);
 }
