@@ -7,15 +7,11 @@ public enum ResMessage {
     EMAIL_EXISTED(400,"Email existed!"),//
     EMAIL_HAS_BEEN_CANCELED(400,"Email has been canceled!"),//
     PASSWORD_MISMATCH(400,"Password mismatch!"),//
-<<<<<<< HEAD
     PARAM_DATE_TIME_ERROR(400,"param date time error"),// 開始時間 > 結束時間
     EMAIL_DUPLICATED(400, "Email duplicated!!"),//email重複
-=======
     FOOD_EXISTED(400,"Food existed!"),//
     FOOD_NOT_EXISTED(400,"Food not existed!"),//
-    TOKEN_NOT_EXISTED(400,"Token not existed!"),//
     TOKEN_EXPIRED(400,"Token expired!"),//
->>>>>>> jett
     ;
     private int code;
 
@@ -44,9 +40,7 @@ public enum ResMessage {
 
     public static class ConstantsMessage{
         public static final String PARAM_EMAIL_ERROR = "Param email error!";
-
         public static final String PARAM_PASSWORD_ERROR = "Param password error!";
-
         public static final String PARAM_SLEEP_Time_ERROR = "Param sleep_time error!";
         public static final String PARAM_AWAKE_Time_ERROR = "Param awake_time error!";
         public static final String PARAM_MEALS_NAME_ERROR = "Param meals_name error!";

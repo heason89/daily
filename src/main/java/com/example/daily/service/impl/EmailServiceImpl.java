@@ -21,7 +21,7 @@ public class EmailServiceImpl implements EmailService {
 
     @Override
     public BasicRes sendVerificationEmail(String toUser, String token) {
-        String link = "http://localhost:8080/daily/verify?token=" + token;
+        String link = "http://172.16.0.86:8080/daily/verify?token=" + token;
 
         String subject = "請驗證您的帳號 - HealthyDiaryApp";
         String content = "Hi 使用者您好，\n\n" +
@@ -40,7 +40,7 @@ public class EmailServiceImpl implements EmailService {
 
     @Override
     public BasicRes sendResetPasswordEmail(String toEmail, String token) {
-        String link = "http://localhost:8080/daily/reset-password?token=" + token;
+        String link = "http://172.16.0.86:8080/daily/reset-password?token=" + token;
 
         String subject = "重設您的密碼 - HealthyDiaryApp";
         String content = "Hi 使用者您好，\n\n" +

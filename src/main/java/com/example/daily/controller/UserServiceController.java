@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 public class UserServiceController {
 
-
     @Autowired
     private UserService userService;
 
@@ -40,6 +39,7 @@ public class UserServiceController {
         return userService.verifyToken(token);
     }
 
+    // 下面兩個可能還要調整
     // 請求寄送重設密碼信
     @PostMapping("daily/send_reset_password")
     public BasicRes sendResetPasswordEmail(@RequestParam String email) {
@@ -51,10 +51,4 @@ public class UserServiceController {
                                   @RequestParam String newPassword) {
         return userService.verifyTokenUpdatePassword(token, newPassword);
     }
-
-    @PostMapping("daily/update_photo")
-    public BasicRes updatePhoto(@RequestBody PhotoReq req) {
-        return userService.updatePhoto(req);
-    }
-
 }

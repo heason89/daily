@@ -63,8 +63,8 @@ public class UserServiceImpl implements UserService {
             // 改用更新的方式處理
             userDao.updateUserAndToken(req.getName(),req.getEmail(),encodePassword,req.isAdmin(),
                     req.isActive(),req.getBirthdate(),req.getHeight(),req.getWeight(),
-                    req.getWorkType(),req.getGender(),token,LocalDateTime.now().plusHours(1),
-                    req.getPhoto(), req.getNote());
+                    req.getWorkType(),req.getGender(),token,
+                    req.getPhoto(), req.getNote(), req.getBodyType());
             emailService.sendVerificationEmail(req.getEmail(),token);
             return new BasicRes(ResMessage.SUCCESS.getCode(),//
                     ResMessage.SUCCESS.getMessage());
@@ -72,8 +72,8 @@ public class UserServiceImpl implements UserService {
         // 新增資訊
         userDao.insert(req.getName(),req.getEmail(),encodePassword,req.isAdmin(),req.isActive()
                 ,req.getBirthdate(),req.getHeight(),req.getWeight(),req.getWorkType(),
-                req.getGender(),token,LocalDateTime.now().plusHours(1),req.getPhoto(), req.getNote());
-        emailService.sendVerificationEmail(userEmail.getEmail(),token);
+                req.getGender(),token,req.getPhoto(), req.getNote(), req.getBodyType());
+        emailService.sendVerificationEmail(req.getEmail(),token);
         return new BasicRes(ResMessage.SUCCESS.getCode(),//
                 ResMessage.SUCCESS.getMessage());
     }
@@ -98,21 +98,7 @@ public class UserServiceImpl implements UserService {
         // 更新資訊
         userDao.updateUserInfo(req.getName(),req.getEmail(),encodePassword,req.isAdmin(),req.isActive()
                 ,req.getBirthdate(),req.getHeight(),req.getWeight(),req.getWorkType()
-                ,req.getGender(),req.getNote());
-        return new BasicRes(ResMessage.SUCCESS.getCode(),//
-                ResMessage.SUCCESS.getMessage());
-    }
-
-    @Override
-    public BasicRes updatePhoto(PhotoReq req) {
-        // 檢查 email 是否已存在
-        User userEmail =userDao.getByEmail(req.getEmail());
-        // 呼叫 checkmail 檢查
-        BasicRes res = checkmail(userEmail);
-        if(res.getCode()==400){
-            return res;
-        }
-        userDao.updatePhoto(req.getEmail(),req.getPhoto());
+                ,req.getGender(),req.getPhoto(),req.getNote(), req.getBodyType());
         return new BasicRes(ResMessage.SUCCESS.getCode(),//
                 ResMessage.SUCCESS.getMessage());
     }
@@ -134,24 +120,16 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public BasicRes verifyTokenUpdatePassword(String token, String newPassword) {
-        // 驗證 token 是否有效
-        if (!jwtUtil.isTokenValid(token)) {
-            return new BasicRes(ResMessage.TOKEN_EXPIRED.getCode(),
-                    ResMessage.TOKEN_EXPIRED.getMessage());
-        }
-        // 從 JWT 中解析出 email
-        String email = jwtUtil.extractEmail(token);
-        // 從資料庫找出這個 email 的使用者
-        User user = userDao.getByEmail(email);
-        if (user == null) {
-            return new BasicRes(ResMessage.EMAIL_NOT_EXISTED.getCode(),
-                    ResMessage.EMAIL_NOT_EXISTED.getMessage());
+        // 呼叫 checktoken 檢查 token
+        BasicRes res = checktoken(token);
+        if(res.getCode()==400){
+            return res;
         }
         // 將 password 變成亂碼
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         String encodePassword = encoder.encode(newPassword);
         // 更新 user 的密碼
-        userDao.resetPassword(email,encodePassword);
+        userDao.resetPassword(jwtUtil.extractEmail(token),encodePassword);
         return new BasicRes(ResMessage.SUCCESS.getCode(),//
                 ResMessage.SUCCESS.getMessage());
     }
@@ -171,21 +149,13 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public BasicRes verifyToken(String token) {
-        // 驗證 token 是否有效
-        if (!jwtUtil.isTokenValid(token)) {
-            return new BasicRes(ResMessage.TOKEN_EXPIRED.getCode(),
-                    ResMessage.TOKEN_EXPIRED.getMessage());
-        }
-        // 從 JWT 中解析出 email
-        String email = jwtUtil.extractEmail(token);
-        // 從資料庫找出這個 email 的使用者
-        User user = userDao.getByEmail(email);
-        if (user == null) {
-            return new BasicRes(ResMessage.EMAIL_NOT_EXISTED.getCode(),
-                    ResMessage.EMAIL_NOT_EXISTED.getMessage());
+        // 呼叫 checktoken 檢查 token
+        BasicRes res = checktoken(token);
+        if(res.getCode()==400){
+            return res;
         }
         // 更新 user 的帳號狀態
-        userDao.updateActive(email);
+        userDao.updateActive(jwtUtil.extractEmail(token));
         return new BasicRes(ResMessage.SUCCESS.getCode(),//
                 ResMessage.SUCCESS.getMessage());
     }
@@ -200,6 +170,24 @@ public class UserServiceImpl implements UserService {
         if (!usermail.isActive()){
             return new BasicRes(ResMessage.EMAIL_HAS_BEEN_CANCELED.getCode(),//
                     ResMessage.EMAIL_HAS_BEEN_CANCELED.getMessage());
+        }
+        return new BasicRes(ResMessage.SUCCESS.getCode(),//
+                ResMessage.SUCCESS.getMessage());
+    }
+
+    private BasicRes checktoken(String token){
+        // 驗證 token 是否有效
+        if (!jwtUtil.isTokenValid(token)) {
+            return new BasicRes(ResMessage.TOKEN_EXPIRED.getCode(),
+                    ResMessage.TOKEN_EXPIRED.getMessage());
+        }
+        // 從 JWT 中解析出 email
+        String email = jwtUtil.extractEmail(token);
+        // 從資料庫找出這個 email 的使用者
+        User user = userDao.getByEmail(email);
+        if (user == null) {
+            return new BasicRes(ResMessage.EMAIL_NOT_EXISTED.getCode(),
+                    ResMessage.EMAIL_NOT_EXISTED.getMessage());
         }
         return new BasicRes(ResMessage.SUCCESS.getCode(),//
                 ResMessage.SUCCESS.getMessage());
