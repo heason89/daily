@@ -41,7 +41,19 @@ public enum ResMessage {
 
     public static class ConstantsMessage{
         public static final String PARAM_EMAIL_ERROR = "Param email error!";
+
         public static final String PARAM_PASSWORD_ERROR = "Param password error!";
+
+        public static final String PARAM_SLEEP_Time_ERROR = "Param sleep_time error!";
+        public static final String PARAM_AWAKE_Time_ERROR = "Param awake_time error!";
+        public static final String PARAM_MEALS_NAME_ERROR = "Param meals_name error!";
+        public static final String PARAM_EAT_Time_ERROR = "Param eat_time error!";
+        public static final String PARAM_DATE_ERROR = "Param date error!"; //運動開始時間
+        public static final String PARAM_DURATION_ERROR = "Param duration error!";
+        public static final String PARAM_EXERCISENAME_ERROR = "Param exerciseName error!";
+        public static final String PARAM_SPORTS_TYPE_ERROR = "Param sports_type error!";
+        public static final String PARAM_CONSUME_ERROR = "Param consume error!";
+
     }
 
 }

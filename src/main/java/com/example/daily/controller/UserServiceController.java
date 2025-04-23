@@ -51,14 +51,4 @@ public class UserServiceController {
                                   @RequestParam String newPassword) {
         return userService.verifyTokenUpdatePassword(token, newPassword);
     }
-
-<<<<<<< Updated upstream
-    @PostMapping("daily/update_photo")
-    public BasicRes updatePhoto(@RequestBody PhotoReq req) {
-        return userService.updatePhoto(req);
-    }
-=======
-
-
->>>>>>> Stashed changes
 }
