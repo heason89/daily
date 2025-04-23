@@ -29,7 +29,7 @@ public class FoodServiceImpl implements FoodService {
         foodDao.insert(req.getFoodName(), req.getCookingMethod(), req.getType(), req.getCalorie(),
                 req.getTotalFat(), req.getTransFat(), req.getSaturatedFat(), req.getTotalCarbohydrate(),
                 req.getSugar(), req.getDietaryFiber(), req.getProtein(), req.getSodium(),
-                req.getCholesterol());
+                req.getCholesterol(), req.getPhoto());
         return new BasicRes(ResMessage.SUCCESS.getCode(),//
                 ResMessage.SUCCESS.getMessage());
     }
@@ -46,7 +46,7 @@ public class FoodServiceImpl implements FoodService {
         foodDao.updateFood(req.getFoodName(), req.getCookingMethod(), req.getType(), req.getCalorie(),
                 req.getTotalFat(), req.getTransFat(), req.getSaturatedFat(), req.getTotalCarbohydrate(),
                 req.getSugar(), req.getDietaryFiber(), req.getProtein(), req.getSodium(),
-                req.getCholesterol());
+                req.getCholesterol(), req.getPhoto());
         return new BasicRes(ResMessage.SUCCESS.getCode(),//
                 ResMessage.SUCCESS.getMessage());
     }
