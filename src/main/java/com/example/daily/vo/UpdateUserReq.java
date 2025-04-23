@@ -3,6 +3,8 @@ package com.example.daily.vo;
 import com.example.daily.constants.ResMessage;
 import jakarta.validation.constraints.NotBlank;
 
+import java.time.LocalDate;
+
 public class UpdateUserReq {
 
     @NotBlank(message= ResMessage.ConstantsMessage.PARAM_EMAIL_ERROR)
@@ -18,7 +20,7 @@ public class UpdateUserReq {
     // 0:帳號註銷 1 :帳號啟用
     private boolean active = true;
 
-    private int age =0 ;
+    private LocalDate birthdate =LocalDate.now() ;
 
     private int height =0;
 
@@ -26,8 +28,9 @@ public class UpdateUserReq {
 
     private String workType = "Static";
 
-    // 0:女， 1: 男
-    private boolean gender = true;
+    private String gender = "man";
+
+    private String note ="" ;
 
     public String getEmail() {
         return email;
@@ -49,8 +52,8 @@ public class UpdateUserReq {
         return active;
     }
 
-    public int getAge() {
-        return age;
+    public LocalDate getBirthdate() {
+        return birthdate;
     }
 
     public int getHeight() {
@@ -65,16 +68,12 @@ public class UpdateUserReq {
         return workType;
     }
 
-    public boolean isGender() {
+    public String getGender() {
         return gender;
     }
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public void setAdmin(boolean admin) {
@@ -85,8 +84,8 @@ public class UpdateUserReq {
         this.active = active;
     }
 
-    public void setAge(int age) {
-        this.age = age;
+    public void setBirthdate(LocalDate birthdate) {
+        this.birthdate = birthdate;
     }
 
     public void setHeight(int height) {
@@ -101,7 +100,15 @@ public class UpdateUserReq {
         this.workType = workType;
     }
 
-    public void setGender(boolean gender) {
+    public void setGender(String gender) {
         this.gender = gender;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
     }
 }

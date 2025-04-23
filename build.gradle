@@ -24,6 +24,17 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	//validation
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
+
+	//email 寄送
+	implementation 'org.springframework.boot:spring-boot-starter-mail'
+
+	// JWT 核心 API，必加
+	implementation 'io.jsonwebtoken:jjwt-api:0.11.5'
+	// 實作（用來產生/驗證 token）
+	runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.5'
+	// 用 Jackson 來支援 JSON處理 解析
+	runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.11.5'
+
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }

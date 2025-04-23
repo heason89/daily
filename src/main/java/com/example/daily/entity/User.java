@@ -7,6 +7,9 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 @Entity
 @Table(name="user")
 public class User {
@@ -29,8 +32,8 @@ public class User {
     @Column(name ="active")
     private boolean active;
 
-    @Column(name ="age")
-    private int age;
+    @Column(name ="birthdate")
+    private LocalDate birthdate;
 
     @Column(name ="height")
     private int height;
@@ -42,24 +45,21 @@ public class User {
     private String workType;
 
     @Column(name ="gender")
-    private boolean gender;
+    private String gender;
+
+    @Column(name ="token")
+    private String token;
+
+    @Column(name ="token_expiry")
+    private LocalDateTime tokenExpiry;
+
+    @Column(name ="photo")
+    private String photo;
+
+    @Column(name ="note")
+    private String note;
 
     public User() {
-    }
-
-    public User(String name, String email, String password, boolean admin,
-                boolean active, int age, int height, int weight, String workType,
-                boolean gender) {
-        this.name = name;
-        this.email = email;
-        this.password = password;
-        this.admin = admin;
-        this.active = active;
-        this.age = age;
-        this.height = height;
-        this.weight = weight;
-        this.workType = workType;
-        this.gender = gender;
     }
 
     public String getName() {
@@ -102,12 +102,12 @@ public class User {
         this.active = active;
     }
 
-    public int getAge() {
-        return age;
+    public LocalDate getBirthdate() {
+        return birthdate;
     }
 
-    public void setAge(int age) {
-        this.age = age;
+    public void setBirthdate(LocalDate birthdate) {
+        this.birthdate = birthdate;
     }
 
     public int getHeight() {
@@ -134,11 +134,43 @@ public class User {
         this.workType = workType;
     }
 
-    public boolean isGender() {
+    public String getGender() {
         return gender;
     }
 
-    public void setGender(boolean gender) {
+    public void setGender(String gender) {
         this.gender = gender;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
+    public LocalDateTime getTokenExpiry() {
+        return tokenExpiry;
+    }
+
+    public void setTokenExpiry(LocalDateTime tokenExpiry) {
+        this.tokenExpiry = tokenExpiry;
+    }
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
     }
 }

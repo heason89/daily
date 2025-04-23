@@ -9,6 +9,8 @@ public enum ResMessage {
     PASSWORD_MISMATCH(400,"Password mismatch!"),//
     FOOD_EXISTED(400,"Food existed!"),//
     FOOD_NOT_EXISTED(400,"Food not existed!"),//
+    TOKEN_NOT_EXISTED(400,"Token not existed!"),//
+    TOKEN_EXPIRED(400,"Token expired!"),//
     ;
     private int code;
 

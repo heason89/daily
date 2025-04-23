@@ -3,6 +3,8 @@ package com.example.daily.vo;
 import com.example.daily.constants.ResMessage;
 import jakarta.validation.constraints.NotBlank;
 
+import java.time.LocalDate;
+
 public class RegisterReq {
 
     @NotBlank(message= ResMessage.ConstantsMessage.PARAM_EMAIL_ERROR)
@@ -16,9 +18,9 @@ public class RegisterReq {
     private boolean admin = false;
 
     // 0:帳號註銷 1 :帳號啟用
-    private boolean active = true;
+    private boolean active = false;
 
-    private int age =0 ;
+    private LocalDate birthdate = LocalDate.now() ;
 
     private int height =0;
 
@@ -26,8 +28,11 @@ public class RegisterReq {
 
     private String workType = "Static";
 
-    // 0:女， 1: 男
-    private boolean gender = true;
+    private String gender = "man";
+
+    private String photo ="";
+
+    private String note ="";
 
     public String getEmail() {
         return email;
@@ -69,12 +74,12 @@ public class RegisterReq {
         this.active = active;
     }
 
-    public int getAge() {
-        return age;
+    public LocalDate getBirthdate() {
+        return birthdate;
     }
 
-    public void setAge(int age) {
-        this.age = age;
+    public void setBirthdate(LocalDate birthdate) {
+        this.birthdate = birthdate;
     }
 
     public int getHeight() {
@@ -101,11 +106,27 @@ public class RegisterReq {
         this.workType = workType;
     }
 
-    public boolean isGender() {
+    public String getGender() {
         return gender;
     }
 
-    public void setGender(boolean gender) {
+    public void setGender(String gender) {
         this.gender = gender;
+    }
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
     }
 }
