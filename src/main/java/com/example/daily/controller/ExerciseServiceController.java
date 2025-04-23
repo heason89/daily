@@ -26,7 +26,8 @@ public class ExerciseServiceController {
 	public BasicRes fillinExercise(@Valid @RequestBody ExerciseReq req) {
 		return exerciseService.fillinExercise(req);
 		
-	}
+	
+}
 	@PostMapping(value ="exercise/UpdateExercise")
 	public BasicRes UpdateExercise(@Valid @RequestBody UpdateExerciseReq req) {
 		return exerciseService.updateByExercise(req);
@@ -35,9 +36,11 @@ public class ExerciseServiceController {
 	@PostMapping(value ="exercise/selectExercise")
 	public BasicRes selectExercise(@Valid @RequestBody ExerciseReq req) {
 		return exerciseService.selectByemail(req);
-	}
+
+}
 	@GetMapping(value ="exercise/select")
 	public BasicRes select() {
 		return exerciseService.select();
-	}
+
+}
 }
