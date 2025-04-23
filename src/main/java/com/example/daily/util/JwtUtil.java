@@ -27,7 +27,7 @@ public class JwtUtil {
 
     // 註冊產生驗證碼用
     public String generateVerificationToken(String email) {
-        int expirationMillis = 1000 * 60 * 60; // 60 分鐘
+        int expirationMillis = 1000 * 60 * 30; // 30 分鐘
         // Jwts.builder() 代表建立一個新的 JWT
         // setSubject() 代表 token 的主體，主要設定信箱用(收件者)
         // setIssuedAt() 代表 token 被建立的時間

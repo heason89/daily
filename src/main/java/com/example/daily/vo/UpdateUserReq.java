@@ -30,7 +30,11 @@ public class UpdateUserReq {
 
     private String gender = "man";
 
+    private String photo ="";
+
     private String note ="" ;
+
+    private String bodyType ="";
 
     public String getEmail() {
         return email;
@@ -110,5 +114,29 @@ public class UpdateUserReq {
 
     public void setNote(String note) {
         this.note = note;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
+
+    public String getBodyType() {
+        return bodyType;
+    }
+
+    public void setBodyType(String bodyType) {
+        this.bodyType = bodyType;
     }
 }

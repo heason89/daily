@@ -50,14 +50,14 @@ public class User {
     @Column(name ="token")
     private String token;
 
-    @Column(name ="token_expiry")
-    private LocalDateTime tokenExpiry;
-
     @Column(name ="photo")
     private String photo;
 
     @Column(name ="note")
     private String note;
+
+    @Column(name ="body_type")
+    private String bodyType;
 
     public User() {
     }
@@ -150,14 +150,6 @@ public class User {
         this.token = token;
     }
 
-    public LocalDateTime getTokenExpiry() {
-        return tokenExpiry;
-    }
-
-    public void setTokenExpiry(LocalDateTime tokenExpiry) {
-        this.tokenExpiry = tokenExpiry;
-    }
-
     public String getPhoto() {
         return photo;
     }
@@ -172,5 +164,13 @@ public class User {
 
     public void setNote(String note) {
         this.note = note;
+    }
+
+    public String getBodyType() {
+        return bodyType;
+    }
+
+    public void setBodyType(String bodyType) {
+        this.bodyType = bodyType;
     }
 }
