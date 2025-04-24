@@ -2,6 +2,10 @@ package com.example.daily.dao;
 
 import com.example.daily.entity.Food;
 import com.example.daily.entity.FoodId;
+
+
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -66,4 +70,7 @@ public interface FoodDao extends JpaRepository<Food, FoodId> {
     @Transactional
     @Query(value ="delete from food where food = ?1 and cooking_method = ?2 ", nativeQuery =true)
     public void delete(String foodName, String cookingMethod);
+    
+    @Query(value="select * from food where food_name like %?1% ",nativeQuery = true)
+	public List<Food> selectFood(String foodName);
 }
