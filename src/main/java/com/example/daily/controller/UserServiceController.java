@@ -4,8 +4,12 @@ import com.example.daily.service.ifs.UserService;
 import com.example.daily.vo.*;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
 
 @CrossOrigin(origins = "*")
 @RestController
@@ -50,5 +54,15 @@ public class UserServiceController {
     public BasicRes updatePassword(@RequestParam String token,
                                   @RequestParam String newPassword) {
         return userService.verifyTokenUpdatePassword(token, newPassword);
+    }
+
+    @PostMapping("/daily/upload")
+    public ResponseEntity<?> uploadImage(@RequestParam("image") MultipartFile file) {
+        if (file.isEmpty()) {
+            return ResponseEntity.badRequest().body("請選擇圖片");
+        }
+        String fileName = file.getOriginalFilename();
+        // 儲存圖片的邏輯
+        return ResponseEntity.ok("圖片上傳成功: " + fileName);
     }
 }

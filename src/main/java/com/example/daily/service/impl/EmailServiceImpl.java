@@ -2,25 +2,47 @@ package com.example.daily.service.impl;
 
 
 import com.example.daily.constants.ResMessage;
+import com.example.daily.dao.SenderDao;
+import com.example.daily.entity.Sender;
 import com.example.daily.service.ifs.EmailService;
 import com.example.daily.util.JwtUtil;
 import com.example.daily.vo.BasicRes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.stereotype.Service;
+
+import java.util.Properties;
 
 @Service
 public class EmailServiceImpl implements EmailService {
 
-    @Autowired
-    private JavaMailSender mailSender;
 
     @Autowired
     private JwtUtil jwtUtil;
 
+    @Autowired
+    private SenderDao senderDao;
+
     @Override
     public BasicRes sendVerificationEmail(String toUser, String token) {
+        Sender sender = senderDao.getSender();
+        JavaMailSenderImpl mailSender =new JavaMailSenderImpl();
+
+        // 設定寄件者資料
+        mailSender.setHost("smtp.gmail.com");
+        mailSender.setPort(587);
+        mailSender.setUsername(sender.getEmail());
+        mailSender.setPassword(sender.getPassword());
+
+        //取得 JavaMailSenderImpl 裡面負責 SMTP 傳輸協議的屬性設定表
+        Properties props = mailSender.getJavaMailProperties();
+        // 發信時要啟用「SMTP 驗證」機制，這對於 Gmail 來說是 必要的，否則你會被拒絕連線。
+        props.put("mail.smtp.auth", "true");
+        // 啟用 STARTTLS 加密機制，由於 Gmail 必須啟用 STARTTLS 才能寄信
+        props.put("mail.smtp.starttls.enable", "true");
+
         String link = "http://172.16.0.86:8080/daily/verify?token=" + token;
 
         String subject = "請驗證您的帳號 - HealthyDiaryApp";
@@ -40,6 +62,22 @@ public class EmailServiceImpl implements EmailService {
 
     @Override
     public BasicRes sendResetPasswordEmail(String toEmail, String token) {
+        Sender sender = senderDao.getSender();
+        JavaMailSenderImpl mailSender =new JavaMailSenderImpl();
+
+        // 設定寄件者資料
+        mailSender.setHost("smtp.gmail.com");
+        mailSender.setPort(587);
+        mailSender.setUsername(sender.getEmail());
+        mailSender.setPassword(sender.getPassword());
+
+        //取得 JavaMailSenderImpl 裡面負責 SMTP 傳輸協議的屬性設定表
+        Properties props = mailSender.getJavaMailProperties();
+        // 發信時要啟用「SMTP 驗證」機制，這對於 Gmail 來說是 必要的，否則你會被拒絕連線。
+        props.put("mail.smtp.auth", "true");
+        // 啟用 STARTTLS 加密機制，由於 Gmail 必須啟用 STARTTLS 才能寄信
+        props.put("mail.smtp.starttls.enable", "true");
+
         String link = "http://172.16.0.86:8080/daily/reset-password?token=" + token;
 
         String subject = "重設您的密碼 - HealthyDiaryApp";

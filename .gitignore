@@ -1,6 +1,3 @@
-# 忽略環境變數檔案
-.env
-
 .gradle
 **/build/
 !src/**/build/
