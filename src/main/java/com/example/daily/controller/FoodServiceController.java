@@ -10,11 +10,9 @@ import com.example.daily.service.ifs.FoodService;
 import com.example.daily.vo.BasicRes;
 
 import com.example.daily.vo.FoodReq;
-
+import com.example.daily.vo.GetFoodRes;
 
 import jakarta.validation.Valid;
-
-
 
 @CrossOrigin
 @RestController
@@ -35,5 +33,9 @@ public class FoodServiceController {
 	@PostMapping(value ="food/deleteFood")
 	public BasicRes deleteFood(@Valid @RequestBody FoodReq req) {
 		return foodService.deleteFood(req);
+	}
+	@PostMapping(value ="food/selectFood")
+	public GetFoodRes selectFood(@Valid @RequestBody FoodReq req) {
+		return foodService.selectFood(req);
 	}
 }
