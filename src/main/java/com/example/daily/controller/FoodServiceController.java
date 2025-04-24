@@ -8,21 +8,16 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.daily.service.ifs.FoodService;
 import com.example.daily.vo.BasicRes;
-
 import com.example.daily.vo.FoodReq;
-
-
 import jakarta.validation.Valid;
-
-
 
 @CrossOrigin
 @RestController
 public class FoodServiceController {
-	
+
 	@Autowired
 	private FoodService foodService;
-	
+
 	@PostMapping(value ="food/foodInsert")
 	public BasicRes foodInsert(@Valid @RequestBody FoodReq req) {
 		return foodService.foodInsert(req);
@@ -31,7 +26,6 @@ public class FoodServiceController {
 	public BasicRes UpdateExercise(@Valid @RequestBody FoodReq req) {
 		return foodService.foodUpdate(req);
 	}
-	
 	@PostMapping(value ="food/deleteFood")
 	public BasicRes deleteFood(@Valid @RequestBody FoodReq req) {
 		return foodService.deleteFood(req);
