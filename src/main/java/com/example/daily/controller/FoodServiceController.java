@@ -1,5 +1,6 @@
 package com.example.daily.controller;
 
+import com.example.daily.vo.GetFoodRes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
