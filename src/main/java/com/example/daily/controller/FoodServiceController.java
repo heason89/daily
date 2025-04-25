@@ -9,11 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.daily.service.ifs.FoodService;
 import com.example.daily.vo.BasicRes;
 import com.example.daily.vo.FoodReq;
-
-
-import com.example.daily.vo.GetFoodRes;
-
-
 import jakarta.validation.Valid;
 
 @CrossOrigin
