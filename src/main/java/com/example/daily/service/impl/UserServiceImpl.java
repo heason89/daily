@@ -102,7 +102,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public BasicRes sendResetPasswordEmail(GetUserInfoReq req) {
+    public BasicRes sendResetPasswordEmail(SendEmailReq req) {
         // 檢查 email 是否已存在
         User userEmail =userDao.getByEmail(req.getEmail());
         // 呼叫 checkmail 檢查
@@ -117,7 +117,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public BasicRes verifyTokenUpdatePassword(TokenReq req) {
+    public BasicRes verifyTokenUpdatePassword(ResetPasswordReq req) {
         // 呼叫 checktoken 檢查 token
         BasicRes res = checktoken(req.getToken());
         if(res.getCode()==400){
@@ -146,14 +146,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public BasicRes verifyToken(String token) {
+    public BasicRes verifyToken(VerifyTokenReq req) {
         // 呼叫 checktoken 檢查 token
-        BasicRes res = checktoken(token);
+        BasicRes res = checktoken(req.getToken());
         if(res.getCode()==400){
             return res;
         }
         // 更新 user 的帳號狀態
-        userDao.updateActive(jwtUtil.extractEmail(token));
+        userDao.updateActive(jwtUtil.extractEmail(req.getToken()));
         return new BasicRes(ResMessage.SUCCESS.getCode(),//
                 ResMessage.SUCCESS.getMessage());
     }

@@ -3,16 +3,16 @@ package com.example.daily.vo;
 import com.example.daily.constants.ResMessage;
 import jakarta.validation.constraints.NotBlank;
 
-public class GetUserInfoReq {
+public class VerifyTokenReq {
 
     @NotBlank(message= ResMessage.ConstantsMessage.PARAM_TOKEN_ERROR)
-    private String email;
+    private String token;
 
-    public String getEmail() {
-        return email;
+    public String getToken() {
+        return token;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setToken(String token) {
+        this.token = token;
     }
 }

@@ -52,6 +52,7 @@ public enum ResMessage {
 		public static final String PARAM_EXERCISENAME_ERROR = "Param exerciseName error!";
 		public static final String PARAM_SPORTS_TYPE_ERROR = "Param sports_type error!";
 		public static final String PARAM_CONSUME_ERROR = "Param consume error!";
+		public static final String PARAM_TOKEN_ERROR = "Param token error!";
 
 	}
 

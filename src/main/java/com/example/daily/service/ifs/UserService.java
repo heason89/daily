@@ -11,11 +11,11 @@ public interface UserService {
 
     public BasicRes updateUserInfo(UpdateUserReq req);
 
-    public BasicRes sendResetPasswordEmail(GetUserInfoReq req);
+    public BasicRes sendResetPasswordEmail(SendEmailReq req);
 
     public GetUserInfoRes getUserInfo(GetUserInfoReq req);
 
-    public BasicRes verifyToken(String token);
+    public BasicRes verifyToken(VerifyTokenReq req);
 
-    public BasicRes verifyTokenUpdatePassword(TokenReq req);
+    public BasicRes verifyTokenUpdatePassword(ResetPasswordReq req);
 }
