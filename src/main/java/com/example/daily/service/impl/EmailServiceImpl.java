@@ -78,7 +78,7 @@ public class EmailServiceImpl implements EmailService {
         // 啟用 STARTTLS 加密機制，由於 Gmail 必須啟用 STARTTLS 才能寄信
         props.put("mail.smtp.starttls.enable", "true");
 
-        String link = "http://172.16.0.86:8080/daily/reset-password?token=" + token;
+        String link = "http://localhost:4200/editpwd?token=" + token;
 
         String subject = "重設您的密碼 - HealthyDiaryApp";
         String content = "Hi 使用者您好，\n\n" +

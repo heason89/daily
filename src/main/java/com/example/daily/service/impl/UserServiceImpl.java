@@ -102,32 +102,32 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public BasicRes sendResetPasswordEmail(String email) {
+    public BasicRes sendResetPasswordEmail(GetUserInfoReq req) {
         // 檢查 email 是否已存在
-        User userEmail =userDao.getByEmail(email);
+        User userEmail =userDao.getByEmail(req.getEmail());
         // 呼叫 checkmail 檢查
         BasicRes res = checkmail(userEmail);
         if(res.getCode()==400){
             return res;
         }
-        String token = jwtUtil.generateResetPasswordToken(email);
-        emailService.sendResetPasswordEmail(email, token);
+        String token = jwtUtil.generateResetPasswordToken(req.getEmail());
+        emailService.sendResetPasswordEmail(req.getEmail(), token);
         return new BasicRes(ResMessage.SUCCESS.getCode(),//
                 ResMessage.SUCCESS.getMessage());
     }
 
     @Override
-    public BasicRes verifyTokenUpdatePassword(String token, String newPassword) {
+    public BasicRes verifyTokenUpdatePassword(TokenReq req) {
         // 呼叫 checktoken 檢查 token
-        BasicRes res = checktoken(token);
+        BasicRes res = checktoken(req.getToken());
         if(res.getCode()==400){
             return res;
         }
         // 將 password 變成亂碼
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        String encodePassword = encoder.encode(newPassword);
+        String encodePassword = encoder.encode(req.getPassword());
         // 更新 user 的密碼
-        userDao.resetPassword(jwtUtil.extractEmail(token),encodePassword);
+        userDao.resetPassword(jwtUtil.extractEmail(req.getToken()),encodePassword);
         return new BasicRes(ResMessage.SUCCESS.getCode(),//
                 ResMessage.SUCCESS.getMessage());
     }

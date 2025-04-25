@@ -46,23 +46,14 @@ public class UserServiceController {
     // 下面兩個可能還要調整
     // 請求寄送重設密碼信
     @PostMapping("daily/send_reset_password")
-    public BasicRes sendResetPasswordEmail(@RequestParam String email) {
-        return userService.sendResetPasswordEmail(email);
+    public BasicRes sendResetPasswordEmail(@RequestBody GetUserInfoReq req) {
+        return userService.sendResetPasswordEmail(req);
     }
     // 傳入 token 與新密碼，重設密碼
     @PostMapping("daily/reset_password")
-    public BasicRes updatePassword(@RequestParam String token,
-                                  @RequestParam String newPassword) {
-        return userService.verifyTokenUpdatePassword(token, newPassword);
+    public BasicRes updatePassword(@RequestBody TokenReq req) {
+        return userService.verifyTokenUpdatePassword(req);
     }
 
-    @PostMapping("/daily/upload")
-    public ResponseEntity<?> uploadImage(@RequestParam("image") MultipartFile file) {
-        if (file.isEmpty()) {
-            return ResponseEntity.badRequest().body("請選擇圖片");
-        }
-        String fileName = file.getOriginalFilename();
-        // 儲存圖片的邏輯
-        return ResponseEntity.ok("圖片上傳成功: " + fileName);
-    }
+   
 }
