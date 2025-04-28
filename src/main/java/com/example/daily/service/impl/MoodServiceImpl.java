@@ -1,5 +1,6 @@
 package com.example.daily.service.impl;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,9 +15,10 @@ import com.example.daily.vo.BasicRes;
 import com.example.daily.vo.MoodReq;
 
 import com.example.daily.vo.SelectMoodRes;
+
 @Service
-public class MoodServiceImpl implements MoodService{
-	
+public class MoodServiceImpl implements MoodService {
+
 	@Autowired
 	private MoodDao moodDao;
 
@@ -29,6 +31,14 @@ public class MoodServiceImpl implements MoodService{
 
 	@Override
 	public BasicRes updateMood(MoodReq req) {
+		Mood list = moodDao.getMoodbyEmailDate(req.getEmail(), req.getDate());
+		LocalDate Date = LocalDate.now();
+		LocalDate sevenDaysAgo = Date.minusDays(7);
+		if (sevenDaysAgo.isBefore(list.getDate())) {
+			return new BasicRes(ResMessage.DATE_EXPIRED.getCode(), //
+					ResMessage.DATE_EXPIRED.getMessage());
+		}
+
 		moodDao.updateByMood(req.getEmail(), req.getDate(), req.getMood(), req.getDiary());
 		return new BasicRes(ResMessage.SUCCESS.getCode(), //
 				ResMessage.SUCCESS.getMessage());
@@ -36,12 +46,12 @@ public class MoodServiceImpl implements MoodService{
 
 	@Override
 	public SelectMoodRes selectMood(MoodReq req) {
-		if(moodDao.selectCountByemail(req.getEmail()) == 0) {
+		if (moodDao.selectCountByemail(req.getEmail()) == 0) {
 			return new SelectMoodRes(ResMessage.EMAIL_NOT_EXISTED.getCode(), //
 					ResMessage.EMAIL_NOT_EXISTED.getMessage());
 		}
-		List<Mood> list = moodDao.selectByemail(req.getEmail());
-		
+		List<Mood> list = moodDao.getAllMoodbyEmail(req.getEmail());
+
 		return new SelectMoodRes(ResMessage.SUCCESS.getCode(), //
 				ResMessage.SUCCESS.getMessage(), list);
 	}

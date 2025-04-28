@@ -2,7 +2,7 @@ package com.example.daily.vo;
 
 import java.time.LocalDateTime;
 
-public class MealsReq extends BasicRes{
+public class MealsReq {
 	
 	private String email;
 	
@@ -12,11 +12,6 @@ public class MealsReq extends BasicRes{
 
 	public MealsReq() {
 		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	public MealsReq(int code, String message) {
-		super(code, message);
 		// TODO Auto-generated constructor stub
 	}
 
@@ -50,7 +45,7 @@ public class MealsReq extends BasicRes{
 	public void setEatTime(LocalDateTime eatTime) {
 		this.eatTime = eatTime;
 	}
-	
+
 	
 
 }

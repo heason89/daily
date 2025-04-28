@@ -2,7 +2,7 @@ package com.example.daily.vo;
 
 import java.time.LocalDateTime;
 
-public class SleepReq extends BasicRes {
+public class SleepReq  {
 
 	private String email;
 
@@ -18,11 +18,6 @@ public class SleepReq extends BasicRes {
 
 	public SleepReq() {
 		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	public SleepReq(int code, String message) {
-		super(code, message);
 		// TODO Auto-generated constructor stub
 	}
 
@@ -84,5 +79,7 @@ public class SleepReq extends BasicRes {
 	public void setPhone(Boolean phone) {
 		this.phone = phone;
 	}
+
+	
 
 }

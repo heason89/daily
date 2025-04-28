@@ -22,17 +22,17 @@ public class SleepServiceController {
 	private SleepService sleepService;
 	
 	
-	@PostMapping(value ="sleep/fillinSleep")
+	@PostMapping(value ="sleep/fillin_sleep")
 	public BasicRes fillinSleep(@Valid @RequestBody SleepReq req) {
 		return sleepService.fillinSleep(req);
 		
 	}
-	@PostMapping(value ="sleep/selectSleep")
+	@PostMapping(value ="sleep/select_sleep")
 	public SelectSleepRes selectSleep(@Valid @RequestBody SleepReq req) {
 		return sleepService.selectSleep(req);
 		
 	}
-	@PostMapping(value ="sleep/updateSleep")
+	@PostMapping(value ="sleep/update_sleep")
 	public BasicRes updateSleep(@Valid @RequestBody UpdateSleepReq req) {
 		return sleepService.updateSleep(req);
 		

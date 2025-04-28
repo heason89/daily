@@ -46,5 +46,8 @@ public interface MoodDao extends JpaRepository<Mood, MoodId> {
 	public int selectCountByemail(String email);
 	
 	@Query(value="select * from mood where email = ?1 ",nativeQuery = true)
-	public List<Mood> selectByemail(String email);
+	public List<Mood> getAllMoodbyEmail(String email);
+	
+	@Query(value="select * from mood where email = ?1 and date = ?2",nativeQuery = true)
+	public Mood getMoodbyEmailDate(String email, LocalDate date);
 }

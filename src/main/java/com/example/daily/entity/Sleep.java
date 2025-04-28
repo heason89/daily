@@ -23,11 +23,11 @@ public class Sleep {
     @Column(name ="email")
     private String email;
     
-    @NotNull(message = ResMessage.ConstantsMessage.PARAM_SLEEP_Time_ERROR)
+    @NotNull(message = ResMessage.ConstantsMessage.PARAM_SLEEP_TIME_ERROR)
     @Column(name ="sleep_time")
     private LocalDateTime sleepTime;
     
-    @NotNull(message = ResMessage.ConstantsMessage.PARAM_AWAKE_Time_ERROR)
+    @NotNull(message = ResMessage.ConstantsMessage.PARAM_AWAKE_TIME_ERROR)
     @Column(name ="awake_time")
     private LocalDateTime awakeTime;
 

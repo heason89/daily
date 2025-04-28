@@ -28,7 +28,7 @@ public class Exercise {
     @Min(value = 1, message = ResMessage.ConstantsMessage.PARAM_DURATION_ERROR)
     @Column(name ="duration")
     private int duration;
-    @NotBlank(message = ResMessage.ConstantsMessage.PARAM_EXERCISENAME_ERROR)
+    @NotBlank(message = ResMessage.ConstantsMessage.PARAM_EXERCISE_NAME_ERROR)
     @Column(name ="exercise_name")
     private String exerciseName;
 

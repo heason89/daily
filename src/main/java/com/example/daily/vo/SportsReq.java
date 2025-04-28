@@ -1,10 +1,10 @@
 package com.example.daily.vo;
 
-public class SportsReq extends BasicRes{
+public class SportsReq {
 	
 	private String sportsName;
 	
-	private String sports_type;
+	private String sportsType;
 	
 	private int consume;
 
@@ -13,15 +13,10 @@ public class SportsReq extends BasicRes{
 		// TODO Auto-generated constructor stub
 	}
 
-	public SportsReq(int code, String message) {
-		super(code, message);
-		// TODO Auto-generated constructor stub
-	}
-
-	public SportsReq(String sportsName, String sports_type, int consume) {
+	public SportsReq(String sportsName, String sportsType, int consume) {
 		super();
 		this.sportsName = sportsName;
-		this.sports_type = sports_type;
+		this.sportsType = sportsType;
 		this.consume = consume;
 	}
 
@@ -33,12 +28,12 @@ public class SportsReq extends BasicRes{
 		this.sportsName = sportsName;
 	}
 
-	public String getSports_type() {
-		return sports_type;
+	public String getSportsType() {
+		return sportsType;
 	}
 
-	public void setSports_type(String sports_type) {
-		this.sports_type = sports_type;
+	public void setSportsType(String sportsType) {
+		this.sportsType = sportsType;
 	}
 
 	public int getConsume() {
@@ -48,6 +43,7 @@ public class SportsReq extends BasicRes{
 	public void setConsume(int consume) {
 		this.consume = consume;
 	}
+
 	
 	
 

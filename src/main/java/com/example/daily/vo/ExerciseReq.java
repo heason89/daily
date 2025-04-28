@@ -2,7 +2,7 @@ package com.example.daily.vo;
 
 import java.time.LocalDate;
 
-public class ExerciseReq extends BasicRes{
+public class ExerciseReq {
 	
 	 private String email;
 	 
@@ -17,10 +17,7 @@ public class ExerciseReq extends BasicRes{
 		// TODO Auto-generated constructor stub
 	}
 
-	public ExerciseReq(int code, String message) {
-		super(code, message);
-		// TODO Auto-generated constructor stub
-	}
+	
 
 	public ExerciseReq(String email, LocalDate date, int duration, String exerciseName) {
 		super();

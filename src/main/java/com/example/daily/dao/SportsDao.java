@@ -17,10 +17,10 @@ public interface SportsDao extends JpaRepository<Sports, String> {
 	@Modifying
 	@Transactional
 	@Query(value = "insert into sports (sports_name, sports_type, consume )"
-			 + "values( :sportsName, :sports_type, :consume )" , nativeQuery = true)
+			 + "values( :sportsName, :sportsType, :consume )" , nativeQuery = true)
 	public void insertSports(//			
 			@Param("sportsName") String sportsName,//
-			@Param("sports_type") String sports_type, //
+			@Param("sports_type") String sportsType, //
 			@Param("consume")int consume//
 			);
 }

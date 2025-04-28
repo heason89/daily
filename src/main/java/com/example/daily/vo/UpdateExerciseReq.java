@@ -2,7 +2,7 @@ package com.example.daily.vo;
 
 import java.time.LocalDate;
 
-public class UpdateExerciseReq extends BasicRes{
+public class UpdateExerciseReq {
 	
 	private int exerciseId;
 	
@@ -16,11 +16,6 @@ public class UpdateExerciseReq extends BasicRes{
 
 	public UpdateExerciseReq() {
 		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	public UpdateExerciseReq(int code, String message) {
-		super(code, message);
 		// TODO Auto-generated constructor stub
 	}
 
@@ -64,5 +59,6 @@ public class UpdateExerciseReq extends BasicRes{
 		this.exerciseName = exerciseName;
 	}
 
+	
 	
 }

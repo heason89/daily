@@ -20,19 +20,19 @@ public class MoodServiceController {
 	@Autowired
 	private MoodService moodService;
 
-	@PostMapping(value = "mood/fillinMood")
+	@PostMapping(value = "mood/fillin_mood")
 	public BasicRes fillinMood(@Valid @RequestBody MoodReq req) {
 		return moodService.fillinMood(req);
 
 	}
 
-	@PostMapping(value = "mood/updateMood")
+	@PostMapping(value = "mood/update_mood")
 	public BasicRes updateMood(@Valid @RequestBody MoodReq req) {
 		return moodService.updateMood(req);
 
 	}
 
-	@PostMapping(value = "mood/selectMood")
+	@PostMapping(value = "mood/select_mood")
 	public SelectMoodRes selectMood(@Valid @RequestBody MoodReq req) {
 		return moodService.selectMood(req);
 

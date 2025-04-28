@@ -20,41 +20,39 @@ public class Sports {
     private String sportsName;
     @NotBlank(message = ResMessage.ConstantsMessage.PARAM_SPORTS_TYPE_ERROR)
     @Column(name ="sports_type")
-    private String sports_type;
+    private String sportsType;
     @Min(value = 1, message = ResMessage.ConstantsMessage.PARAM_CONSUME_ERROR)
     @Column(name ="consume")
     private int consume;
+	public Sports() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	public Sports(String sportsName, @NotBlank(message = "Param sports_type error!") String sportsType,
+			@Min(value = 1, message = "Param consume error!") int consume) {
+		super();
+		this.sportsName = sportsName;
+		this.sportsType = sportsType;
+		this.consume = consume;
+	}
+	public String getSportsName() {
+		return sportsName;
+	}
+	public void setSportsName(String sportsName) {
+		this.sportsName = sportsName;
+	}
+	public String getSportsType() {
+		return sportsType;
+	}
+	public void setSportsType(String sportsType) {
+		this.sportsType = sportsType;
+	}
+	public int getConsume() {
+		return consume;
+	}
+	public void setConsume(int consume) {
+		this.consume = consume;
+	}
 
-    public Sports() {
-    }
-
-    public Sports(String sportsName, String sports_type, int consume) {
-        this.sportsName = sportsName;
-        this.sports_type = sports_type;
-        this.consume = consume;
-    }
-
-    public String getSportsName() {
-        return sportsName;
-    }
-
-    public void setSportsName(String sportsName) {
-        this.sportsName = sportsName;
-    }
-
-    public String getSports_type() {
-        return sports_type;
-    }
-
-    public void setSports_type(String sports_type) {
-        this.sports_type = sports_type;
-    }
-
-    public int getConsume() {
-        return consume;
-    }
-
-    public void setConsume(int consume) {
-        this.consume = consume;
-    }
+   
 }

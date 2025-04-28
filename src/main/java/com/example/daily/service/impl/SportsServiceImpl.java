@@ -17,7 +17,7 @@ public class SportsServiceImpl implements SportsService{
 
 	@Override
 	public BasicRes fillinSports(SportsReq req) {
-		sportsDao.insertSports(req.getSportsName(), req.getSports_type(), req.getConsume());
+		sportsDao.insertSports(req.getSportsName(), req.getSportsType(), req.getConsume());
 		return new BasicRes(ResMessage.SUCCESS.getCode(), //
 				ResMessage.SUCCESS.getMessage());
 	}

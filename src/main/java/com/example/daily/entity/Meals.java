@@ -25,7 +25,7 @@ public class Meals {
     @NotBlank(message = ResMessage.ConstantsMessage.PARAM_MEALS_NAME_ERROR)
     @Column(name ="meals_name")
     private String mealsName;
-    @NotNull(message = ResMessage.ConstantsMessage.PARAM_EAT_Time_ERROR)
+    @NotNull(message = ResMessage.ConstantsMessage.PARAM_EAT_TIME_ERROR)
     @Column(name ="eat_time")
     private LocalDateTime eatTime;
 

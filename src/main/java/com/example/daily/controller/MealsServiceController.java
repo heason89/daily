@@ -21,15 +21,15 @@ public class MealsServiceController {
 	@Autowired
 	private MealsService mealsService;
 	
-	@PostMapping(value ="meals/fillinMeals")
+	@PostMapping(value ="meals/fillin_meals")
 	public BasicRes fillinMeals(@Valid @RequestBody MealsReq req) {
 		return mealsService.fillinMeals(req);
 }
-	@PostMapping(value ="meals/updateMeals")
-	public BasicRes UpdateMeals(@Valid @RequestBody UpdateMealsReq req) {
+	@PostMapping(value ="meals/update_meals")
+	public BasicRes updateMeals(@Valid @RequestBody UpdateMealsReq req) {
 		return mealsService.updateByMeals(req);
 }
-	@PostMapping(value ="meals/selectMeals")
+	@PostMapping(value ="meals/select_meals")
 	public SelectMealsRes selectMeals(@Valid @RequestBody MealsReq req) {
 		return mealsService.SelectMeals(req);
 }

@@ -2,7 +2,7 @@ package com.example.daily.vo;
 
 import java.time.LocalDate;
 
-public class MoodReq extends BasicRes{
+public class MoodReq {
 	
 	private LocalDate date;
 	
@@ -11,24 +11,6 @@ public class MoodReq extends BasicRes{
 	 private int mood;
 	 
 	 private String diary;
-
-	public MoodReq() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	public MoodReq(int code, String message) {
-		super(code, message);
-		// TODO Auto-generated constructor stub
-	}
-
-	public MoodReq(LocalDate date, String email, int mood, String diary) {
-		super();
-		this.date = date;
-		this.email = email;
-		this.mood = mood;
-		this.diary = diary;
-	}
 
 	public LocalDate getDate() {
 		return date;
@@ -61,6 +43,20 @@ public class MoodReq extends BasicRes{
 	public void setDiary(String diary) {
 		this.diary = diary;
 	}
-	 
+
+	public MoodReq() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public MoodReq(LocalDate date, String email, int mood, String diary) {
+		super();
+		this.date = date;
+		this.email = email;
+		this.mood = mood;
+		this.diary = diary;
+	}
+
+	
 
 }

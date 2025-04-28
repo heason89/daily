@@ -22,18 +22,18 @@ public class ExerciseServiceController {
 	@Autowired
 	private ExerciseService exerciseService;
 	
-	@PostMapping(value ="exercise/fillinExercise")
+	@PostMapping(value ="exercise/fillinexercise")
 	public BasicRes fillinExercise(@Valid @RequestBody ExerciseReq req) {
 		return exerciseService.fillinExercise(req);
 		
 	
 }
-	@PostMapping(value ="exercise/UpdateExercise")
+	@PostMapping(value ="exercise/updateExercise")
 	public BasicRes UpdateExercise(@Valid @RequestBody UpdateExerciseReq req) {
 		return exerciseService.updateByExercise(req);
 	}
 		
-	@PostMapping(value ="exercise/selectExercise")
+	@PostMapping(value ="exercise/selectexercise")
 	public BasicRes selectExercise(@Valid @RequestBody ExerciseReq req) {
 		return exerciseService.selectByemail(req);
 
