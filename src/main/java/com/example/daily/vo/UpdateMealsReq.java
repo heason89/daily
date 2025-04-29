@@ -8,17 +8,30 @@ import java.time.LocalDateTime;
 
 public class UpdateMealsReq {
 
-	@NotNull(message= ResMessage.ConstantsMessage.PARAM_MEALS_ID_ERROR)
+	@NotNull(message = ResMessage.ConstantsMessage.PARAM_MEALS_ID_ERROR)
 	private int mealsId;
 
-	@NotBlank(message= ResMessage.ConstantsMessage.PARAM_EMAIL_ERROR)
+	@NotBlank(message = ResMessage.ConstantsMessage.PARAM_EMAIL_ERROR)
 	private String email;
 
-	@NotBlank(message= ResMessage.ConstantsMessage.PARAM_MEALS_NAME_ERROR)
+	@NotBlank(message = ResMessage.ConstantsMessage.PARAM_MEALS_NAME_ERROR)
 	private String mealsName;
 
-	@NotNull(message= ResMessage.ConstantsMessage.PARAM_EAT_TIME_ERROR)
+	@NotNull(message = ResMessage.ConstantsMessage.PARAM_EAT_TIME_ERROR)
 	private LocalDateTime eatTime;
+
+	public UpdateMealsReq() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public UpdateMealsReq(int mealsId, String email, String mealsName, LocalDateTime eatTime) {
+		super();
+		this.mealsId = mealsId;
+		this.email = email;
+		this.mealsName = mealsName;
+		this.eatTime = eatTime;
+	}
 
 	public int getMealsId() {
 		return mealsId;
@@ -35,4 +48,5 @@ public class UpdateMealsReq {
 	public LocalDateTime getEatTime() {
 		return eatTime;
 	}
+
 }

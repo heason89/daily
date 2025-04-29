@@ -1,6 +1,6 @@
 package com.example.daily.service.impl;
 
-
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -9,11 +9,13 @@ import org.springframework.stereotype.Service;
 
 import com.example.daily.constants.ResMessage;
 import com.example.daily.dao.SleepDao;
-
+import com.example.daily.dao.UserDao;
 import com.example.daily.entity.Sleep;
+import com.example.daily.entity.User;
 import com.example.daily.service.ifs.SleepService;
 import com.example.daily.vo.BasicRes;
 import com.example.daily.vo.DeleteSleepReq;
+import com.example.daily.vo.ExerciseReq;
 import com.example.daily.vo.SelectSleepRes;
 import com.example.daily.vo.SleepReq;
 import com.example.daily.vo.UpdateSleepReq;
@@ -24,25 +26,22 @@ public class SleepServiceImpl implements SleepService {
 	@Autowired
 	private SleepDao sleepDao;
 
+	@Autowired
+	private UserDao userDao;
+
 	@Override
 	public BasicRes fillinSleep(SleepReq req) {
-		String email = req.getEmail();
-		// 檢查email有沒有重複
-		if (sleepDao.selectCountByemail(email) == 1) {
-			return new BasicRes(ResMessage.EMAIL_DUPLICATED.getCode(), //
-					ResMessage.EMAIL_DUPLICATED.getMessage());
+		// 檢查 email 是否已存在
+		User userEmail = userDao.getByEmail(req.getEmail());
+		// 呼叫 checkmail 檢查
+		BasicRes res = checkmail(userEmail);
+		if (res.getCode() == 400) {
+			return res;
 		}
-		//填寫進來的日期要在7天內
-		LocalDateTime Date = LocalDateTime.now();
-		LocalDateTime sevenDaysAgo = Date.minusDays(7);
-		if (sevenDaysAgo.isAfter(req.getSleepTime())) {
-			return new BasicRes(ResMessage.DATE_EXPIRED.getCode(), //
-					ResMessage.DATE_EXPIRED.getMessage());
-		}
-		// 檢查起床時間有沒有比起床時間晚
-		if (req.getSleepTime().isAfter(req.getAwakeTime())) {
-			return new BasicRes(ResMessage.PARAM_DATE_TIME_ERROR.getCode(), //
-					ResMessage.PARAM_DATE_TIME_ERROR.getMessage());
+		// 檢查時間
+		res = checkReq(req.getSleepTime(), req.getAwakeTime());
+		if (res.getCode() == 400) {
+			return res;
 		}
 		sleepDao.insertSleep(req.getEmail(), req.getSleepTime(), req.getAwakeTime(), req.getInsomnia(),
 				req.getSleepLatency(), req.getPhone());
@@ -50,6 +49,7 @@ public class SleepServiceImpl implements SleepService {
 				ResMessage.SUCCESS.getMessage());
 	}
 
+	// 搜尋
 	@Override
 	public SelectSleepRes selectSleep(SleepReq req) {
 		if (sleepDao.selectCountByemail(req.getEmail()) == 0) {
@@ -64,26 +64,23 @@ public class SleepServiceImpl implements SleepService {
 
 	@Override
 	public BasicRes updateSleep(UpdateSleepReq req) {
-		BasicRes checkEmail = checkEmail(req.getEmail());
-		if (checkEmail != null) {
-			return checkEmail;
+		// 檢查 email 是否已存在
+		User userEmail = userDao.getByEmail(req.getEmail());
+		// 呼叫 checkmail 檢查
+		BasicRes res = checkmail(userEmail);
+		if (res.getCode() == 400) {
+			return res;
 		}
-		//檢查日期是否在7天內
+		// 檢查時間
+		res = checkReq(req.getSleepTime(), req.getAwakeTime());
+		if (res.getCode() == 400) {
+			return res;
+		}
+		// 檢查日期是否在7天內
 		Sleep list = sleepDao.GetBySleepId(req.getSleepId());
-		LocalDateTime Date = LocalDateTime.now();
-		LocalDateTime sevenDaysAgo = Date.minusDays(7);
-		if (sevenDaysAgo.isAfter(list.getSleepTime())) {
+		if (LocalDateTime.now().minusDays(7).isAfter(list.getSleepTime())) {
 			return new BasicRes(ResMessage.DATE_EXPIRED.getCode(), //
 					ResMessage.DATE_EXPIRED.getMessage());
-		}
-		if(req.getSleepTime().isEqual(Date)) {
-			return new BasicRes(ResMessage.DATE_EXPIRED.getCode(), //
-					ResMessage.DATE_EXPIRED.getMessage());
-		}
-		// 檢查起床時間有沒有比起床時間晚
-		if (req.getSleepTime().isAfter(req.getAwakeTime())) {
-			return new BasicRes(ResMessage.PARAM_DATE_TIME_ERROR.getCode(), //
-					ResMessage.PARAM_DATE_TIME_ERROR.getMessage());
 		}
 		sleepDao.updateSleep(req.getSleepId(), req.getSleepTime(), req.getAwakeTime(), req.getInsomnia(),
 				req.getSleepLatency(), req.getPhone());
@@ -93,15 +90,16 @@ public class SleepServiceImpl implements SleepService {
 
 	@Override
 	public BasicRes deleteSleep(DeleteSleepReq req) {
-		BasicRes checkEmail = checkEmail(req.getEmail());
-		if (checkEmail != null) {
-			return checkEmail;
+		// 檢查 email 是否已存在
+		User userEmail = userDao.getByEmail(req.getEmail());
+		// 呼叫 checkmail 檢查
+		BasicRes res = checkmail(userEmail);
+		if (res.getCode() == 400) {
+			return res;
 		}
-		//檢查日期是否在7天內
+		// 檢查日期是否在7天內
 		Sleep list = sleepDao.GetBySleepId(req.getSleepId());
-		LocalDateTime Date = LocalDateTime.now();
-		LocalDateTime sevenDaysAgo = Date.minusDays(7);
-		if (sevenDaysAgo.isAfter(list.getSleepTime())) {
+		if (LocalDateTime.now().minusDays(7).isAfter(list.getSleepTime())) {
 			return new BasicRes(ResMessage.DATE_EXPIRED.getCode(), //
 					ResMessage.DATE_EXPIRED.getMessage());
 		}
@@ -109,11 +107,35 @@ public class SleepServiceImpl implements SleepService {
 		return new BasicRes(ResMessage.SUCCESS.getCode(), //
 				ResMessage.SUCCESS.getMessage());
 	}
-	public BasicRes checkEmail(String email) {
-		if (sleepDao.selectCountByemail(email) == 0) {
+
+	private BasicRes checkmail(User usermail) {
+		// 帳號不存在
+		if (usermail == null) {
 			return new BasicRes(ResMessage.EMAIL_NOT_EXISTED.getCode(), //
 					ResMessage.EMAIL_NOT_EXISTED.getMessage());
 		}
-		return null;
+		// 帳號已註銷
+		if (!usermail.isActive()) {
+			return new BasicRes(ResMessage.EMAIL_HAS_BEEN_CANCELED.getCode(), //
+					ResMessage.EMAIL_HAS_BEEN_CANCELED.getMessage());
+		}
+		return new BasicRes(ResMessage.SUCCESS.getCode(), //
+				ResMessage.SUCCESS.getMessage());
+	}
+
+	private BasicRes checkReq(LocalDateTime SleepTime, LocalDateTime awakeTime) {
+		// 檢查日期是否在7天內
+		if (SleepTime.isBefore(LocalDateTime.now().minusDays(7))) {
+			return new BasicRes(ResMessage.DATE_EXPIRED.getCode(), //
+					ResMessage.DATE_EXPIRED.getMessage());
+		}
+		// 檢查起床時間有沒有比起床時間晚
+		if (SleepTime.isAfter(awakeTime)) {
+			return new BasicRes(ResMessage.PARAM_DATE_TIME_ERROR.getCode(), //
+					ResMessage.PARAM_DATE_TIME_ERROR.getMessage());
+		}
+		return new BasicRes(ResMessage.SUCCESS.getCode(), //
+				ResMessage.SUCCESS.getMessage());
+
 	}
 }
