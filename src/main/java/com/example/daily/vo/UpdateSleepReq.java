@@ -1,22 +1,30 @@
 package com.example.daily.vo;
 
+import com.example.daily.constants.ResMessage;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+
 import java.time.LocalDateTime;
 
 public class UpdateSleepReq {
-	
+
+	@NotNull(message= ResMessage.ConstantsMessage.PARAM_SLEEP_ID_ERROR)
 	private int sleepId;
 
+	@NotBlank(message= ResMessage.ConstantsMessage.PARAM_EMAIL_ERROR)
 	private String email;
-	
+
+	@NotNull(message= ResMessage.ConstantsMessage.PARAM_SLEEP_TIME_ERROR)
 	private LocalDateTime sleepTime;
-	 
+
+	@NotNull(message= ResMessage.ConstantsMessage.PARAM_AWAKE_TIME_ERROR)
 	private LocalDateTime awakeTime;
 	 
-	private Boolean insomnia;
+	private Boolean insomnia = false;
 	 
-	private Boolean sleepLatency;
+	private Boolean sleepLatency = false;
 	 
-	private Boolean phone;
+	private Boolean phone =false;
 
 	public int getSleepId() {
 		return sleepId;
@@ -45,7 +53,4 @@ public class UpdateSleepReq {
 	public Boolean getPhone() {
 		return phone;
 	}
-
-
-
 }

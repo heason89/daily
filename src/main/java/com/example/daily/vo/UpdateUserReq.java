@@ -16,7 +16,6 @@ public class UpdateUserReq {
     private String name ="使用者名稱";
 
     private boolean admin = false;
-
     // 0:帳號註銷 1 :帳號啟用
     private boolean active = true;
 
@@ -76,67 +75,15 @@ public class UpdateUserReq {
         return gender;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public void setAdmin(boolean admin) {
-        this.admin = admin;
-    }
-
-    public void setActive(boolean active) {
-        this.active = active;
-    }
-
-    public void setBirthdate(LocalDate birthdate) {
-        this.birthdate = birthdate;
-    }
-
-    public void setHeight(int height) {
-        this.height = height;
-    }
-
-    public void setWeight(int weight) {
-        this.weight = weight;
-    }
-
-    public void setWorkType(String workType) {
-        this.workType = workType;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
-
     public String getNote() {
         return note;
-    }
-
-    public void setNote(String note) {
-        this.note = note;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getPhoto() {
         return photo;
     }
 
-    public void setPhoto(String photo) {
-        this.photo = photo;
-    }
-
     public String getBodyType() {
         return bodyType;
-    }
-
-    public void setBodyType(String bodyType) {
-        this.bodyType = bodyType;
     }
 }

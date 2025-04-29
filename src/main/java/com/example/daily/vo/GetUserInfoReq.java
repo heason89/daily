@@ -5,7 +5,7 @@ import jakarta.validation.constraints.NotBlank;
 
 public class GetUserInfoReq {
 
-    @NotBlank(message= ResMessage.ConstantsMessage.PARAM_TOKEN_ERROR)
+    @NotBlank(message= ResMessage.ConstantsMessage.PARAM_EMAIL_ERROR)
     private String email;
 
     public String getEmail() {

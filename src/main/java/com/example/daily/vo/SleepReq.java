@@ -1,69 +1,49 @@
 package com.example.daily.vo;
 
+import com.example.daily.constants.ResMessage;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+
 import java.time.LocalDateTime;
 
 public class SleepReq{
 
+	@NotBlank(message= ResMessage.ConstantsMessage.PARAM_EMAIL_ERROR)
 	private String email;
 
+	@NotNull(message= ResMessage.ConstantsMessage.PARAM_SLEEP_TIME_ERROR)
 	private LocalDateTime sleepTime;
 
+	@NotNull(message= ResMessage.ConstantsMessage.PARAM_AWAKE_TIME_ERROR)
 	private LocalDateTime awakeTime;
 
-	private Boolean insomnia;
+	private Boolean insomnia = false;
 
-	private Boolean sleepLatency;
+	private Boolean sleepLatency = false;
 
-	private Boolean phone;
+	private Boolean phone = false;
 
 	public String getEmail() {
 		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
 	}
 
 	public LocalDateTime getSleepTime() {
 		return sleepTime;
 	}
 
-	public void setSleepTime(LocalDateTime sleepTime) {
-		this.sleepTime = sleepTime;
-	}
-
 	public LocalDateTime getAwakeTime() {
 		return awakeTime;
-	}
-
-	public void setAwakeTime(LocalDateTime awakeTime) {
-		this.awakeTime = awakeTime;
 	}
 
 	public Boolean getInsomnia() {
 		return insomnia;
 	}
 
-	public void setInsomnia(Boolean insomnia) {
-		this.insomnia = insomnia;
-	}
-
 	public Boolean getSleepLatency() {
 		return sleepLatency;
-	}
-
-	public void setSleepLatency(Boolean sleepLatency) {
-		this.sleepLatency = sleepLatency;
 	}
 
 	public Boolean getPhone() {
 		return phone;
 	}
-
-	public void setPhone(Boolean phone) {
-		this.phone = phone;
-	}
-
-
-
 }

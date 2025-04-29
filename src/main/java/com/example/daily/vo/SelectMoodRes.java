@@ -10,12 +10,10 @@ public class SelectMoodRes extends BasicRes{
 
 	public SelectMoodRes() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public SelectMoodRes(int code, String message) {
 		super(code, message);
-		// TODO Auto-generated constructor stub
 	}
 
 	public SelectMoodRes(int code, String message, List<Mood> moodlist) {
@@ -30,5 +28,4 @@ public class SelectMoodRes extends BasicRes{
 	public void setMoodlist(List<Mood> moodlist) {
 		this.moodlist = moodlist;
 	}
-
 }

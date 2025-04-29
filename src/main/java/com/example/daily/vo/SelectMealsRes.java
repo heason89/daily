@@ -4,20 +4,16 @@ import java.util.List;
 
 import com.example.daily.entity.Meals;
 
-
-
 public class SelectMealsRes extends BasicRes{
 	
 	private List<Meals> meals;
 
 	public SelectMealsRes() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public SelectMealsRes(int code, String message) {
 		super(code, message);
-		// TODO Auto-generated constructor stub
 	}
 
 	public SelectMealsRes(int code, String message,List<Meals> meals) {
@@ -32,6 +28,4 @@ public class SelectMealsRes extends BasicRes{
 	public void setMeals(List<Meals> meals) {
 		this.meals = meals;
 	}
-	
-
 }

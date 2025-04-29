@@ -1,21 +1,16 @@
 package com.example.daily.vo;
 
+import com.example.daily.constants.ResMessage;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+
 public class DeleteSleepReq {
-	
-	 private int sleepId;
-	 
-	 private String email;
 
-	public DeleteSleepReq() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+	@NotNull(message= ResMessage.ConstantsMessage.PARAM_SLEEP_ID_ERROR)
+	private int sleepId;
 
-	public DeleteSleepReq(int sleepId, String email) {
-		super();
-		this.sleepId = sleepId;
-		this.email = email;
-	}
+	@NotBlank(message= ResMessage.ConstantsMessage.PARAM_EMAIL_ERROR)
+	private String email;
 
 	public int getSleepId() {
 		return sleepId;

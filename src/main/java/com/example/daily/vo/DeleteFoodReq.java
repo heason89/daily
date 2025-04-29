@@ -15,15 +15,7 @@ public class DeleteFoodReq {
         return foodName;
     }
 
-    public void setFoodName(String foodName) {
-        this.foodName = foodName;
-    }
-
     public String getCookingMethod() {
         return cookingMethod;
-    }
-
-    public void setCookingMethod(String cookingMethod) {
-        this.cookingMethod = cookingMethod;
     }
 }

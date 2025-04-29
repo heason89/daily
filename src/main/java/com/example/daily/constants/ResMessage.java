@@ -49,16 +49,20 @@ public enum ResMessage {
 	public static class ConstantsMessage {
 		public static final String PARAM_EMAIL_ERROR = "Param email error!";
 		public static final String PARAM_PASSWORD_ERROR = "Param password error!";
+		public static final String PARAM_SLEEP_ID_ERROR = "Param sleep_id error!";
 		public static final String PARAM_SLEEP_TIME_ERROR = "Param sleep_time error!";
 		public static final String PARAM_AWAKE_TIME_ERROR = "Param awake_time error!";
 		public static final String PARAM_MEALS_NAME_ERROR = "Param meals_name error!";
+		public static final String PARAM_MEALS_ID_ERROR = "Param meals_id error!";
 		public static final String PARAM_EAT_TIME_ERROR = "Param eat_time error!";
 		public static final String PARAM_DATE_ERROR = "Param date error!"; // 運動開始時間
 		public static final String PARAM_DURATION_ERROR = "Param duration error!";
 		public static final String PARAM_EXERCISE_NAME_ERROR = "Param exercise_name error!";
+		public static final String PARAM_EXERCISE_ID_ERROR = "Param exercise_id error!";
 		public static final String PARAM_SPORTS_NAME_ERROR = "Param sports_name error!";
 		public static final String PARAM_SPORTS_TYPE_ERROR = "Param sports_type error!";
 		public static final String PARAM_CONSUME_ERROR = "Param consume error!";
+		public static final String PARAM_MOOD_ERROR = "Param mood error!";
 		public static final String PARAM_FOOD_NAME_ERROR = "Param food_name error!";
 		public static final String PARAM_COOKING_METHOD_ERROR = "Param cooking_method error!";
 		public static final String PARAM_TYPE_ERROR = "Param type error!";

@@ -23,13 +23,9 @@ public class SelectExerciseRes extends BasicRes{
 
 	public SelectExerciseRes() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public SelectExerciseRes(int code, String message) {
 		super(code, message);
-		// TODO Auto-generated constructor stub
 	}
-	
-
 }

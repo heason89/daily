@@ -10,12 +10,10 @@ public class SelectSleepRes extends BasicRes{
 
 	public SelectSleepRes() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public SelectSleepRes(int code, String message) {
 		super(code, message);
-		// TODO Auto-generated constructor stub
 	}
 
 	public SelectSleepRes(int code, String message, List<Sleep> sleeplist) {

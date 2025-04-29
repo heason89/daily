@@ -1,29 +1,26 @@
 package com.example.daily.vo;
 
-public class DeleteMealsReq {
-	
-	private String email;
+import com.example.daily.constants.ResMessage;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
+public class DeleteMealsReq {
+
+	@NotNull(message= ResMessage.ConstantsMessage.PARAM_MEALS_ID_ERROR)
 	private int mealsId;
 
-	public DeleteMealsReq() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+	@NotBlank(message= ResMessage.ConstantsMessage.PARAM_EMAIL_ERROR)
+	private String email;
 
-	public DeleteMealsReq(String email, int mealsId) {
-		super();
-		this.email = email;
-		this.mealsId = mealsId;
+	public int getMealsId() {
+		return mealsId;
 	}
 
 	public String getEmail() {
 		return email;
 	}
 
-	public int getMealsId() {
-		return mealsId;
-	}
+
 
 	
 

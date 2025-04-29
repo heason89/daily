@@ -5,6 +5,7 @@ import com.example.daily.entity.Sports;
 import java.util.List;
 
 public class GetSportsRes extends BasicRes{
+
     private List<Sports> sportsList;
 
     public GetSportsRes() {

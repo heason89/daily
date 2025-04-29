@@ -18,26 +18,11 @@ public class SportsReq{
 		return sportsName;
 	}
 
-	public void setSportsName(String sportsName) {
-		this.sportsName = sportsName;
-	}
-
 	public String getSportsType() {
 		return sportsType;
-	}
-
-	public void setSportsType(String sportsType) {
-		this.sportsType = sportsType;
 	}
 
 	public int getConsume() {
 		return consume;
 	}
-
-	public void setConsume(int consume) {
-		this.consume = consume;
-	}
-
-	
-
 }

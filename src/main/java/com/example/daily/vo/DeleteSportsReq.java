@@ -11,8 +11,4 @@ public class DeleteSportsReq {
     public String getSportsName() {
         return sportsName;
     }
-
-    public void setSportsName(String sportsName) {
-        this.sportsName = sportsName;
-    }
 }

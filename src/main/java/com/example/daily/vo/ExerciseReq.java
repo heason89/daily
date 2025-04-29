@@ -24,31 +24,15 @@ public class ExerciseReq{
 		return email;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
 	public LocalDate getDate() {
 		return date;
-	}
-
-	public void setDate(LocalDate date) {
-		this.date = date;
 	}
 
 	public int getDuration() {
 		return duration;
 	}
 
-	public void setDuration(int duration) {
-		this.duration = duration;
-	}
-
 	public String getExerciseName() {
 		return exerciseName;
-	}
-
-	public void setExerciseName(String exerciseName) {
-		this.exerciseName = exerciseName;
 	}
 }

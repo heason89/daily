@@ -10,15 +10,7 @@ public class SearchSportsReq {
         return sportsName;
     }
 
-    public void setSportsName(String sportsName) {
-        this.sportsName = sportsName;
-    }
-
     public String getSportsType() {
         return sportsType;
-    }
-
-    public void setSportsType(String sportsType) {
-        this.sportsType = sportsType;
     }
 }
