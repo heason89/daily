@@ -22,7 +22,7 @@ public interface ExerciseDao extends JpaRepository<Exercise, Integer> {
 			@Param("email") String email,//
 			@Param("date")LocalDate date, //
 			@Param("duration")int duration, //
-			@Param("exerciseName")String exerciseName);//
+			@Param("exerciseName")String exerciseName);
 	
 	@Modifying
 	@Transactional
@@ -33,14 +33,10 @@ public interface ExerciseDao extends JpaRepository<Exercise, Integer> {
 			@Param("exerciseId") int exerciseId, //			
 			@Param("date")LocalDate date, //
 			@Param("duration")int duration,//
-			@Param("exerciseName")String exerciseName//
-			);
-	
-	@Query(value="select count(email) from exercise where email = ?1 ",nativeQuery = true)
-	public int selectCountByemail(String email);
+			@Param("exerciseName")String exerciseName);
 	
 	@Query(value="select * from exercise where email = ?1 ",nativeQuery = true)
-	public List<Exercise> selectByemail(String email);
+	public List<Exercise> getByEmail(String email);
 
 	@Query(value="select * from exercise where exercise_id = ?1",nativeQuery = true)
 	public Exercise getByExerciseId(int exerciseId);

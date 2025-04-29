@@ -1,5 +1,6 @@
 package com.example.daily.controller;
 
+import com.example.daily.vo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -8,9 +9,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.daily.service.ifs.ExerciseService;
-import com.example.daily.vo.BasicRes;
-import com.example.daily.vo.ExerciseReq;
-import com.example.daily.vo.UpdateExerciseReq;
 
 import jakarta.validation.Valid;
 
@@ -30,8 +28,13 @@ public class ExerciseServiceController {
 		return exerciseService.updateExercise(req);
 	}
 
-	@PostMapping(value ="exercise/selectexercise")
-	public BasicRes selectExercise(@Valid @RequestBody ExerciseReq req) {
+	@PostMapping(value ="exercise/delete_exercise")
+	public BasicRes deleteExercise(@Valid @RequestBody DeleteExerciseReq req) {
+		return exerciseService.deleteExercise(req);
+	}
+
+	@PostMapping(value ="exercise/get_exercise")
+	public BasicRes getExercise(@Valid @RequestBody GetExerciseReq req) {
 		return exerciseService.getByEmail(req);
 	}
 }

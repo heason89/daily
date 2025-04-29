@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.example.daily.entity.Exercise;
 
-public class SelectExerciseRes extends BasicRes{
+public class GetExerciseRes extends BasicRes{
 	
 	private List<Exercise> exerciselist;
 
@@ -16,16 +16,15 @@ public class SelectExerciseRes extends BasicRes{
 		this.exerciselist = exerciselist;
 	}
 
-	public SelectExerciseRes(int code, String message,List<Exercise> exerciselist) {
-		super(code,message);
-		this.exerciselist = exerciselist;
+	public GetExerciseRes() {
 	}
 
-	public SelectExerciseRes() {
-		super();
-	}
-
-	public SelectExerciseRes(int code, String message) {
+	public GetExerciseRes(int code, String message) {
 		super(code, message);
+	}
+
+	public GetExerciseRes(int code, String message, List<Exercise> exerciselist) {
+		super(code, message);
+		this.exerciselist = exerciselist;
 	}
 }
