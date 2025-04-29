@@ -11,6 +11,8 @@ public interface MoodService {
 	
 	public BasicRes updateMood(MoodReq  req);
 	
+	public BasicRes deletMood(MoodReq  req);
+	
 	public SelectMoodRes selectMood(MoodReq  req);
 
 }

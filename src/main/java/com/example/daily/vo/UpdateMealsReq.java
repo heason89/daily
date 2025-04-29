@@ -6,44 +6,41 @@ public class UpdateMealsReq {
 	
 	private int mealsId;
 	
+	private String email;
+	
 	private String mealsName;
 	
 	private LocalDateTime eatTime;
+
+	public UpdateMealsReq() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public UpdateMealsReq(int mealsId, String email, String mealsName, LocalDateTime eatTime) {
+		super();
+		this.mealsId = mealsId;
+		this.email = email;
+		this.mealsName = mealsName;
+		this.eatTime = eatTime;
+	}
 
 	public int getMealsId() {
 		return mealsId;
 	}
 
-	public void setMealsId(int mealsId) {
-		this.mealsId = mealsId;
+	public String getEmail() {
+		return email;
 	}
 
 	public String getMealsName() {
 		return mealsName;
 	}
 
-	public void setMealsName(String mealsName) {
-		this.mealsName = mealsName;
-	}
-
 	public LocalDateTime getEatTime() {
 		return eatTime;
 	}
 
-	public void setEatTime(LocalDateTime eatTime) {
-		this.eatTime = eatTime;
-	}
-
-	public UpdateMealsReq(int mealsId, String mealsName, LocalDateTime eatTime) {
-		super();
-		this.mealsId = mealsId;
-		this.mealsName = mealsName;
-		this.eatTime = eatTime;
-	}
-
-	public UpdateMealsReq() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+	
 
 }

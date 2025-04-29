@@ -40,7 +40,7 @@ public interface SleepDao extends JpaRepository<Sleep, Integer> {
 			+ " insomnia = :insomnia, sleep_latency = :sleepLatency, phone = :phone"
 			+ " where  sleep_id = :sleepId"
 			,nativeQuery = true)
-	public void updateBySleep(//
+	public void updateSleep(//
 			@Param("sleepId") int sleepId, //			
 			@Param("sleepTime")LocalDateTime sleepTime, //
 			@Param("awakeTime")LocalDateTime awakeTime,//
@@ -49,8 +49,14 @@ public interface SleepDao extends JpaRepository<Sleep, Integer> {
 			@Param("phone")boolean phone//
 			);
 	
-	
-	
+	@Modifying
+	@Transactional
+	@Query(value="delete from sleep where email = ?1 and sleep_id = ?2 ",nativeQuery = true)
+	public void deleteSleep(String email, int sleepId);
+			
 	@Query(value="select * from sleep where email = ?1 ",nativeQuery = true)
-	public List<Sleep> selectByemail(String email);
+	public List<Sleep> GetAllByEmail(String email);
+	
+	@Query(value="select * from sleep where sleep_id = ?1 ",nativeQuery = true)
+	public Sleep GetBySleepId(int sleepId);
 }

@@ -22,7 +22,7 @@ public class ExerciseServiceController {
 	@Autowired
 	private ExerciseService exerciseService;
 	
-	@PostMapping(value ="exercise/fillinexercise")
+	@PostMapping(value ="exercise/fill_in_exercise")
 	public BasicRes fillinExercise(@Valid @RequestBody ExerciseReq req) {
 		return exerciseService.fillinExercise(req);
 		

@@ -6,6 +6,8 @@ public class UpdateSleepReq {
 	
 	private int sleepId;
 	
+	private String email;
+	
 	 private LocalDateTime sleepTime;
 	 
 	 private LocalDateTime awakeTime;
@@ -16,68 +18,51 @@ public class UpdateSleepReq {
 	 
 	 private Boolean phone;
 
+	public UpdateSleepReq() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public UpdateSleepReq(int sleepId, String email, LocalDateTime sleepTime, LocalDateTime awakeTime, Boolean insomnia,
+			Boolean sleepLatency, Boolean phone) {
+		super();
+		this.sleepId = sleepId;
+		this.email = email;
+		this.sleepTime = sleepTime;
+		this.awakeTime = awakeTime;
+		this.insomnia = insomnia;
+		this.sleepLatency = sleepLatency;
+		this.phone = phone;
+	}
+
 	public int getSleepId() {
 		return sleepId;
 	}
 
-	public void setSleepId(int sleepId) {
-		this.sleepId = sleepId;
+	public String getEmail() {
+		return email;
 	}
 
 	public LocalDateTime getSleepTime() {
 		return sleepTime;
 	}
 
-	public void setSleepTime(LocalDateTime sleepTime) {
-		this.sleepTime = sleepTime;
-	}
-
 	public LocalDateTime getAwakeTime() {
 		return awakeTime;
-	}
-
-	public void setAwakeTime(LocalDateTime awakeTime) {
-		this.awakeTime = awakeTime;
 	}
 
 	public Boolean getInsomnia() {
 		return insomnia;
 	}
 
-	public void setInsomnia(Boolean insomnia) {
-		this.insomnia = insomnia;
-	}
-
 	public Boolean getSleepLatency() {
 		return sleepLatency;
-	}
-
-	public void setSleepLatency(Boolean sleepLatency) {
-		this.sleepLatency = sleepLatency;
 	}
 
 	public Boolean getPhone() {
 		return phone;
 	}
 
-	public void setPhone(Boolean phone) {
-		this.phone = phone;
-	}
-
-	public UpdateSleepReq(int sleepId, LocalDateTime sleepTime, LocalDateTime awakeTime, Boolean insomnia,
-			Boolean sleepLatency, Boolean phone) {
-		super();
-		this.sleepId = sleepId;
-		this.sleepTime = sleepTime;
-		this.awakeTime = awakeTime;
-		this.insomnia = insomnia;
-		this.sleepLatency = sleepLatency;
-		this.phone = phone;
-	}
-
-	public UpdateSleepReq() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+	
 
 }

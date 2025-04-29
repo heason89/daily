@@ -33,7 +33,7 @@ public class UserServiceController {
         return userService.getUserInfo(req);
     }
 
-    @GetMapping("daily/verify")
+    @PostMapping("daily/verify")
     public BasicRes verify(@Valid @RequestBody VerifyTokenReq req) {
         return userService.verifyToken(req);
     }

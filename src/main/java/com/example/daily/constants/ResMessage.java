@@ -13,6 +13,7 @@ public enum ResMessage {
 	FOOD_NOT_EXISTED(400, "Food not existed!"), //
 	TOKEN_EXPIRED(400, "Token expired!"),//
 	DATE_EXPIRED(400, "Date expired!"),//
+	BEYOND_THE_DATE(400, "beyond the day !"),// 超過現在時間
 	;
 
 	private int code;
