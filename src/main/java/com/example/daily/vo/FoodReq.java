@@ -1,11 +1,17 @@
 package com.example.daily.vo;
 
+import com.example.daily.constants.ResMessage;
+import jakarta.validation.constraints.NotBlank;
+
 public class FoodReq {
 
+	@NotBlank(message= ResMessage.ConstantsMessage.PARAM_FOOD_NAME_ERROR)
     private String foodName;
 
+	@NotBlank(message= ResMessage.ConstantsMessage.PARAM_COOKING_METHOD_ERROR)
     private String cookingMethod;
 
+	@NotBlank(message= ResMessage.ConstantsMessage.PARAM_TYPE_ERROR)
     private String type;
 
     private int calorie =0;
@@ -28,11 +34,10 @@ public class FoodReq {
 
     private int cholesterol =0;
 
-    private String photo;
+    private String photo ="";
 
 	public FoodReq() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public FoodReq(String foodName, String cookingMethod, String type, int calorie, int totalFat, int transFat,

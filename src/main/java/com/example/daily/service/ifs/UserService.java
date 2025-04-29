@@ -5,7 +5,9 @@ import com.example.daily.vo.*;
 
 public interface UserService {
 
-    public BasicRes login(LoginReq req);
+    public LoginRes login(LoginReq req);
+
+    public BasicRes logout(LogoutReq req);
 
     public BasicRes register(RegisterReq req);
 

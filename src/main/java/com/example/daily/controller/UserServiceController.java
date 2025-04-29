@@ -14,7 +14,7 @@ public class UserServiceController {
     private UserService userService;
 
     @PostMapping(value = "daily/login")
-    public BasicRes login(@Valid @RequestBody LoginReq req){
+    public LoginRes login(@Valid @RequestBody LoginReq req){
         return userService.login(req);
     }
 

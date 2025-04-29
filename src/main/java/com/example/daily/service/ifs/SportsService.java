@@ -1,11 +1,18 @@
 package com.example.daily.service.ifs;
 
-import com.example.daily.vo.BasicRes;
-import com.example.daily.vo.SportsReq;
+import com.example.daily.vo.*;
 
 
 public interface SportsService {
 	
-	public BasicRes fillinSports(SportsReq req);
+	public BasicRes insertSports(SportsReq req);
+
+	public BasicRes updateSports(SportsReq req);
+
+	public BasicRes deleteSports(DeleteSportsReq req);
+
+	public GetSportsRes searchSports(SearchSportsReq req);
+
+	public GetSportsRes getAllSports();
 
 }

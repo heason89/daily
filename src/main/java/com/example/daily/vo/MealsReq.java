@@ -3,24 +3,12 @@ package com.example.daily.vo;
 import java.time.LocalDateTime;
 
 public class MealsReq {
-	
+
 	private String email;
 	
 	private String mealsName;
 	
 	private LocalDateTime eatTime;
-
-	public MealsReq() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	public MealsReq(String email, String mealsName, LocalDateTime eatTime) {
-		super();
-		this.email = email;
-		this.mealsName = mealsName;
-		this.eatTime = eatTime;
-	}
 
 	public String getEmail() {
 		return email;

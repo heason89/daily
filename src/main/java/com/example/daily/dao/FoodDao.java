@@ -24,7 +24,7 @@ public interface FoodDao extends JpaRepository<Food, FoodId> {
             " values (:foodName, :cookingMethod, :type, :calorie, :totalFat, :transFat, :saturatedFat, " +
             " :totalCarbohydrate, :sugar, :dietaryFiber, :protein, :sodium, :cholesterol, :photo)"
             , nativeQuery =true)
-    public void insert(
+    public void insertFood(
             @Param("foodName") String foodName,//
             @Param("cookingMethod") String cookingMethod,//
             @Param("type") String type,//
@@ -69,8 +69,12 @@ public interface FoodDao extends JpaRepository<Food, FoodId> {
     @Modifying
     @Transactional
     @Query(value ="delete from food where food = ?1 and cooking_method = ?2 ", nativeQuery =true)
-    public void delete(String foodName, String cookingMethod);
+    public void deleteFood(String foodName, String cookingMethod);
     
-    @Query(value="select * from food where food_name like %?1% ",nativeQuery = true)
-	public List<Food> selectFood(String foodName);
+    @Query(value="select * from food where food_name like %?1% and cooking_method like %?2% " +
+            " and type like %?3%",nativeQuery = true)
+	public List<Food> searchFood(String foodName, String cookingMethod,String type);
+
+    @Query(value="select * from food",nativeQuery = true)
+    public List<Food> getAllFood();
 }

@@ -2,7 +2,7 @@ package com.example.daily.vo;
 
 import java.time.LocalDateTime;
 
-public class SleepReq  {
+public class SleepReq{
 
 	private String email;
 
@@ -15,22 +15,6 @@ public class SleepReq  {
 	private Boolean sleepLatency;
 
 	private Boolean phone;
-
-	public SleepReq() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	public SleepReq(String email, LocalDateTime sleepTime, LocalDateTime awakeTime, Boolean insomnia,
-			Boolean sleepLatency, Boolean phone) {
-		super();
-		this.email = email;
-		this.sleepTime = sleepTime;
-		this.awakeTime = awakeTime;
-		this.insomnia = insomnia;
-		this.sleepLatency = sleepLatency;
-		this.phone = phone;
-	}
 
 	public String getEmail() {
 		return email;
@@ -80,6 +64,6 @@ public class SleepReq  {
 		this.phone = phone;
 	}
 
-	
+
 
 }

@@ -1,31 +1,24 @@
 package com.example.daily.vo;
 
+import com.example.daily.constants.ResMessage;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+
 import java.time.LocalDate;
 
-public class ExerciseReq {
-	
-	 private String email;
-	 
-	 private LocalDate date;
-	 
-	 private int duration;
-	 
-	 private String exerciseName;
+public class ExerciseReq{
 
-	public ExerciseReq() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+	@NotBlank(message= ResMessage.ConstantsMessage.PARAM_EMAIL_ERROR)
+	private String email;
 
-	
+	@NotNull(message= ResMessage.ConstantsMessage.PARAM_DATE_ERROR)
+	private LocalDate date;
 
-	public ExerciseReq(String email, LocalDate date, int duration, String exerciseName) {
-		super();
-		this.email = email;
-		this.date = date;
-		this.duration = duration;
-		this.exerciseName = exerciseName;
-	}
+	@NotNull(message= ResMessage.ConstantsMessage.PARAM_DURATION_ERROR)
+	private int duration;
+
+	@NotBlank(message= ResMessage.ConstantsMessage.PARAM_EXERCISE_NAME_ERROR)
+	private String exerciseName;
 
 	public String getEmail() {
 		return email;
@@ -58,7 +51,4 @@ public class ExerciseReq {
 	public void setExerciseName(String exerciseName) {
 		this.exerciseName = exerciseName;
 	}
-	 
-	 
-
 }

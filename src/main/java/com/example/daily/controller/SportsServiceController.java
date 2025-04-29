@@ -1,5 +1,6 @@
 package com.example.daily.controller;
 
+import com.example.daily.vo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -7,8 +8,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.daily.service.ifs.SportsService;
-import com.example.daily.vo.BasicRes;
-import com.example.daily.vo.SportsReq;
 
 import jakarta.validation.Valid;
 @CrossOrigin
@@ -18,9 +17,29 @@ public class SportsServiceController {
 	@Autowired
 	private SportsService sportsService;
 	
-	@PostMapping(value ="sports/fillinSports")
-	public BasicRes fillinSports(@Valid @RequestBody SportsReq req) {
-		return sportsService.fillinSports(req);
-}
+	@PostMapping(value ="sports/insert_sports")
+	public BasicRes insertSports(@Valid @RequestBody SportsReq req) {
+		return sportsService.insertSports(req);
+	}
+
+	@PostMapping(value ="sports/update_sports")
+	public BasicRes updateSports(@Valid @RequestBody SportsReq req) {
+		return sportsService.updateSports(req);
+	}
+
+	@PostMapping(value ="sports/delete_sports")
+	public BasicRes deleteSports(@Valid @RequestBody DeleteSportsReq req) {
+		return sportsService.deleteSports(req);
+	}
+
+	@PostMapping(value ="sports/search_sports")
+	public GetSportsRes searchSports(@RequestBody SearchSportsReq req){
+		return sportsService.searchSports(req);
+	}
+
+	@PostMapping(value ="sports/get_all_sports")
+	public GetSportsRes getAllSports() {
+		return sportsService.getAllSports();
+	}
 
 }

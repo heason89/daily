@@ -3,11 +3,8 @@ package com.example.daily.service.impl;
 import com.example.daily.constants.ResMessage;
 import com.example.daily.dao.FoodDao;
 import com.example.daily.entity.Food;
-import com.example.daily.entity.Meals;
 import com.example.daily.service.ifs.FoodService;
-import com.example.daily.vo.BasicRes;
-import com.example.daily.vo.FoodReq;
-import com.example.daily.vo.GetFoodRes;
+import com.example.daily.vo.*;
 
 import java.util.List;
 
@@ -26,7 +23,7 @@ public class FoodServiceImpl implements FoodService {
  	// allEntries: 強制刪除指定的 cacheNames 底下所有 key 對應的暫存資料，預設是 false
  	@CacheEvict(cacheNames = "get_all", allEntries = true)
     @Override
-    public BasicRes foodInsert(FoodReq req) {
+    public BasicRes insertFood(FoodReq req) {
         // 檢查食物是否已存在
         Food foodName = foodDao.getByFoodName(req.getFoodName(),req.getCookingMethod());
         // 食物已存在
@@ -35,7 +32,7 @@ public class FoodServiceImpl implements FoodService {
                     ResMessage.FOOD_EXISTED.getMessage());
         }
         // 新增食物
-        foodDao.insert(req.getFoodName(), req.getCookingMethod(), req.getType(), req.getCalorie(),
+        foodDao.insertFood(req.getFoodName(), req.getCookingMethod(), req.getType(), req.getCalorie(),
                 req.getTotalFat(), req.getTransFat(), req.getSaturatedFat(), req.getTotalCarbohydrate(),
                 req.getSugar(), req.getDietaryFiber(), req.getProtein(), req.getSodium(),
                 req.getCholesterol(), req.getPhoto());
@@ -47,7 +44,7 @@ public class FoodServiceImpl implements FoodService {
  	// allEntries: 強制刪除指定的 cacheNames 底下所有 key 對應的暫存資料，預設是 false
  	@CacheEvict(cacheNames = "get_all", allEntries = true)
     @Override
-    public BasicRes foodUpdate(FoodReq req) {
+    public BasicRes updateFood(FoodReq req) {
         // 檢查食物是否已存在
         Food foodName = foodDao.getByFoodName(req.getFoodName(),req.getCookingMethod());
         // 食物不存在
@@ -67,7 +64,7 @@ public class FoodServiceImpl implements FoodService {
  	// allEntries: 強制刪除指定的 cacheNames 底下所有 key 對應的暫存資料，預設是 false
  	@CacheEvict(cacheNames = "get_all", allEntries = true)
     @Override
-    public BasicRes deleteFood(FoodReq req) {
+    public BasicRes deleteFood(DeleteFoodReq req) {
         // 檢查食物是否已存在
         Food foodName = foodDao.getByFoodName(req.getFoodName(),req.getCookingMethod());
         // 食物不存在
@@ -75,17 +72,25 @@ public class FoodServiceImpl implements FoodService {
             return new BasicRes(ResMessage.FOOD_NOT_EXISTED.getCode(),//
                     ResMessage.FOOD_NOT_EXISTED.getMessage());
         }
-        foodDao.delete(req.getFoodName(), req.getCookingMethod());
+        foodDao.deleteFood(req.getFoodName(), req.getCookingMethod());
         return new BasicRes(ResMessage.SUCCESS.getCode(),//
                 ResMessage.SUCCESS.getMessage());
     }
+
     @Cacheable(cacheNames = "get_all", //
-			key = "#p0.foodName ", //			
+			key = "#p0.foodName", //
 			unless = "#result.code != 200")
 	@Override
-	public GetFoodRes selectFood(FoodReq req) {
-		List<Food> list = foodDao.selectFood(req.getFoodName());
+	public GetFoodRes searchFood(SearchFoodReq req) {
+		List<Food> list = foodDao.searchFood(req.getFoodName(), req.getCookingMethod(), req.getType());
 		 return new GetFoodRes(ResMessage.SUCCESS.getCode(),//
 	                ResMessage.SUCCESS.getMessage(),list);
 	}
+
+    @Override
+    public GetFoodRes getAllFood() {
+        List<Food> list = foodDao.getAllFood();
+        return new GetFoodRes(ResMessage.SUCCESS.getCode(),//
+                ResMessage.SUCCESS.getMessage(),list);
+    }
 }

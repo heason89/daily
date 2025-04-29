@@ -5,35 +5,18 @@ import java.time.LocalDateTime;
 public class UpdateSleepReq {
 	
 	private int sleepId;
-	
+
 	private String email;
 	
-	 private LocalDateTime sleepTime;
+	private LocalDateTime sleepTime;
 	 
-	 private LocalDateTime awakeTime;
+	private LocalDateTime awakeTime;
 	 
-	 private Boolean insomnia;
+	private Boolean insomnia;
 	 
-	 private Boolean sleepLatency;
+	private Boolean sleepLatency;
 	 
-	 private Boolean phone;
-
-	public UpdateSleepReq() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	public UpdateSleepReq(int sleepId, String email, LocalDateTime sleepTime, LocalDateTime awakeTime, Boolean insomnia,
-			Boolean sleepLatency, Boolean phone) {
-		super();
-		this.sleepId = sleepId;
-		this.email = email;
-		this.sleepTime = sleepTime;
-		this.awakeTime = awakeTime;
-		this.insomnia = insomnia;
-		this.sleepLatency = sleepLatency;
-		this.phone = phone;
-	}
+	private Boolean phone;
 
 	public int getSleepId() {
 		return sleepId;
@@ -63,6 +46,6 @@ public class UpdateSleepReq {
 		return phone;
 	}
 
-	
+
 
 }

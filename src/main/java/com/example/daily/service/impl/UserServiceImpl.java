@@ -24,19 +24,32 @@ public class UserServiceImpl implements UserService {
     private JwtUtil jwtUtil;
 
     @Override
-    public BasicRes login(LoginReq req) {
+    public LoginRes login(LoginReq req) {
+        // 檢查 email 是否已存在
+        User userEmail =userDao.getByEmail(req.getEmail());
+        // 呼叫 checkmail 檢查
+        BasicRes res = checkmail(userEmail);
+        if(res.getCode()==400){
+            return new LoginRes(res.getCode(),res.getMessage());
+        }
+        // 檢查帳號密碼
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        if(!encoder.matches(req.getPassword(), userEmail.getPassword())){
+            return new LoginRes(ResMessage.PASSWORD_MISMATCH.getCode()//
+                    , ResMessage.PASSWORD_MISMATCH.getMessage());
+        }
+        return new LoginRes(ResMessage.SUCCESS.getCode(),//
+                ResMessage.SUCCESS.getMessage(),userEmail.isAdmin());
+    }
+
+    @Override
+    public BasicRes logout(LogoutReq req) {
         // 檢查 email 是否已存在
         User userEmail =userDao.getByEmail(req.getEmail());
         // 呼叫 checkmail 檢查
         BasicRes res = checkmail(userEmail);
         if(res.getCode()==400){
             return res;
-        }
-        // 檢查帳號密碼
-        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        if(!encoder.matches(req.getPassword(), userEmail.getPassword())){
-            return new BasicRes(ResMessage.PASSWORD_MISMATCH.getCode()//
-                    , ResMessage.PASSWORD_MISMATCH.getMessage());
         }
         return new BasicRes(ResMessage.SUCCESS.getCode(),//
                 ResMessage.SUCCESS.getMessage());
