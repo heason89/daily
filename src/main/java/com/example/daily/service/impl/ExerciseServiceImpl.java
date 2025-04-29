@@ -89,15 +89,17 @@ public class ExerciseServiceImpl implements ExerciseService{
 	}
 
 	@Override
-	public SelectExerciseRes getByEmail(ExerciseReq req) {
-		if(exerciseDao.selectCountByemail(req.getEmail()) == 0) {
-			return new SelectExerciseRes(ResMessage.EMAIL_NOT_EXISTED.getCode(), //
-					ResMessage.EMAIL_NOT_EXISTED.getMessage());
+	public GetExerciseRes getByEmail(GetExerciseReq req) {
+		// 檢查 email 是否已存在
+		User userEmail =userDao.getByEmail(req.getEmail());
+		// 呼叫 checkmail 檢查
+		BasicRes res = checkmail(userEmail);
+		if(res.getCode()==400){
+			return new GetExerciseRes(res.getCode(),res.getMessage());
 		}
-		List<Exercise> list = exerciseDao.selectByemail(req.getEmail());
-		return new SelectExerciseRes(ResMessage.SUCCESS.getCode(), //
+		List<Exercise> list = exerciseDao.getByEmail(req.getEmail());
+		return new GetExerciseRes(ResMessage.SUCCESS.getCode(), //
 				ResMessage.SUCCESS.getMessage(), list);
-		
 	}
 
 	private BasicRes checkmail(User usermail){

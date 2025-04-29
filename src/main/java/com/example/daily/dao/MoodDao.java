@@ -1,6 +1,5 @@
 package com.example.daily.dao;
 
-
 import com.example.daily.entity.Mood;
 import com.example.daily.entity.MoodId;
 

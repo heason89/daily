@@ -1,6 +1,5 @@
 package com.example.daily.dao;
 
-
 import com.example.daily.entity.Sender;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
