@@ -37,4 +37,9 @@ public class MoodServiceController {
 		return moodService.selectMood(req);
 
 	}
+	@PostMapping(value = "mood/delete_mood")
+	public BasicRes deleteMood(@Valid @RequestBody MoodReq req) {
+		return moodService.deletMood(req);
+
+	}
 }

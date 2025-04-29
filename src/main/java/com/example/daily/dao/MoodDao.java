@@ -50,4 +50,8 @@ public interface MoodDao extends JpaRepository<Mood, MoodId> {
 	
 	@Query(value="select * from mood where email = ?1 and date = ?2",nativeQuery = true)
 	public Mood getMoodbyEmailDate(String email, LocalDate date);
+	@Modifying
+	@Transactional
+	@Query(value="delete from mood where email = ?1 and date = ?2 ",nativeQuery = true)
+	public void deleteMood(String email, LocalDate date);
 }
