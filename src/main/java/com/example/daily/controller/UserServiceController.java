@@ -14,7 +14,7 @@ public class UserServiceController {
     private UserService userService;
 
     @PostMapping(value = "daily/login")
-    public BasicRes login(@Valid @RequestBody LoginReq req){
+    public LoginRes login(@Valid @RequestBody LoginReq req){
         return userService.login(req);
     }
 
@@ -33,7 +33,7 @@ public class UserServiceController {
         return userService.getUserInfo(req);
     }
 
-    @GetMapping("daily/verify")
+    @PostMapping("daily/verify")
     public BasicRes verify(@Valid @RequestBody VerifyTokenReq req) {
         return userService.verifyToken(req);
     }

@@ -34,16 +34,4 @@ public class UpdateMealsReq {
 		this.eatTime = eatTime;
 	}
 
-	public UpdateMealsReq(int mealsId, String mealsName, LocalDateTime eatTime) {
-		super();
-		this.mealsId = mealsId;
-		this.mealsName = mealsName;
-		this.eatTime = eatTime;
-	}
-
-	public UpdateMealsReq() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
 }

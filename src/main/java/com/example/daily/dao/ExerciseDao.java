@@ -41,7 +41,12 @@ public interface ExerciseDao extends JpaRepository<Exercise, Integer> {
 	
 	@Query(value="select * from exercise where email = ?1 ",nativeQuery = true)
 	public List<Exercise> selectByemail(String email);
-	
-	@Query(value="select * from exercise  ",nativeQuery = true)
-	public List<Exercise> select();
+
+	@Query(value="select * from exercise where exercise_id = ?1",nativeQuery = true)
+	public Exercise getByExerciseId(int exerciseId);
+
+	@Modifying
+	@Transactional
+	@Query(value="delete from exercise where exercise_id = ?1",nativeQuery = true)
+	public void deleteExercise(int exerciseId);
 }

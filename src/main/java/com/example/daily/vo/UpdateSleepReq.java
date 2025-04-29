@@ -64,20 +64,4 @@ public class UpdateSleepReq {
 		this.phone = phone;
 	}
 
-	public UpdateSleepReq(int sleepId, LocalDateTime sleepTime, LocalDateTime awakeTime, Boolean insomnia,
-			Boolean sleepLatency, Boolean phone) {
-		super();
-		this.sleepId = sleepId;
-		this.sleepTime = sleepTime;
-		this.awakeTime = awakeTime;
-		this.insomnia = insomnia;
-		this.sleepLatency = sleepLatency;
-		this.phone = phone;
-	}
-
-	public UpdateSleepReq() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
 }

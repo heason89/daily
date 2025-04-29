@@ -1,24 +1,18 @@
 package com.example.daily.vo;
 
-public class SportsReq {
-	
+import com.example.daily.constants.ResMessage;
+import jakarta.validation.constraints.NotBlank;
+
+public class SportsReq{
+
+	@NotBlank(message= ResMessage.ConstantsMessage.PARAM_SPORTS_NAME_ERROR)
 	private String sportsName;
-	
+
+	@NotBlank(message= ResMessage.ConstantsMessage.PARAM_SPORTS_TYPE_ERROR)
 	private String sportsType;
-	
+
+	@NotBlank(message= ResMessage.ConstantsMessage.PARAM_CONSUME_ERROR)
 	private int consume;
-
-	public SportsReq() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	public SportsReq(String sportsName, String sportsType, int consume) {
-		super();
-		this.sportsName = sportsName;
-		this.sportsType = sportsType;
-		this.consume = consume;
-	}
 
 	public String getSportsName() {
 		return sportsName;
@@ -44,7 +38,6 @@ public class SportsReq {
 		this.consume = consume;
 	}
 
-	
 	
 
 }

@@ -6,29 +6,27 @@ import com.example.daily.entity.Food;
 
 public class GetFoodRes extends BasicRes{
 	
-	private List<Food> listFood;
+	private List<Food> foodList;
 
 	public GetFoodRes() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public GetFoodRes(int code, String message) {
 		super(code, message);
-		// TODO Auto-generated constructor stub
 	}
 
 	public GetFoodRes(int code, String message, List<Food> listFood) {
 		super(code, message);
-		this.listFood = listFood;
+		this.foodList = listFood;
 	}
 
-	public List<Food> getListFood() {
-		return listFood;
+	public List<Food> getFoodList() {
+		return foodList;
 	}
 
-	public void setListFood(List<Food> listFood) {
-		this.listFood = listFood;
+	public void setFoodList(List<Food> foodList) {
+		this.foodList = foodList;
 	}
 		
 }

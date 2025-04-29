@@ -3,7 +3,6 @@ package com.example.daily.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,25 +21,18 @@ public class ExerciseServiceController {
 	@Autowired
 	private ExerciseService exerciseService;
 	
-	@PostMapping(value ="exercise/fillinexercise")
-	public BasicRes fillinExercise(@Valid @RequestBody ExerciseReq req) {
-		return exerciseService.fillinExercise(req);
-		
-	
-}
-	@PostMapping(value ="exercise/updateExercise")
-	public BasicRes UpdateExercise(@Valid @RequestBody UpdateExerciseReq req) {
-		return exerciseService.updateByExercise(req);
+	@PostMapping(value ="exercise/fill_in_exercise")
+	public BasicRes fillInExercise(@Valid @RequestBody ExerciseReq req) {
+		return exerciseService.fillInExercise(req);
 	}
-		
+	@PostMapping(value ="exercise/update_exercise")
+	public BasicRes updateExercise(@Valid @RequestBody UpdateExerciseReq req) {
+		return exerciseService.updateExercise(req);
+	}
+
 	@PostMapping(value ="exercise/selectexercise")
 	public BasicRes selectExercise(@Valid @RequestBody ExerciseReq req) {
-		return exerciseService.selectByemail(req);
-
-}
-	@GetMapping(value ="exercise/select")
-	public BasicRes select() {
-		return exerciseService.select();
-
+		return exerciseService.getByEmail(req);
+	}
 }
 }
