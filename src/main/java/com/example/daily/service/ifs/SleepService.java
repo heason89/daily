@@ -15,5 +15,4 @@ public interface SleepService {
 	public BasicRes updateSleep(UpdateSleepReq req);
 	
 	public BasicRes deleteSleep(DeleteSleepReq req);
-
 }

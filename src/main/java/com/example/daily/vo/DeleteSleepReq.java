@@ -19,7 +19,4 @@ public class DeleteSleepReq {
 	public String getEmail() {
 		return email;
 	}
-	 
-	 
-
 }

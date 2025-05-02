@@ -38,6 +38,9 @@ public interface ExerciseDao extends JpaRepository<Exercise, Integer> {
 	@Query(value="select * from exercise where email = ?1 ",nativeQuery = true)
 	public List<Exercise> getByEmail(String email);
 
+	@Query(value="select * from exercise where email = ?1 and date >= ?2",nativeQuery = true)
+	public List<Exercise> getByMonday(String email, LocalDate monday);
+
 	@Query(value="select * from exercise where exercise_id = ?1",nativeQuery = true)
 	public Exercise getByExerciseId(int exerciseId);
 

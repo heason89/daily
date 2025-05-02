@@ -17,6 +17,7 @@ public class SportsServiceImpl implements SportsService{
 	@Autowired
 	private SportsDao sportsDao;
 
+	// 新增運動項目
 	@Override
 	public BasicRes insertSports(SportsReq req) {
 		// 檢查運動項目是否已存在
@@ -31,6 +32,7 @@ public class SportsServiceImpl implements SportsService{
 				ResMessage.SUCCESS.getMessage());
 	}
 
+	// 更新運動項目
 	@Override
 	public BasicRes updateSports(SportsReq req) {
 		// 檢查運動項目是否已存在
@@ -45,6 +47,7 @@ public class SportsServiceImpl implements SportsService{
 				ResMessage.SUCCESS.getMessage());
 	}
 
+	// 刪除運動項目
 	@Override
 	public BasicRes deleteSports(DeleteSportsReq req) {
 		// 檢查運動項目是否已存在
@@ -59,6 +62,7 @@ public class SportsServiceImpl implements SportsService{
 				ResMessage.SUCCESS.getMessage());
 	}
 
+	// 搜尋運動項目
 	@Override
 	public GetSportsRes searchSports(SearchSportsReq req) {
 		List<Sports> list = sportsDao.searchSports(req.getSportsName(), req.getSportsType());
@@ -66,6 +70,7 @@ public class SportsServiceImpl implements SportsService{
 				ResMessage.SUCCESS.getMessage(),list);
 	}
 
+	// 取得所有運動項目
 	@Override
 	public GetSportsRes getAllSports() {
 		List<Sports> list = sportsDao.getAllSports();

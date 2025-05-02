@@ -9,12 +9,11 @@ import com.example.daily.vo.UpdateMealsReq;
 
 public interface MealsService {
 	
-	public BasicRes fillinMeals(MealsReq  req);
+	public BasicRes fillInMeals(MealsReq  req);
 	
 	public SelectMealsRes SelectMeals(MealsReq  req);
 	
 	public BasicRes updateMeals(UpdateMealsReq  req);
 	
 	public BasicRes deleteMeals(DeleteMealsReq  req);
-
 }

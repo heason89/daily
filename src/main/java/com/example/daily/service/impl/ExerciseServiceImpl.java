@@ -1,6 +1,8 @@
 package com.example.daily.service.impl;
 
+import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.time.temporal.TemporalAdjusters;
 import java.util.List;
 
 import com.example.daily.dao.UserDao;
@@ -98,6 +100,22 @@ public class ExerciseServiceImpl implements ExerciseService{
 			return new GetExerciseRes(res.getCode(),res.getMessage());
 		}
 		List<Exercise> list = exerciseDao.getByEmail(req.getEmail());
+		return new GetExerciseRes(ResMessage.SUCCESS.getCode(), //
+				ResMessage.SUCCESS.getMessage(), list);
+	}
+
+	@Override
+	public GetExerciseRes getCalendarExercise(GetExerciseReq req) {
+		// 檢查 email 是否已存在
+		User userEmail =userDao.getByEmail(req.getEmail());
+		// 呼叫 checkmail 檢查
+		BasicRes res = checkmail(userEmail);
+		if(res.getCode()==400){
+			return new GetExerciseRes(res.getCode(),res.getMessage());
+		}
+		// 抓當周星期一日期
+		LocalDate monday = LocalDate.now().with(TemporalAdjusters.previousOrSame(DayOfWeek.MONDAY));
+		List<Exercise> list = exerciseDao.getByMonday(req.getEmail(),monday);
 		return new GetExerciseRes(ResMessage.SUCCESS.getCode(), //
 				ResMessage.SUCCESS.getMessage(), list);
 	}

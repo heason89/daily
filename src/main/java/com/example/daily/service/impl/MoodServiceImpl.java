@@ -47,11 +47,9 @@ public class MoodServiceImpl implements MoodService {
 		return new BasicRes(ResMessage.SUCCESS.getCode(), //
 				ResMessage.SUCCESS.getMessage());
 	}
-
 	// 修改
 	@Override
 	public BasicRes updateMood(MoodReq req) {
-
 		// 檢查 email 是否已存在
 		User userEmail = userDao.getByEmail(req.getEmail());
 		// 呼叫 checkmail 檢查
@@ -59,8 +57,8 @@ public class MoodServiceImpl implements MoodService {
 		if (res.getCode() == 400) {
 			return res;
 		}
-		// 7天內的才可以修改
-		Mood list = moodDao.getMoodbyEmailDate(req.getEmail(), req.getDate());
+		Mood list = moodDao.getMoodByEmailDate(req.getEmail(), req.getDate());
+		// 檢查日期是否在7天內
 		if (LocalDate.now().minusDays(7).isAfter(list.getDate())) {
 			return new BasicRes(ResMessage.DATE_EXPIRED.getCode(), //
 					ResMessage.DATE_EXPIRED.getMessage());
@@ -73,7 +71,7 @@ public class MoodServiceImpl implements MoodService {
 
 	// 刪除
 	@Override
-	public BasicRes deletMood(MoodReq req) {
+	public BasicRes deleteMood(MoodReq req) {
 		// 檢查 email 是否已存在
 		User userEmail = userDao.getByEmail(req.getEmail());
 		// 呼叫 checkmail 檢查
@@ -81,20 +79,16 @@ public class MoodServiceImpl implements MoodService {
 		if (res.getCode() == 400) {
 			return res;
 		}
-		// 7天內的才可以修改
-		Mood list = moodDao.getMoodbyEmailDate(req.getEmail(), req.getDate());
+		// 檢查日期是否在7天內
+		Mood list = moodDao.getMoodByEmailDate(req.getEmail(), req.getDate());
 		if (LocalDate.now().minusDays(7).isAfter(list.getDate())) {
 			return new BasicRes(ResMessage.DATE_EXPIRED.getCode(), //
 					ResMessage.DATE_EXPIRED.getMessage());
 		}
 		moodDao.deleteMood(req.getEmail(), req.getDate());
-		;
 		return new BasicRes(ResMessage.SUCCESS.getCode(), //
 				ResMessage.SUCCESS.getMessage());
 	}
-
-	// 檢查email
-
 	// 搜尋
 	@Override
 	public SelectMoodRes selectMood(MoodReq req) {
@@ -105,9 +99,7 @@ public class MoodServiceImpl implements MoodService {
 		if (res.getCode() == 400) {
 			return (SelectMoodRes) res;
 		}
-
-		List<Mood> list = moodDao.getAllMoodbyEmail(req.getEmail());
-
+		List<Mood> list = moodDao.getAllMoodByEmail(req.getEmail());
 		return new SelectMoodRes(ResMessage.SUCCESS.getCode(), //
 				ResMessage.SUCCESS.getMessage(), list);
 	}

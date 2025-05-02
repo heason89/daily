@@ -37,18 +37,17 @@ public interface MoodDao extends JpaRepository<Mood, MoodId> {
 			@Param("email") String email, //			
 			@Param("date")LocalDate date, //
 			@Param("mood")int mood,//
-			@Param("diary")String diary//
-			//
-			);
+			@Param("diary")String diary);
 	
-	@Query(value="select count(email) from mood where email = ?1 ",nativeQuery = true)
-	public int selectCountByemail(String email);
+//	@Query(value="select count(email) from mood where email = ?1 ",nativeQuery = true)
+//	public int selectCountByemail(String email);
 	
 	@Query(value="select * from mood where email = ?1 ",nativeQuery = true)
-	public List<Mood> getAllMoodbyEmail(String email);
+	public List<Mood> getAllMoodByEmail(String email);
 	
 	@Query(value="select * from mood where email = ?1 and date = ?2",nativeQuery = true)
-	public Mood getMoodbyEmailDate(String email, LocalDate date);
+	public Mood getMoodByEmailDate(String email, LocalDate date);
+
 	@Modifying
 	@Transactional
 	@Query(value="delete from mood where email = ?1 and date = ?2 ",nativeQuery = true)

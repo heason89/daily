@@ -91,7 +91,7 @@ public class EmailServiceImpl implements EmailService {
     }
 
     private static SimpleMailMessage getResetPasswordMessage(String toEmail, String token) {
-        String link = "http://localhost:4200/editpwd?token=" + token;
+        String link = "http://localhost:4200/editpassword?token=" + token;
 
         String subject = "重設您的密碼 - HealthyDiaryApp";
         String content = "Hi 使用者您好，\n\n" +

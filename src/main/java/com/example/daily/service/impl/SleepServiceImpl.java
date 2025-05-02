@@ -71,13 +71,18 @@ public class SleepServiceImpl implements SleepService {
 		if (res.getCode() == 400) {
 			return res;
 		}
+		Sleep list = sleepDao.GetBySleepId(req.getSleepId());
+		// 呼叫 checkSleep 檢查
+		res = checkSleep(list,userEmail);
+		if (res.getCode() == 400) {
+			return res;
+		}
 		// 檢查時間
 		res = checkReq(req.getSleepTime(), req.getAwakeTime());
 		if (res.getCode() == 400) {
 			return res;
 		}
 		// 檢查日期是否在7天內
-		Sleep list = sleepDao.GetBySleepId(req.getSleepId());
 		if (LocalDateTime.now().minusDays(7).isAfter(list.getSleepTime())) {
 			return new BasicRes(ResMessage.DATE_EXPIRED.getCode(), //
 					ResMessage.DATE_EXPIRED.getMessage());
@@ -97,8 +102,13 @@ public class SleepServiceImpl implements SleepService {
 		if (res.getCode() == 400) {
 			return res;
 		}
-		// 檢查日期是否在7天內
 		Sleep list = sleepDao.GetBySleepId(req.getSleepId());
+		// 呼叫 checkSleep 檢查
+		res = checkSleep(list,userEmail);
+		if (res.getCode() == 400) {
+			return res;
+		}
+		// 檢查日期是否在7天內
 		if (LocalDateTime.now().minusDays(7).isAfter(list.getSleepTime())) {
 			return new BasicRes(ResMessage.DATE_EXPIRED.getCode(), //
 					ResMessage.DATE_EXPIRED.getMessage());
@@ -136,6 +146,20 @@ public class SleepServiceImpl implements SleepService {
 		}
 		return new BasicRes(ResMessage.SUCCESS.getCode(), //
 				ResMessage.SUCCESS.getMessage());
+	}
 
+	private BasicRes checkSleep(Sleep sleep, User userEmail){
+		// 檢查 sleep 是否存在
+		if (sleep==null){
+			return new BasicRes(ResMessage.SLEEP_NOT_EXISTED.getCode(), //
+					ResMessage.SLEEP_NOT_EXISTED.getMessage());
+		}
+		// 檢查該 sleepId 是不是該 email 填寫的
+		if(!userEmail.getEmail().equals(sleep.getEmail())){
+			return new BasicRes(ResMessage.MAIL_MISMATCH.getCode(), //
+					ResMessage.MAIL_MISMATCH.getMessage());
+		}
+		return new BasicRes(ResMessage.SUCCESS.getCode(), //
+				ResMessage.SUCCESS.getMessage());
 	}
 }

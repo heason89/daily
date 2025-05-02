@@ -18,6 +18,7 @@ public enum ResMessage {
 	PARAM_DURATION_ERROR(400, "Param duration error!"),//
 	MAIL_MISMATCH(400, "Mail mismatch!"),//
 	EXERCISE_NOT_EXISTED(400, "Exercise not existed!"), //
+	SLEEP_NOT_EXISTED(400, "Sleep not existed!"), //
 	BEYOND_THE_DATE(400, "beyond the day !"),// 超過現在時間
 	;
 

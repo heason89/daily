@@ -13,4 +13,6 @@ public interface ExerciseService {
 	public BasicRes deleteExercise(DeleteExerciseReq req);
 	
 	public GetExerciseRes getByEmail(GetExerciseReq req);
+
+	public GetExerciseRes getCalendarExercise(GetExerciseReq req);
 }

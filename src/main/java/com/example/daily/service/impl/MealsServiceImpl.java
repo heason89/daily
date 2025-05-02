@@ -1,6 +1,5 @@
 package com.example.daily.service.impl;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -11,7 +10,6 @@ import com.example.daily.constants.ResMessage;
 import com.example.daily.dao.MealsDao;
 import com.example.daily.dao.UserDao;
 import com.example.daily.entity.Meals;
-import com.example.daily.entity.Mood;
 import com.example.daily.entity.User;
 import com.example.daily.service.ifs.MealsService;
 import com.example.daily.vo.BasicRes;
@@ -31,19 +29,18 @@ public class MealsServiceImpl implements MealsService {
 
 	// 填寫
 	@Override
-	public BasicRes fillinMeals(MealsReq req) {
+	public BasicRes fillInMeals(MealsReq req) {
 		// 檢查 email 是否已存在
 		User userEmail = userDao.getByEmail(req.getEmail());
-		// 呼叫 checkmail 檢查
-		BasicRes res = checkmail(userEmail);
+		// 呼叫 checkMail 檢查 email
+		BasicRes res = checkMail(userEmail);
 		if (res.getCode() == 400) {
 			return res;
 		}
-		// 填寫進來的日期要在7天內
-
-		if (LocalDateTime.now().minusDays(7).isAfter(req.getEatTime())) {
-			return new BasicRes(ResMessage.DATE_EXPIRED.getCode(), //
-					ResMessage.DATE_EXPIRED.getMessage());
+		// 呼叫 checkDate 檢查日期
+		res = checkDate(req.getEatTime());
+		if (res.getCode() == 400) {
+			return res;
 		}
 		mealsDao.insertMeals(req.getEmail(), req.getMealsName(), req.getEatTime());
 		return new BasicRes(ResMessage.SUCCESS.getCode(), //
@@ -55,8 +52,8 @@ public class MealsServiceImpl implements MealsService {
 	public SelectMealsRes SelectMeals(MealsReq req) {
 		// 檢查 email 是否已存在
 		User userEmail = userDao.getByEmail(req.getEmail());
-		// 呼叫 checkmail 檢查
-		BasicRes res = checkmail(userEmail);
+		// 呼叫 checkMail 檢查 email
+		BasicRes res = checkMail(userEmail);
 		if (res.getCode() == 400) {
 			return (SelectMealsRes) res;
 		}
@@ -64,25 +61,30 @@ public class MealsServiceImpl implements MealsService {
 
 		return new SelectMealsRes(ResMessage.SUCCESS.getCode(), //
 				ResMessage.SUCCESS.getMessage(), list);
-
 	}
 
-	// 修改
+	// 更新
 	@Override
 	public BasicRes updateMeals(UpdateMealsReq req) {
 		// 檢查 email 是否已存在
 		User userEmail = userDao.getByEmail(req.getEmail());
-		// 呼叫 checkmail 檢查
-		BasicRes res = checkmail(userEmail);
+		// 呼叫 checkMail 檢查 email
+		BasicRes res = checkMail(userEmail);
 		if (res.getCode() == 400) {
 			return res;
 		}
 		// 檢查日期是不是7天內
 		Meals list = mealsDao.GetByMealsId(req.getMealsId());
-
-		if (LocalDateTime.now().minusDays(7).isAfter(list.getEatTime())) {
-			return new BasicRes(ResMessage.DATE_EXPIRED.getCode(), //
-					ResMessage.DATE_EXPIRED.getMessage());
+		// 呼叫 checkDate 檢查日期
+		res = checkDate(list.getEatTime());
+		if (res.getCode() == 400) {
+			return res;
+		}
+		// 檢查更新的日期是不是7天內
+		// 呼叫 checkDate 檢查日期
+		res = checkDate(req.getEatTime());
+		if (res.getCode() == 400) {
+			return res;
 		}
 		mealsDao.updateMeals(req.getMealsId(), req.getMealsName(), req.getEatTime());
 		return new BasicRes(ResMessage.SUCCESS.getCode(), //
@@ -94,24 +96,25 @@ public class MealsServiceImpl implements MealsService {
 	public BasicRes deleteMeals(DeleteMealsReq req) {
 		// 檢查 email 是否已存在
 		User userEmail = userDao.getByEmail(req.getEmail());
-		// 呼叫 checkmail 檢查
-		BasicRes res = checkmail(userEmail);
+		// 呼叫 checkMail 檢查 email
+		BasicRes res = checkMail(userEmail);
 		if (res.getCode() == 400) {
 			return res;
 		}
 		// 檢查日期是不是7天內
 		Meals list = mealsDao.GetByMealsId(req.getMealsId());
-
-		if (LocalDateTime.now().minusDays(7).isAfter(list.getEatTime())) {
-			return new BasicRes(ResMessage.DATE_EXPIRED.getCode(), //
-					ResMessage.DATE_EXPIRED.getMessage());
+		// 呼叫 checkDate 檢查日期
+		res = checkDate(list.getEatTime());
+		if (res.getCode() == 400) {
+			return res;
 		}
 		mealsDao.deleteMeals(req.getMealsId());
 		return new BasicRes(ResMessage.SUCCESS.getCode(), //
 				ResMessage.SUCCESS.getMessage());
 	}
 
-	private BasicRes checkmail(User usermail) {
+	// 檢查信箱
+	private BasicRes checkMail(User usermail) {
 		// 帳號不存在
 		if (usermail == null) {
 			return new BasicRes(ResMessage.EMAIL_NOT_EXISTED.getCode(), //
@@ -121,6 +124,16 @@ public class MealsServiceImpl implements MealsService {
 		if (!usermail.isActive()) {
 			return new BasicRes(ResMessage.EMAIL_HAS_BEEN_CANCELED.getCode(), //
 					ResMessage.EMAIL_HAS_BEEN_CANCELED.getMessage());
+		}
+		return new BasicRes(ResMessage.SUCCESS.getCode(), //
+				ResMessage.SUCCESS.getMessage());
+	}
+	// 檢查日期
+	private BasicRes checkDate(LocalDateTime eatTime){
+		// 檢查日期是不是7天內
+		if (LocalDateTime.now().minusDays(7).isAfter(eatTime)) {
+			return new BasicRes(ResMessage.DATE_EXPIRED.getCode(), //
+					ResMessage.DATE_EXPIRED.getMessage());
 		}
 		return new BasicRes(ResMessage.SUCCESS.getCode(), //
 				ResMessage.SUCCESS.getMessage());
