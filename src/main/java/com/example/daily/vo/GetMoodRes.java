@@ -4,19 +4,19 @@ import java.util.List;
 
 import com.example.daily.entity.Mood;
 
-public class SelectMoodRes extends BasicRes{
+public class GetMoodRes extends BasicRes{
 	
 	private List<Mood> moodlist;
 
-	public SelectMoodRes() {
+	public GetMoodRes() {
 		super();
 	}
 
-	public SelectMoodRes(int code, String message) {
+	public GetMoodRes(int code, String message) {
 		super(code, message);
 	}
 
-	public SelectMoodRes(int code, String message, List<Mood> moodlist) {
+	public GetMoodRes(int code, String message, List<Mood> moodlist) {
 		super(code, message);
 		this.moodlist = moodlist;
 	}

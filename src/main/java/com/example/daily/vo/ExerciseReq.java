@@ -8,8 +8,8 @@ import java.time.LocalDate;
 
 public class ExerciseReq{
 
-	@NotBlank(message= ResMessage.ConstantsMessage.PARAM_EMAIL_ERROR)
-	private String email;
+	@NotBlank(message= ResMessage.ConstantsMessage.PARAM_TOKEN_ERROR)
+	private String token;
 
 	@NotNull(message= ResMessage.ConstantsMessage.PARAM_DATE_ERROR)
 	private LocalDate date;
@@ -20,8 +20,8 @@ public class ExerciseReq{
 	@NotBlank(message= ResMessage.ConstantsMessage.PARAM_EXERCISE_NAME_ERROR)
 	private String exerciseName;
 
-	public String getEmail() {
-		return email;
+	public String getToken() {
+		return token;
 	}
 
 	public LocalDate getDate() {

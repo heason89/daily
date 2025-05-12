@@ -8,7 +8,7 @@ import java.time.LocalDate;
 public class UpdateUserReq {
 
     @NotBlank(message= ResMessage.ConstantsMessage.PARAM_EMAIL_ERROR)
-    private String email;
+    private String token;
 
     @NotBlank(message= ResMessage.ConstantsMessage.PARAM_PASSWORD_ERROR)
     private String password;
@@ -17,7 +17,7 @@ public class UpdateUserReq {
 
     private boolean admin = false;
     // 0:帳號註銷 1 :帳號啟用
-    private boolean active = true;
+    private boolean enable = true;
 
     private LocalDate birthdate =LocalDate.now() ;
 
@@ -35,8 +35,8 @@ public class UpdateUserReq {
 
     private String bodyType ="";
 
-    public String getEmail() {
-        return email;
+    public String getToken() {
+        return token;
     }
 
     public String getPassword() {
@@ -51,8 +51,8 @@ public class UpdateUserReq {
         return admin;
     }
 
-    public boolean isActive() {
-        return active;
+    public boolean isEnable() {
+        return enable;
     }
 
     public LocalDate getBirthdate() {

@@ -17,10 +17,6 @@ import java.util.Properties;
 @Service
 public class EmailServiceImpl implements EmailService {
 
-
-    @Autowired
-    private JwtUtil jwtUtil;
-
     @Autowired
     private SenderDao senderDao;
 

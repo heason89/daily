@@ -4,19 +4,19 @@ import java.util.List;
 
 import com.example.daily.entity.Meals;
 
-public class SelectMealsRes extends BasicRes{
+public class GetMealsRes extends BasicRes{
 	
 	private List<Meals> meals;
 
-	public SelectMealsRes() {
+	public GetMealsRes() {
 		super();
 	}
 
-	public SelectMealsRes(int code, String message) {
+	public GetMealsRes(int code, String message) {
 		super(code, message);
 	}
 
-	public SelectMealsRes(int code, String message,List<Meals> meals) {
+	public GetMealsRes(int code, String message, List<Meals> meals) {
 		super(code, message);
 		this.meals = meals;
 	}

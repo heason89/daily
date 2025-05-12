@@ -18,21 +18,21 @@ public interface MealsDao extends JpaRepository<Meals, Integer> {
 
 	@Modifying
 	@Transactional
-	@Query(value = "insert into meals (email, meals_name, eat_time )"
-			+ "values( :email, :mealsName, :eatTime )", nativeQuery = true)
+	@Query(value = "insert into meals (user_id, meals_name, eat_time )"
+			+ "values( :userId, :mealsName, :eatTime )", nativeQuery = true)
 	public void insertMeals(//
-			@Param("email") String email, //
+			@Param("userId") int userId, //
 			@Param("mealsName") String mealsName, //
 			@Param("eatTime") LocalDateTime eatTime);//
 	@Query(value = "select count(email) from meals where email = ?1 ", nativeQuery = true)
 	public int selectCountByEmail(String email);
 
 	//全部
-	@Query(value = "select * from meals where email = ?1 ", nativeQuery = true)
-	public List<Meals> GetAllByemail(String email);
+	@Query(value = "select * from meals where user_id = ?1 ", nativeQuery = true)
+	public List<Meals> GetAllByUserId(int userId);
 	//單筆
-	@Query(value = "select * from meals where meals_id = ?1 ", nativeQuery = true)
-	public Meals GetByMealsId(int mealsId);
+	@Query(value = "select * from meals where meals_id = ?1 and user_id =?2", nativeQuery = true)
+	public Meals GetByMealsId(int mealsId,int userId);
 
 	@Modifying
 	@Transactional

@@ -3,13 +3,11 @@ package com.example.daily.entity;
 import java.io.Serializable;
 import java.time.LocalDate;
 
-
-@SuppressWarnings("serial")
 public class MoodId implements Serializable {
 
     private LocalDate date;
 
-    private String email;
+    private int userId;
 
     public LocalDate getTime() {
         return date;
@@ -19,11 +17,11 @@ public class MoodId implements Serializable {
         this.date = time;
     }
 
-    public String getEmail() {
-        return email;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 }

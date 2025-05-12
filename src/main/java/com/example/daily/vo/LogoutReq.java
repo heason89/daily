@@ -1,4 +1,4 @@
 package com.example.daily.vo;
 
-public class LogoutReq extends GetUserInfoReq{
+public class LogoutReq extends GetUserDataReq {
 }

@@ -2,6 +2,7 @@ package com.example.daily.controller;
 
 import com.example.daily.service.ifs.UserService;
 import com.example.daily.vo.*;
+import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -14,7 +15,7 @@ public class UserServiceController {
     private UserService userService;
 
     @PostMapping(value = "daily/login")
-    public LoginRes login(@Valid @RequestBody LoginReq req){
+    public LoginRes login(@Valid @RequestBody LoginReq req, HttpSession session){
         return userService.login(req);
     }
 
@@ -24,12 +25,12 @@ public class UserServiceController {
     }
 
     @PostMapping(value = "daily/update_user")
-    public BasicRes updateUser(@Valid @RequestBody UpdateUserReq req){
+    public BasicRes updateUser(@Valid @RequestBody UpdateUserReq req, HttpSession session){
         return userService.updateUserInfo(req);
     }
 
     @PostMapping(value = "daily/get_user_info")
-    public GetUserInfoRes getUserInfo(@Valid @RequestBody GetUserInfoReq req){
+    public GetUserInfoRes getUserInfo(@Valid @RequestBody GetUserDataReq req){
         return userService.getUserInfo(req);
     }
 
@@ -48,5 +49,10 @@ public class UserServiceController {
     @PostMapping("daily/reset_password")
     public BasicRes updatePassword(@Valid @RequestBody ResetPasswordReq req) {
         return userService.verifyTokenUpdatePassword(req);
+    }
+
+    @PostMapping("daily/logout")
+    public BasicRes logout(@Valid @RequestBody LogoutReq req) {
+        return userService.logout(req);
     }
 }

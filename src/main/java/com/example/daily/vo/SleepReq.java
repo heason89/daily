@@ -8,8 +8,8 @@ import java.time.LocalDateTime;
 
 public class SleepReq{
 
-	@NotBlank(message= ResMessage.ConstantsMessage.PARAM_EMAIL_ERROR)
-	private String email;
+	@NotBlank(message= ResMessage.ConstantsMessage.PARAM_TOKEN_ERROR)
+	private String token;
 
 	@NotNull(message= ResMessage.ConstantsMessage.PARAM_SLEEP_TIME_ERROR)
 	private LocalDateTime sleepTime;
@@ -23,8 +23,8 @@ public class SleepReq{
 
 	private Boolean phone = false;
 
-	public String getEmail() {
-		return email;
+	public String getToken() {
+		return token;
 	}
 
 	public LocalDateTime getSleepTime() {

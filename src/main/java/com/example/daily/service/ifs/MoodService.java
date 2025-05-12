@@ -1,18 +1,15 @@
 package com.example.daily.service.ifs;
 
-import com.example.daily.vo.BasicRes;
-import com.example.daily.vo.MoodReq;
-import com.example.daily.vo.SelectMoodRes;
+import com.example.daily.vo.*;
 
 
 public interface MoodService {
 	
-	public BasicRes fillinMood(MoodReq  req);
+	public BasicRes fillInMood(MoodReq  req);
 	
 	public BasicRes updateMood(MoodReq  req);
 	
-	public BasicRes deleteMood(MoodReq  req);
+	public BasicRes deleteMood(DeleteMoodReq req);
 	
-	public SelectMoodRes selectMood(MoodReq  req);
-
+	public GetMoodRes getMood(GetUserDataReq req);
 }

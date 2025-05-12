@@ -18,7 +18,7 @@ public class RegisterReq {
     private boolean admin = false;
 
     // 0:帳號註銷 1 :帳號啟用
-    private boolean active = false;
+    private boolean enable = false;
 
     private LocalDate birthdate = LocalDate.now() ;
 
@@ -36,6 +36,8 @@ public class RegisterReq {
 
     private String bodyType ="";
 
+    private int version =0;
+
     public String getEmail() {
         return email;
     }
@@ -52,8 +54,8 @@ public class RegisterReq {
         return admin;
     }
 
-    public boolean isActive() {
-        return active;
+    public boolean isEnable() {
+        return enable;
     }
 
     public LocalDate getBirthdate() {
@@ -86,5 +88,9 @@ public class RegisterReq {
 
     public String getBodyType() {
         return bodyType;
+    }
+
+    public int getVersion() {
+        return version;
     }
 }

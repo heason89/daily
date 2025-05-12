@@ -1,24 +1,17 @@
 package com.example.daily.service.impl;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import com.example.daily.util.JwtUtil;
+import com.example.daily.vo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.daily.constants.ResMessage;
 import com.example.daily.dao.SleepDao;
-import com.example.daily.dao.UserDao;
 import com.example.daily.entity.Sleep;
-import com.example.daily.entity.User;
 import com.example.daily.service.ifs.SleepService;
-import com.example.daily.vo.BasicRes;
-import com.example.daily.vo.DeleteSleepReq;
-import com.example.daily.vo.ExerciseReq;
-import com.example.daily.vo.SelectSleepRes;
-import com.example.daily.vo.SleepReq;
-import com.example.daily.vo.UpdateSleepReq;
 
 @Service
 public class SleepServiceImpl implements SleepService {
@@ -27,60 +20,59 @@ public class SleepServiceImpl implements SleepService {
 	private SleepDao sleepDao;
 
 	@Autowired
-	private UserDao userDao;
+	private JwtUtil jwtUtil;
 
 	@Override
-	public BasicRes fillinSleep(SleepReq req) {
-		// 檢查 email 是否已存在
-		User userEmail = userDao.getByEmail(req.getEmail());
-		// 呼叫 checkmail 檢查
-		BasicRes res = checkmail(userEmail);
-		if (res.getCode() == 400) {
-			return res;
+	public BasicRes fillInSleep(SleepReq req) {
+		// 驗證 token 是否有效 及 解析出 userId
+		ExtractUserTokenRes res = jwtUtil.extractUserToken(req.getToken());
+		if(res.getCode()!=200)
+		{
+			return new BasicRes(res.getCode(),res.getMessage());
 		}
+		// 取得 userId
+		int userId = res.getUserId();
 		// 檢查時間
-		res = checkReq(req.getSleepTime(), req.getAwakeTime());
-		if (res.getCode() == 400) {
-			return res;
+		BasicRes date = checkReq(req.getSleepTime(), req.getAwakeTime());
+		if (date.getCode() == 400) {
+			return date;
 		}
-		sleepDao.insertSleep(req.getEmail(), req.getSleepTime(), req.getAwakeTime(), req.getInsomnia(),
+		sleepDao.insertSleep(userId, req.getSleepTime(), req.getAwakeTime(), req.getInsomnia(),
 				req.getSleepLatency(), req.getPhone());
 		return new BasicRes(ResMessage.SUCCESS.getCode(), //
 				ResMessage.SUCCESS.getMessage());
 	}
 
-	// 搜尋
 	@Override
-	public SelectSleepRes selectSleep(SleepReq req) {
-		if (sleepDao.selectCountByemail(req.getEmail()) == 0) {
-			return new SelectSleepRes(ResMessage.EMAIL_NOT_EXISTED.getCode(), //
-					ResMessage.EMAIL_NOT_EXISTED.getMessage());
+	public GetSleepRes getSleep(GetUserDataReq req) {
+		// 驗證 token 是否有效 及 解析出 userId
+		ExtractUserTokenRes res = jwtUtil.extractUserToken(req.getToken());
+		if(res.getCode()!=200)
+		{
+			return new GetSleepRes(res.getCode(),res.getMessage());
 		}
-		List<Sleep> list = sleepDao.GetAllByEmail(req.getEmail());
-
-		return new SelectSleepRes(ResMessage.SUCCESS.getCode(), //
+		// 取得 userId
+		int userId = res.getUserId();
+		List<Sleep> list = sleepDao.GetAllByUserId(userId);
+		return new GetSleepRes(ResMessage.SUCCESS.getCode(), //
 				ResMessage.SUCCESS.getMessage(), list);
 	}
 
 	@Override
 	public BasicRes updateSleep(UpdateSleepReq req) {
-		// 檢查 email 是否已存在
-		User userEmail = userDao.getByEmail(req.getEmail());
-		// 呼叫 checkmail 檢查
-		BasicRes res = checkmail(userEmail);
-		if (res.getCode() == 400) {
-			return res;
+		// 驗證 token 是否有效 及 解析出 userId
+		ExtractUserTokenRes res = jwtUtil.extractUserToken(req.getToken());
+		if(res.getCode()!=200)
+		{
+			return new GetSleepRes(res.getCode(),res.getMessage());
 		}
-		Sleep list = sleepDao.GetBySleepId(req.getSleepId());
-		// 呼叫 checkSleep 檢查
-		res = checkSleep(list,userEmail);
-		if (res.getCode() == 400) {
-			return res;
-		}
+		// 取得 userId
+		int userId = res.getUserId();
+		Sleep list = sleepDao.GetBySleepId(req.getSleepId(),userId);
 		// 檢查時間
-		res = checkReq(req.getSleepTime(), req.getAwakeTime());
-		if (res.getCode() == 400) {
-			return res;
+		BasicRes date = checkReq(req.getSleepTime(), req.getAwakeTime());
+		if (date.getCode() == 400) {
+			return date;
 		}
 		// 檢查日期是否在7天內
 		if (LocalDateTime.now().minusDays(7).isAfter(list.getSleepTime())) {
@@ -95,40 +87,21 @@ public class SleepServiceImpl implements SleepService {
 
 	@Override
 	public BasicRes deleteSleep(DeleteSleepReq req) {
-		// 檢查 email 是否已存在
-		User userEmail = userDao.getByEmail(req.getEmail());
-		// 呼叫 checkmail 檢查
-		BasicRes res = checkmail(userEmail);
-		if (res.getCode() == 400) {
-			return res;
+		// 驗證 token 是否有效 及 解析出 userId
+		ExtractUserTokenRes res = jwtUtil.extractUserToken(req.getToken());
+		if(res.getCode()!=200)
+		{
+			return new GetSleepRes(res.getCode(),res.getMessage());
 		}
-		Sleep list = sleepDao.GetBySleepId(req.getSleepId());
-		// 呼叫 checkSleep 檢查
-		res = checkSleep(list,userEmail);
-		if (res.getCode() == 400) {
-			return res;
-		}
+		// 取得 userId
+		int userId = res.getUserId();
+		Sleep list = sleepDao.GetBySleepId(req.getSleepId(),userId);
 		// 檢查日期是否在7天內
 		if (LocalDateTime.now().minusDays(7).isAfter(list.getSleepTime())) {
 			return new BasicRes(ResMessage.DATE_EXPIRED.getCode(), //
 					ResMessage.DATE_EXPIRED.getMessage());
 		}
-		sleepDao.deleteSleep(req.getEmail(), req.getSleepId());
-		return new BasicRes(ResMessage.SUCCESS.getCode(), //
-				ResMessage.SUCCESS.getMessage());
-	}
-
-	private BasicRes checkmail(User usermail) {
-		// 帳號不存在
-		if (usermail == null) {
-			return new BasicRes(ResMessage.EMAIL_NOT_EXISTED.getCode(), //
-					ResMessage.EMAIL_NOT_EXISTED.getMessage());
-		}
-		// 帳號已註銷
-		if (!usermail.isActive()) {
-			return new BasicRes(ResMessage.EMAIL_HAS_BEEN_CANCELED.getCode(), //
-					ResMessage.EMAIL_HAS_BEEN_CANCELED.getMessage());
-		}
+		sleepDao.deleteSleep(req.getSleepId(),userId);
 		return new BasicRes(ResMessage.SUCCESS.getCode(), //
 				ResMessage.SUCCESS.getMessage());
 	}
@@ -143,21 +116,6 @@ public class SleepServiceImpl implements SleepService {
 		if (SleepTime.isAfter(awakeTime)) {
 			return new BasicRes(ResMessage.PARAM_DATE_TIME_ERROR.getCode(), //
 					ResMessage.PARAM_DATE_TIME_ERROR.getMessage());
-		}
-		return new BasicRes(ResMessage.SUCCESS.getCode(), //
-				ResMessage.SUCCESS.getMessage());
-	}
-
-	private BasicRes checkSleep(Sleep sleep, User userEmail){
-		// 檢查 sleep 是否存在
-		if (sleep==null){
-			return new BasicRes(ResMessage.SLEEP_NOT_EXISTED.getCode(), //
-					ResMessage.SLEEP_NOT_EXISTED.getMessage());
-		}
-		// 檢查該 sleepId 是不是該 email 填寫的
-		if(!userEmail.getEmail().equals(sleep.getEmail())){
-			return new BasicRes(ResMessage.MAIL_MISMATCH.getCode(), //
-					ResMessage.MAIL_MISMATCH.getMessage());
 		}
 		return new BasicRes(ResMessage.SUCCESS.getCode(), //
 				ResMessage.SUCCESS.getMessage());

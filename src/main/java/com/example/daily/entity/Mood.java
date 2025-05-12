@@ -1,6 +1,8 @@
 package com.example.daily.entity;
 
+import com.example.daily.constants.ResMessage;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDate;
 
@@ -10,13 +12,16 @@ import java.time.LocalDate;
 public class Mood {
 
     @Id //@Id: 標示此欄位是 PK(primary key)
+    @NotNull(message = ResMessage.ConstantsMessage.PARAM_DATE_ERROR)
     @Column(name ="date")//@Column: 將此屬性關聯到指定的欄位，括號中的字串是欄位名稱
     private LocalDate date;
 
     @Id
-    @Column(name ="email")
-    private String email;
+    @NotNull(message = ResMessage.ConstantsMessage.PARAM_USER_ID_ERROR)
+    @Column(name ="user_id")
+    private int userId;
 
+    @NotNull(message = ResMessage.ConstantsMessage.PARAM_MOOD_ERROR)
     @Column(name ="mood")
     private int mood;
 
@@ -26,9 +31,9 @@ public class Mood {
     public Mood() {
     }
 
-    public Mood(LocalDate date, String email, int mood, String diary) {
+    public Mood(LocalDate date, int userId, int mood, String diary) {
         this.date = date;
-        this.email = email;
+        this.userId = userId;
         this.mood = mood;
         this.diary = diary;
     }
@@ -41,12 +46,12 @@ public class Mood {
         this.date = date;
     }
 
-    public String getEmail() {
-        return email;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public int getMood() {

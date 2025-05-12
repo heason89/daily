@@ -8,8 +8,8 @@ import java.time.LocalDateTime;
 
 public class MealsReq {
 
-	@NotBlank(message= ResMessage.ConstantsMessage.PARAM_EMAIL_ERROR)
-	private String email;
+	@NotBlank(message= ResMessage.ConstantsMessage.PARAM_TOKEN_ERROR)
+	private String token;
 
 	@NotBlank(message= ResMessage.ConstantsMessage.PARAM_MEALS_NAME_ERROR)
 	private String mealsName;
@@ -17,8 +17,8 @@ public class MealsReq {
 	@NotNull(message= ResMessage.ConstantsMessage.PARAM_EAT_TIME_ERROR)
 	private LocalDateTime eatTime;
 
-	public String getEmail() {
-		return email;
+	public String getToken() {
+		return token;
 	}
 
 	public String getMealsName() {

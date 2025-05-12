@@ -11,8 +11,8 @@ public class MoodReq{
 	@NotNull(message= ResMessage.ConstantsMessage.PARAM_DATE_ERROR)
 	private LocalDate date;
 
-	@NotBlank(message= ResMessage.ConstantsMessage.PARAM_EMAIL_ERROR)
-	private String email;
+	@NotBlank(message= ResMessage.ConstantsMessage.PARAM_TOKEN_ERROR)
+	private String token;
 
 	@NotNull(message= ResMessage.ConstantsMessage.PARAM_MOOD_ERROR)
 	private int mood;
@@ -23,8 +23,8 @@ public class MoodReq{
 		return date;
 	}
 
-	public String getEmail() {
-		return email;
+	public String getToken() {
+		return token;
 	}
 
 	public int getMood() {
