@@ -35,11 +35,6 @@ public class JwtUtil {
     // exp 放 token 的過期時間
     // iat 放  token 的建立時間(什麼時候簽的)
 
-    // 產生 JWT 的加密簽章用「金鑰（Key）」
-    // Keys.secretKeyFor 用來產生一組「適合 JWT 使用的安全金鑰」。
-    // SignatureAlgorithm.HS256 代表 HMAC-SHA25 對稱加密簽章方式
-    // private final Key key = Keys.secretKeyFor(SignatureAlgorithm.HS256); // 建議改成從設定檔讀取
-
     // 產生註冊驗證碼
     public String generateRegisterToken(String email) {
         Secret secret = getSecret();
