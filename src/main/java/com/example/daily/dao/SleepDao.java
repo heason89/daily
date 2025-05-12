@@ -1,11 +1,8 @@
 package com.example.daily.dao;
 
-
-
 import com.example.daily.entity.Sleep;
 
 import jakarta.transaction.Transactional;
-
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -21,10 +18,10 @@ public interface SleepDao extends JpaRepository<Sleep, Integer> {
 	
 	@Modifying
 	@Transactional
-	@Query(value = "insert into sleep (email,sleep_time,awake_time, insomnia, sleep_latency, phone)"
-			 + "values( :email, :sleepTime, :awakeTime, :insomnia, :sleepLatency, :phone)" , nativeQuery = true)
+	@Query(value = "insert into sleep (user_id,sleep_time,awake_time, insomnia, sleep_latency, phone)"
+			 + "values( :userId, :sleepTime, :awakeTime, :insomnia, :sleepLatency, :phone)" , nativeQuery = true)
 	public void insertSleep(//			
-			@Param("email") String email,//
+			@Param("userId") int userId,//
 			@Param("sleepTime")LocalDateTime sleepTime, //
 			@Param("awakeTime")LocalDateTime awakeTime,//
 			@Param("insomnia")boolean insomnia,//
@@ -46,17 +43,16 @@ public interface SleepDao extends JpaRepository<Sleep, Integer> {
 			@Param("awakeTime")LocalDateTime awakeTime,//
 			@Param("insomnia")boolean insomnia,//
 			@Param("sleepLatency")boolean sleepLatency,//
-			@Param("phone")boolean phone//
-			);
+			@Param("phone")boolean phone);
 	
 	@Modifying
 	@Transactional
-	@Query(value="delete from sleep where email = ?1 and sleep_id = ?2 ",nativeQuery = true)
-	public void deleteSleep(String email, int sleepId);
+	@Query(value="delete from sleep where sleep_id = ?1 and user_id = ?2 ",nativeQuery = true)
+	public void deleteSleep(int sleepId,int userId);
 			
-	@Query(value="select * from sleep where email = ?1 ",nativeQuery = true)
-	public List<Sleep> GetAllByEmail(String email);
+	@Query(value="select * from sleep where user_id = ?1 ",nativeQuery = true)
+	public List<Sleep> GetAllByUserId(int userId);
 	
-	@Query(value="select * from sleep where sleep_id = ?1 ",nativeQuery = true)
-	public Sleep GetBySleepId(int sleepId);
+	@Query(value="select * from sleep where sleep_id = ?1 and user_id = ?2 ",nativeQuery = true)
+	public Sleep GetBySleepId(int sleepId,int userId);
 }

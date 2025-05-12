@@ -15,7 +15,7 @@ public interface UserService {
 
     public BasicRes sendResetPasswordEmail(SendEmailReq req);
 
-    public GetUserInfoRes getUserInfo(GetUserInfoReq req);
+    public GetUserInfoRes getUserInfo(GetUserDataReq req);
 
     public BasicRes verifyToken(VerifyTokenReq req);
 

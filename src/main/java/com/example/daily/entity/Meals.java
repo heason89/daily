@@ -18,12 +18,15 @@ public class Meals {
     @Id //@Id: 標示此欄位是 PK(primary key)
     @Column(name ="meals_id")//@Column: 將此屬性關聯到指定的欄位，括號中的字串是欄位名稱
     private int mealsId;
-    @NotBlank(message = ResMessage.ConstantsMessage.PARAM_EMAIL_ERROR)
-    @Column(name ="email")
-    private String email;
+
+    @NotNull(message = ResMessage.ConstantsMessage.PARAM_USER_ID_ERROR)
+    @Column(name ="user_id")
+    private int userId;
+
     @NotBlank(message = ResMessage.ConstantsMessage.PARAM_MEALS_NAME_ERROR)
     @Column(name ="meals_name")
     private String mealsName;
+
     @NotNull(message = ResMessage.ConstantsMessage.PARAM_EAT_TIME_ERROR)
     @Column(name ="eat_time")
     private LocalDateTime eatTime;
@@ -31,9 +34,9 @@ public class Meals {
     public Meals() {
     }
 
-    public Meals(int mealsId, String email, String mealsName, LocalDateTime eatTime) {
+    public Meals(int mealsId, int userId, String mealsName, LocalDateTime eatTime) {
         this.mealsId = mealsId;
-        this.email = email;
+        this.userId = userId;
         this.mealsName = mealsName;
         this.eatTime = eatTime;
     }
@@ -46,12 +49,12 @@ public class Meals {
         this.mealsId = mealsId;
     }
 
-    public String getEmail() {
-        return email;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public String getMealsName() {

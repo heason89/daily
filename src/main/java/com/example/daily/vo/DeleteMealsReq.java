@@ -10,14 +10,14 @@ public class DeleteMealsReq {
 	private int mealsId;
 
 	@NotBlank(message= ResMessage.ConstantsMessage.PARAM_EMAIL_ERROR)
-	private String email;
+	private String token;
 
 	public int getMealsId() {
 		return mealsId;
 	}
 
-	public String getEmail() {
-		return email;
+	public String getToken() {
+		return token;
 	}
 
 

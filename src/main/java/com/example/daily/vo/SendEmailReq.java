@@ -1,4 +1,4 @@
 package com.example.daily.vo;
 
-public class SendEmailReq extends GetUserInfoReq{
+public class SendEmailReq extends GetUserDataReq {
 }

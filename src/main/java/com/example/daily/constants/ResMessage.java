@@ -4,6 +4,7 @@ public enum ResMessage {
 
 	SUCCESS(200, "Success!"), //
 	EMAIL_NOT_EXISTED(400, "Email not existed!"), //
+	USER_ID_NOT_EXISTED(400, "User id not existed!"), //
 	EMAIL_EXISTED(400, "Email existed!"), //
 	EMAIL_HAS_BEEN_CANCELED(400, "Email has been canceled!"), //
 	PASSWORD_MISMATCH(400, "Password mismatch!"), //
@@ -17,9 +18,11 @@ public enum ResMessage {
 	DATE_EXPIRED(400, "Date expired!"),//
 	PARAM_DURATION_ERROR(400, "Param duration error!"),//
 	MAIL_MISMATCH(400, "Mail mismatch!"),//
+	ID_MISMATCH(400, "Id mismatch!"),//
 	EXERCISE_NOT_EXISTED(400, "Exercise not existed!"), //
 	SLEEP_NOT_EXISTED(400, "Sleep not existed!"), //
 	BEYOND_THE_DATE(400, "beyond the day !"),// 超過現在時間
+	LOGIN_ERROR(400, "Login error!"), //
 	;
 
 	private int code;
@@ -68,6 +71,7 @@ public enum ResMessage {
 		public static final String PARAM_COOKING_METHOD_ERROR = "Param cooking_method error!";
 		public static final String PARAM_TYPE_ERROR = "Param type error!";
 		public static final String PARAM_TOKEN_ERROR = "Param token error!";
+		public static final String PARAM_USER_ID_ERROR = "Param user_id error!";
 
 	}
 

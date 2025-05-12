@@ -11,8 +11,8 @@ public class UpdateMealsReq {
 	@NotNull(message = ResMessage.ConstantsMessage.PARAM_MEALS_ID_ERROR)
 	private int mealsId;
 
-	@NotBlank(message = ResMessage.ConstantsMessage.PARAM_EMAIL_ERROR)
-	private String email;
+	@NotBlank(message = ResMessage.ConstantsMessage.PARAM_TOKEN_ERROR)
+	private String token;
 
 	@NotBlank(message = ResMessage.ConstantsMessage.PARAM_MEALS_NAME_ERROR)
 	private String mealsName;
@@ -24,8 +24,8 @@ public class UpdateMealsReq {
 		return mealsId;
 	}
 
-	public String getEmail() {
-		return email;
+	public String getToken() {
+		return token;
 	}
 
 	public String getMealsName() {

@@ -15,19 +15,23 @@ import com.example.daily.constants.ResMessage;
 @Entity
 @Table(name="exercise")
 public class Exercise {
+
     @Id //@Id: 標示此欄位是 PK(primary key)
     @Column(name ="exercise_id")//@Column: 將此屬性關聯到指定的欄位，括號中的字串是欄位名稱
     private int exerciseId;
-    
-    @NotBlank(message = ResMessage.ConstantsMessage.PARAM_EMAIL_ERROR)
-    @Column(name ="email")
-    private String email;
+
+    @NotNull(message = ResMessage.ConstantsMessage.PARAM_USER_ID_ERROR)
+    @Column(name ="user_id")
+    private int userId;
+
     @NotNull(message = ResMessage.ConstantsMessage.PARAM_DATE_ERROR)
     @Column(name ="date")
     private LocalDate date;
+
     @Min(value = 1, message = ResMessage.ConstantsMessage.PARAM_DURATION_ERROR)
     @Column(name ="duration")
     private int duration;
+
     @NotBlank(message = ResMessage.ConstantsMessage.PARAM_EXERCISE_NAME_ERROR)
     @Column(name ="exercise_name")
     private String exerciseName;
@@ -35,10 +39,10 @@ public class Exercise {
     public Exercise() {
     }
 
-    public Exercise(int exerciseId, String email, LocalDate date,
+    public Exercise(int exerciseId, int userId, LocalDate date,//
                     int duration, String exerciseName) {
         this.exerciseId = exerciseId;
-        this.email = email;
+        this.userId = userId;
         this.date = date;
         this.duration = duration;
         this.exerciseName = exerciseName;
@@ -52,12 +56,12 @@ public class Exercise {
         this.exerciseId = exerciseId;
     }
 
-    public String getEmail() {
-        return email;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public LocalDate getDate() {

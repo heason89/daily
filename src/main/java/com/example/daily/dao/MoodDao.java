@@ -19,10 +19,10 @@ public interface MoodDao extends JpaRepository<Mood, MoodId> {
 	
 	@Modifying
 	@Transactional
-	@Query(value = "insert into mood(email, date, mood, diary )"
-			 + "values(:email, :date , :mood, :diary )" , nativeQuery = true)
+	@Query(value = "insert into mood(user_id, date, mood, diary )"
+			 + "values(:userId, :date , :mood, :diary )" , nativeQuery = true)
 	public void insertMood(
-			@Param("email")String email, //
+			@Param("userId")int userId, //
 			@Param("date")LocalDate date,//			
 			@Param("mood")int mood,//
 			@Param("diary")String diary//						
@@ -31,10 +31,10 @@ public interface MoodDao extends JpaRepository<Mood, MoodId> {
 	@Modifying
 	@Transactional
 	@Query(value="update mood set mood = :mood, diary = :diary"
-			+ " where  email = :email and date = :date "
+			+ " where  user_id = :userId and date = :date "
 			,nativeQuery = true)
 	public void updateByMood(//
-			@Param("email") String email, //			
+			@Param("userId")int userId, //
 			@Param("date")LocalDate date, //
 			@Param("mood")int mood,//
 			@Param("diary")String diary);
@@ -42,14 +42,14 @@ public interface MoodDao extends JpaRepository<Mood, MoodId> {
 //	@Query(value="select count(email) from mood where email = ?1 ",nativeQuery = true)
 //	public int selectCountByemail(String email);
 	
-	@Query(value="select * from mood where email = ?1 ",nativeQuery = true)
-	public List<Mood> getAllMoodByEmail(String email);
+	@Query(value="select * from mood where user_id = ?1 ",nativeQuery = true)
+	public List<Mood> getAllMoodByUserId(int userId);
 	
-	@Query(value="select * from mood where email = ?1 and date = ?2",nativeQuery = true)
-	public Mood getMoodByEmailDate(String email, LocalDate date);
+	@Query(value="select * from mood where user_id = ?1 and date = ?2",nativeQuery = true)
+	public Mood getMoodByUserIdDate(int userId, LocalDate date);
 
 	@Modifying
 	@Transactional
-	@Query(value="delete from mood where email = ?1 and date = ?2 ",nativeQuery = true)
-	public void deleteMood(String email, LocalDate date);
+	@Query(value="delete from mood where user_id = ?1 and date = ?2 ",nativeQuery = true)
+	public void deleteMood(int userId, LocalDate date);
 }

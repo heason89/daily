@@ -16,10 +16,10 @@ public interface ExerciseDao extends JpaRepository<Exercise, Integer> {
 	
 	@Modifying
 	@Transactional
-	@Query(value = "insert into exercise (email, date, duration, exercise_name)"
-			 + "values( :email, :date, :duration, :exerciseName)" , nativeQuery = true)
+	@Query(value = "insert into exercise (user_id, date, duration, exercise_name)"
+			 + "values( :userId, :date, :duration, :exerciseName)" , nativeQuery = true)
 	public void insertExercise(//			
-			@Param("email") String email,//
+			@Param("userId") int userId,//
 			@Param("date")LocalDate date, //
 			@Param("duration")int duration, //
 			@Param("exerciseName")String exerciseName);
@@ -35,14 +35,14 @@ public interface ExerciseDao extends JpaRepository<Exercise, Integer> {
 			@Param("duration")int duration,//
 			@Param("exerciseName")String exerciseName);
 	
-	@Query(value="select * from exercise where email = ?1 ",nativeQuery = true)
-	public List<Exercise> getByEmail(String email);
+	@Query(value="select * from exercise where user_id = ?1 ",nativeQuery = true)
+	public List<Exercise> getByUserId(int userId);
 
-	@Query(value="select * from exercise where email = ?1 and date >= ?2",nativeQuery = true)
-	public List<Exercise> getByMonday(String email, LocalDate monday);
+	@Query(value="select * from exercise where user_id = ?1 and date >= ?2",nativeQuery = true)
+	public List<Exercise> getByMonday(int userId, LocalDate monday);
 
-	@Query(value="select * from exercise where exercise_id = ?1",nativeQuery = true)
-	public Exercise getByExerciseId(int exerciseId);
+	@Query(value="select * from exercise where exercise_id = ?1 and user_id =?2",nativeQuery = true)
+	public Exercise getByExerciseId(int exerciseId,int userId);
 
 	@Modifying
 	@Transactional

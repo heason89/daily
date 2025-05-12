@@ -1,16 +1,12 @@
 package com.example.daily.service.ifs;
 
-import com.example.daily.vo.BasicRes;
-import com.example.daily.vo.DeleteSleepReq;
-import com.example.daily.vo.SelectSleepRes;
-import com.example.daily.vo.SleepReq;
-import com.example.daily.vo.UpdateSleepReq;
+import com.example.daily.vo.*;
 
 public interface SleepService {
 	
-	public BasicRes fillinSleep(SleepReq req);
+	public BasicRes fillInSleep(SleepReq req);
 	
-	public SelectSleepRes selectSleep(SleepReq req);
+	public GetSleepRes getSleep(GetUserDataReq req);
 	
 	public BasicRes updateSleep(UpdateSleepReq req);
 	

@@ -1,5 +1,6 @@
 package com.example.daily.controller;
 
+import com.example.daily.vo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -7,9 +8,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.daily.service.ifs.MoodService;
-import com.example.daily.vo.BasicRes;
-import com.example.daily.vo.MoodReq;
-import com.example.daily.vo.SelectMoodRes;
 
 import jakarta.validation.Valid;
 
@@ -22,7 +20,7 @@ public class MoodServiceController {
 
 	@PostMapping(value = "mood/fill_in_mood")
 	public BasicRes fillInMood(@Valid @RequestBody MoodReq req) {
-		return moodService.fillinMood(req);
+		return moodService.fillInMood(req);
 	}
 
 	@PostMapping(value = "mood/update_mood")
@@ -30,12 +28,13 @@ public class MoodServiceController {
 		return moodService.updateMood(req);
 	}
 
-	@PostMapping(value = "mood/select_mood")
-	public SelectMoodRes selectMood(@Valid @RequestBody MoodReq req) {
-		return moodService.selectMood(req);
+	@PostMapping(value = "mood/get_mood")
+	public GetMoodRes getMood(@Valid @RequestBody GetUserDataReq req) {
+		return moodService.getMood(req);
 	}
+
 	@PostMapping(value = "mood/delete_mood")
-	public BasicRes deleteMood(@Valid @RequestBody MoodReq req) {
+	public BasicRes deleteMood(@Valid @RequestBody DeleteMoodReq req) {
 		return moodService.deleteMood(req);
 	}
 }

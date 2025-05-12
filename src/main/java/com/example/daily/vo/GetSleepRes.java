@@ -4,19 +4,19 @@ import java.util.List;
 
 import com.example.daily.entity.Sleep;
 
-public class SelectSleepRes extends BasicRes{
+public class GetSleepRes extends BasicRes{
 	
 	private List<Sleep> sleeplist;
 
-	public SelectSleepRes() {
+	public GetSleepRes() {
 		super();
 	}
 
-	public SelectSleepRes(int code, String message) {
+	public GetSleepRes(int code, String message) {
 		super(code, message);
 	}
 
-	public SelectSleepRes(int code, String message, List<Sleep> sleeplist) {
+	public GetSleepRes(int code, String message, List<Sleep> sleeplist) {
 		super(code, message);
 		this.sleeplist = sleeplist;
 	}

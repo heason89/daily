@@ -1,5 +1,6 @@
 package com.example.daily.controller;
 
+import com.example.daily.vo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -7,11 +8,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.daily.service.ifs.MealsService;
-import com.example.daily.vo.BasicRes;
-import com.example.daily.vo.DeleteMealsReq;
-import com.example.daily.vo.MealsReq;
-import com.example.daily.vo.SelectMealsRes;
-import com.example.daily.vo.UpdateMealsReq;
 
 import jakarta.validation.Valid;
 
@@ -32,9 +28,9 @@ public class MealsServiceController {
 		return mealsService.updateMeals(req);
 	}
 
-	@PostMapping(value ="meals/select_meals")
-	public SelectMealsRes selectMeals(@Valid @RequestBody MealsReq req) {
-		return mealsService.SelectMeals(req);
+	@PostMapping(value ="meals/get_meals")
+	public GetMealsRes getMeals(@Valid @RequestBody GetUserDataReq req) {
+		return mealsService.getMeals(req);
 	}
 
 	@PostMapping(value ="meals/delete_meals")

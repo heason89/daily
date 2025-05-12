@@ -9,14 +9,14 @@ public class DeleteSleepReq {
 	@NotNull(message= ResMessage.ConstantsMessage.PARAM_SLEEP_ID_ERROR)
 	private int sleepId;
 
-	@NotBlank(message= ResMessage.ConstantsMessage.PARAM_EMAIL_ERROR)
-	private String email;
+	@NotBlank(message= ResMessage.ConstantsMessage.PARAM_TOKEN_ERROR)
+	private String token;
 
 	public int getSleepId() {
 		return sleepId;
 	}
 
-	public String getEmail() {
-		return email;
+	public String getToken() {
+		return token;
 	}
 }

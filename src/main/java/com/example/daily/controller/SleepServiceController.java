@@ -21,12 +21,12 @@ public class SleepServiceController {
 	
 	@PostMapping(value ="sleep/fill_in_sleep")
 	public BasicRes fillInSleep(@Valid @RequestBody SleepReq req) {
-		return sleepService.fillinSleep(req);
+		return sleepService.fillInSleep(req);
 	}
 
 	@PostMapping(value ="sleep/select_sleep")
-	public SelectSleepRes selectSleep(@Valid @RequestBody SleepReq req) {
-		return sleepService.selectSleep(req);
+	public GetSleepRes getSleep(@Valid @RequestBody GetUserDataReq req) {
+		return sleepService.getSleep(req);
 	}
 
 	@PostMapping(value ="sleep/update_sleep")
