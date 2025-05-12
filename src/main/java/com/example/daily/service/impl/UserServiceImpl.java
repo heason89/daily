@@ -2,6 +2,7 @@ package com.example.daily.service.impl;
 
 import com.example.daily.constants.ResMessage;
 import com.example.daily.dao.UserDao;
+import com.example.daily.dto.UserDto;
 import com.example.daily.entity.User;
 import com.example.daily.service.ifs.EmailService;
 import com.example.daily.service.ifs.UserService;
@@ -69,6 +70,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public BasicRes register(RegisterReq req) {
+        // 檢查 email 格式
+
         // 檢查 email 是否已存在
         User userEmail =userDao.getByEmail(req.getEmail());
         // email 已存在且啟用中
@@ -176,9 +179,13 @@ public class UserServiceImpl implements UserService {
         // 取得 userId
         int userId = res.getUserId();
         // 取得 userinfo
-        User userInfo =userDao.getByUserId(userId);
+        User userInfo = userDao.getByUserId(userId);
+        UserDto user = new UserDto(userInfo.getName(),userInfo.getEmail(),userInfo.getBirthdate(),
+                userInfo.getHeight(),userInfo.getWeight(),userInfo.getWorkType(),userInfo.getGender(),
+                userInfo.getPhoto(),userInfo.getNote(),userInfo.getBodyType());
+
         return new GetUserInfoRes(ResMessage.SUCCESS.getCode(),//
-                ResMessage.SUCCESS.getMessage(),userInfo);
+                ResMessage.SUCCESS.getMessage(),user);
     }
 
     @Override

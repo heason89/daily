@@ -17,13 +17,11 @@ public enum ResMessage {
 	TOKEN_EXPIRED(400, "Token expired!"),//
 	DATE_EXPIRED(400, "Date expired!"),//
 	PARAM_DURATION_ERROR(400, "Param duration error!"),//
-	MAIL_MISMATCH(400, "Mail mismatch!"),//
 	ID_MISMATCH(400, "Id mismatch!"),//
 	EXERCISE_NOT_EXISTED(400, "Exercise not existed!"), //
 	SLEEP_NOT_EXISTED(400, "Sleep not existed!"), //
 	BEYOND_THE_DATE(400, "beyond the day !"),// 超過現在時間
-	LOGIN_ERROR(400, "Login error!"), //
-	;
+	LOGIN_ERROR(400, "Login error!");
 
 	private int code;
 
@@ -52,6 +50,7 @@ public enum ResMessage {
 
 	public static class ConstantsMessage {
 		public static final String PARAM_EMAIL_ERROR = "Param email error!";
+		public static final String EMAIL_FORMAT_ERROR = "Email format error!";
 		public static final String PARAM_PASSWORD_ERROR = "Param password error!";
 		public static final String PARAM_SLEEP_ID_ERROR = "Param sleep_id error!";
 		public static final String PARAM_SLEEP_TIME_ERROR = "Param sleep_time error!";

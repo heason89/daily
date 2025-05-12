@@ -19,9 +19,10 @@ public interface UserDao extends JpaRepository<User, Integer> {
     @Query(value ="select * from user where user_id = ?1", nativeQuery =true)
     public User getByUserId(int userId);
 
+
     @Modifying
     @Transactional
-    @Query(value ="update user set version = ?2 where user_id =?1", nativeQuery =true)
+    @Query(value ="update user set version = ?2 where user_id = ?1", nativeQuery =true)
     public void updateVersion(int userId,int version);
 
     @Modifying
@@ -37,8 +38,8 @@ public interface UserDao extends JpaRepository<User, Integer> {
             @Param("admin")Boolean admin,//
             @Param("enable") Boolean enable,//
             @Param("birthdate")LocalDate birthdate,//
-            @Param("height")int height,//
-            @Param("weight")int weight,//
+            @Param("height")double height,//
+            @Param("weight")double weight,//
             @Param("workType") String workType,//
             @Param("gender")String gender,//
             @Param("photo")String photo,//
@@ -60,8 +61,8 @@ public interface UserDao extends JpaRepository<User, Integer> {
             @Param("admin") Boolean admin,//
             @Param("enable") Boolean enable,//
             @Param("birthdate") LocalDate birthdate,//
-            @Param("height") int height,//
-            @Param("weight") int weight,//
+            @Param("height") double height,//
+            @Param("weight") double weight,//
             @Param("workType") String workType,//
             @Param("gender") String gender,//
             @Param("photo") String photo,//
@@ -83,8 +84,8 @@ public interface UserDao extends JpaRepository<User, Integer> {
             @Param("admin")Boolean admin,//
             @Param("enable") Boolean enable,//
             @Param("birthdate")LocalDate birthdate,//
-            @Param("height")int height,//
-            @Param("weight")int weight,//
+            @Param("height")double height,//
+            @Param("weight")double weight,//
             @Param("workType") String workType,//
             @Param("gender")String gender,//
             @Param("photo")String photo,//

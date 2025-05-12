@@ -2,7 +2,6 @@ package com.example.daily.controller;
 
 import com.example.daily.service.ifs.UserService;
 import com.example.daily.vo.*;
-import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -15,7 +14,7 @@ public class UserServiceController {
     private UserService userService;
 
     @PostMapping(value = "daily/login")
-    public LoginRes login(@Valid @RequestBody LoginReq req, HttpSession session){
+    public LoginRes login(@Valid @RequestBody LoginReq req){
         return userService.login(req);
     }
 
@@ -25,7 +24,7 @@ public class UserServiceController {
     }
 
     @PostMapping(value = "daily/update_user")
-    public BasicRes updateUser(@Valid @RequestBody UpdateUserReq req, HttpSession session){
+    public BasicRes updateUser(@Valid @RequestBody UpdateUserReq req){
         return userService.updateUserInfo(req);
     }
 

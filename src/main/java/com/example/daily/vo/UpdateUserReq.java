@@ -21,9 +21,9 @@ public class UpdateUserReq {
 
     private LocalDate birthdate =LocalDate.now() ;
 
-    private int height =0;
+    private double height =0;
 
-    private int weight =0;
+    private double weight =0;
 
     private String workType = "Static";
 
@@ -59,11 +59,11 @@ public class UpdateUserReq {
         return birthdate;
     }
 
-    public int getHeight() {
+    public double getHeight() {
         return height;
     }
 
-    public int getWeight() {
+    public double getWeight() {
         return weight;
     }
 

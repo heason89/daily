@@ -5,6 +5,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 
 import java.time.LocalDate;
@@ -21,6 +22,7 @@ public class User {
     private String name;
 
     @NotBlank(message = ResMessage.ConstantsMessage.PARAM_EMAIL_ERROR)
+    @Email(message = ResMessage.ConstantsMessage.EMAIL_FORMAT_ERROR)
     @Column(name ="email")//@Column: 將此屬性關聯到指定的欄位，括號中的字串是欄位名稱
     private String email;
 
@@ -38,10 +40,10 @@ public class User {
     private LocalDate birthdate;
 
     @Column(name ="height")
-    private int height;
+    private double height;
 
     @Column(name ="weight")
-    private int weight;
+    private double weight;
 
     @Column(name ="work_type")
     private String workType;
@@ -65,7 +67,7 @@ public class User {
     }
 
     public User(int userId, String name, String email, String password, boolean admin,//
-                boolean enable, LocalDate birthdate, int height, int weight, String workType,//
+                boolean enable, LocalDate birthdate, double height, double weight, String workType,//
                 String gender, String photo, String note, String bodyType, int version) {
         this.userId = userId;
         this.name = name;
@@ -140,19 +142,19 @@ public class User {
         this.birthdate = birthdate;
     }
 
-    public int getHeight() {
+    public double getHeight() {
         return height;
     }
 
-    public void setHeight(int height) {
+    public void setHeight(double height) {
         this.height = height;
     }
 
-    public int getWeight() {
+    public double getWeight() {
         return weight;
     }
 
-    public void setWeight(int weight) {
+    public void setWeight(double weight) {
         this.weight = weight;
     }
 

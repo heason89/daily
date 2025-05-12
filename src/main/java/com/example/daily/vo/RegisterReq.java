@@ -1,6 +1,7 @@
 package com.example.daily.vo;
 
 import com.example.daily.constants.ResMessage;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 
 import java.time.LocalDate;
@@ -8,6 +9,7 @@ import java.time.LocalDate;
 public class RegisterReq {
 
     @NotBlank(message= ResMessage.ConstantsMessage.PARAM_EMAIL_ERROR)
+    @Email(message = ResMessage.ConstantsMessage.EMAIL_FORMAT_ERROR)
     private String email;
 
     @NotBlank(message= ResMessage.ConstantsMessage.PARAM_PASSWORD_ERROR)

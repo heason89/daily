@@ -16,6 +16,9 @@ public class Sender {
     @Column(name ="password")
     private String password;
 
+    public Sender() {
+    }
+
     public Sender(String email, String password) {
         this.email = email;
         this.password = password;
