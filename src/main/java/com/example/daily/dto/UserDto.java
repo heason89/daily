@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 public class UserDto {
 
-    private String userName;
+    private String name;
 
     private String email;
 
@@ -26,9 +26,9 @@ public class UserDto {
 
     private String bodyType;
 
-    public UserDto(String userName, String email,String password, LocalDate birthdate, double height, double weight,
+    public UserDto(String name, String email,String password, LocalDate birthdate, double height, double weight,
                        String workType, String gender, String photo, String note, String bodyType) {
-        this.userName = userName;
+        this.name = name;
         this.email = email;
         this.password = password;
         this.birthdate = birthdate;
@@ -41,12 +41,12 @@ public class UserDto {
         this.bodyType = bodyType;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getName() {
+        return name;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getEmail() {
