@@ -127,7 +127,7 @@ public class UserServiceImpl implements UserService {
             version++;
         }
         // 更新資訊
-        userDao.updateUserInfo(userId,req.getToken(),encodePassword,req.isAdmin(),req.isEnable()
+        userDao.updateUserInfo(userId,req.getName(),encodePassword,req.isAdmin(),req.isEnable()
                 ,req.getBirthdate(),req.getHeight(),req.getWeight(),req.getWorkType()
                 ,req.getGender(),req.getPhoto(),req.getNote(), req.getBodyType(),version);
         return new BasicRes(ResMessage.SUCCESS.getCode(),//
