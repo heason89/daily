@@ -2,10 +2,7 @@ package com.example.daily.controller;
 
 import com.example.daily.vo.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.example.daily.service.ifs.SportsService;
 
@@ -37,7 +34,7 @@ public class SportsServiceController {
 		return sportsService.searchSports(req);
 	}
 
-	@PostMapping(value ="sports/get_all_sports")
+	@GetMapping(value ="sports/get_all_sports")
 	public GetSportsRes getAllSports() {
 		return sportsService.getAllSports();
 	}
