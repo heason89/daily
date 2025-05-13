@@ -12,4 +12,6 @@ public interface MoodService {
 	public BasicRes deleteMood(DeleteMoodReq req);
 	
 	public GetMoodRes getMood(GetUserDataReq req);
+	
+	public GetMoodRes getMonthMood(SearcMoodInMonthReq req);
 }

@@ -37,4 +37,8 @@ public class MoodServiceController {
 	public BasicRes deleteMood(@Valid @RequestBody DeleteMoodReq req) {
 		return moodService.deleteMood(req);
 	}
+	@PostMapping(value = "mood/get_month_mood")
+	public GetMoodRes getMonthMood(@Valid @RequestBody SearcMoodInMonthReq req) {
+		return moodService.getMonthMood(req);
+	}
 }

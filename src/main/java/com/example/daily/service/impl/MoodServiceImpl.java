@@ -27,9 +27,8 @@ public class MoodServiceImpl implements MoodService {
 	public BasicRes fillInMood(MoodReq req) {
 		// 驗證 token 是否有效 及 解析出 userId
 		ExtractUserTokenRes res = jwtUtil.extractUserToken(req.getToken());
-		if(res.getCode()!=200)
-		{
-			return new BasicRes(res.getCode(),res.getMessage());
+		if (res.getCode() != 200) {
+			return new BasicRes(res.getCode(), res.getMessage());
 		}
 		// 取得 userId
 		int userId = res.getUserId();
@@ -44,14 +43,14 @@ public class MoodServiceImpl implements MoodService {
 		return new BasicRes(ResMessage.SUCCESS.getCode(), //
 				ResMessage.SUCCESS.getMessage());
 	}
+
 	// 修改
 	@Override
 	public BasicRes updateMood(MoodReq req) {
 		// 驗證 token 是否有效 及 解析出 userId
 		ExtractUserTokenRes res = jwtUtil.extractUserToken(req.getToken());
-		if(res.getCode()!=200)
-		{
-			return new BasicRes(res.getCode(),res.getMessage());
+		if (res.getCode() != 200) {
+			return new BasicRes(res.getCode(), res.getMessage());
 		}
 		// 取得 userId
 		int userId = res.getUserId();
@@ -71,9 +70,8 @@ public class MoodServiceImpl implements MoodService {
 	public BasicRes deleteMood(DeleteMoodReq req) {
 		// 驗證 token 是否有效 及 解析出 userId
 		ExtractUserTokenRes res = jwtUtil.extractUserToken(req.getToken());
-		if(res.getCode()!=200)
-		{
-			return new BasicRes(res.getCode(),res.getMessage());
+		if (res.getCode() != 200) {
+			return new BasicRes(res.getCode(), res.getMessage());
 		}
 		// 取得 userId
 		int userId = res.getUserId();
@@ -93,9 +91,8 @@ public class MoodServiceImpl implements MoodService {
 	public GetMoodRes getMood(GetUserDataReq req) {
 		// 驗證 token 是否有效 及 解析出 userId
 		ExtractUserTokenRes res = jwtUtil.extractUserToken(req.getToken());
-		if(res.getCode()!=200)
-		{
-			return new GetMoodRes(res.getCode(),res.getMessage());
+		if (res.getCode() != 200) {
+			return new GetMoodRes(res.getCode(), res.getMessage());
 		}
 		// 取得 userId
 		int userId = res.getUserId();
@@ -103,4 +100,19 @@ public class MoodServiceImpl implements MoodService {
 		return new GetMoodRes(ResMessage.SUCCESS.getCode(), //
 				ResMessage.SUCCESS.getMessage(), list);
 	}
+	// 取得一個月全部
+	@Override
+	public GetMoodRes getMonthMood(SearcMoodInMonthReq req) {
+		// 驗證 token 是否有效 及 解析出 userId
+		ExtractUserTokenRes res = jwtUtil.extractUserToken(req.getToken());
+		if (res.getCode() != 200) {
+			return new GetMoodRes(res.getCode(), res.getMessage());
+		}
+		// 取得 userId
+		int userId = res.getUserId();
+		List<Mood> list = moodDao.getMoodByUserIdMonth(userId, req.getMonth());
+		return new GetMoodRes(ResMessage.SUCCESS.getCode(), //
+				ResMessage.SUCCESS.getMessage(), list);
+	}
+
 }
