@@ -29,13 +29,13 @@ public interface FoodDao extends JpaRepository<Food, FoodId> {
             @Param("cookingMethod") String cookingMethod,//
             @Param("type") String type,//
             @Param("calorie")int calorie,//
-            @Param("totalFat") int totalFat,//
-            @Param("transFat")int transFat,//
-            @Param("saturatedFat")int saturatedFat,//
-            @Param("totalCarbohydrate")int totalCarbohydrate,//
-            @Param("sugar") int sugar,//
-            @Param("dietaryFiber")int dietaryFiber,//
-            @Param("protein")int protein,//
+            @Param("totalFat") double totalFat,//
+            @Param("transFat")double transFat,//
+            @Param("saturatedFat")double saturatedFat,//
+            @Param("totalCarbohydrate")double totalCarbohydrate,//
+            @Param("sugar") double sugar,//
+            @Param("dietaryFiber")double dietaryFiber,//
+            @Param("protein")double protein,//
             @Param("sodium")int sodium,//
             @Param("cholesterol")int cholesterol,//
             @Param("photo") String photo//
@@ -54,13 +54,13 @@ public interface FoodDao extends JpaRepository<Food, FoodId> {
             @Param("cookingMethod") String cookingMethod,//
             @Param("type") String type,//
             @Param("calorie")int calorie,//
-            @Param("totalFat") int totalFat,//
-            @Param("transFat")int transFat,//
-            @Param("saturatedFat")int saturatedFat,//
-            @Param("totalCarbohydrate")int totalCarbohydrate,//
-            @Param("sugar") int sugar,//
-            @Param("dietaryFiber")int dietaryFiber,//
-            @Param("protein")int protein,//
+            @Param("totalFat")double totalFat,//
+            @Param("transFat")double transFat,//
+            @Param("saturatedFat")double saturatedFat,//
+            @Param("totalCarbohydrate")double totalCarbohydrate,//
+            @Param("sugar") double sugar,//
+            @Param("dietaryFiber")double dietaryFiber,//
+            @Param("protein")double protein,//
             @Param("sodium")int sodium,//
             @Param("cholesterol")int cholesterol,//
             @Param("photo") String photo//

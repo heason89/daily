@@ -16,19 +16,19 @@ public class FoodReq {
 
     private int calorie =0;
 
-    private int totalFat =0;
+    private double totalFat =0;
 
-    private int transFat =0;
+    private double transFat =0;
 
-    private int saturatedFat =0;
+    private double saturatedFat =0;
 
-    private int totalCarbohydrate =0;
+    private double totalCarbohydrate =0;
 
-    private int sugar =0;
+    private double sugar =0;
 
-    private int dietaryFiber =0;
+    private double dietaryFiber =0;
 
-    private int protein =0;
+    private double protein =0;
 
     private int sodium =0;
 
@@ -52,31 +52,31 @@ public class FoodReq {
 		return calorie;
 	}
 
-	public int getTotalFat() {
+	public double getTotalFat() {
 		return totalFat;
 	}
 
-	public int getTransFat() {
+	public double getTransFat() {
 		return transFat;
 	}
 
-	public int getSaturatedFat() {
+	public double getSaturatedFat() {
 		return saturatedFat;
 	}
 
-	public int getTotalCarbohydrate() {
+	public double getTotalCarbohydrate() {
 		return totalCarbohydrate;
 	}
 
-	public int getSugar() {
+	public double getSugar() {
 		return sugar;
 	}
 
-	public int getDietaryFiber() {
+	public double getDietaryFiber() {
 		return dietaryFiber;
 	}
 
-	public int getProtein() {
+	public double getProtein() {
 		return protein;
 	}
 
@@ -91,4 +91,6 @@ public class FoodReq {
 	public String getPhoto() {
 		return photo;
 	}
+
+	
 }

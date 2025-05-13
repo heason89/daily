@@ -7,7 +7,7 @@ import java.time.LocalDate;
 
 public class UpdateUserReq {
 
-    @NotBlank(message= ResMessage.ConstantsMessage.PARAM_EMAIL_ERROR)
+    @NotBlank(message= ResMessage.ConstantsMessage.PARAM_TOKEN_ERROR)
     private String token;
 
     @NotBlank(message= ResMessage.ConstantsMessage.PARAM_PASSWORD_ERROR)

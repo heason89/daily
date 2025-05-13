@@ -53,6 +53,7 @@ public interface MoodDao extends JpaRepository<Mood, MoodId> {
 	@Query(value="delete from mood where user_id = ?1 and date = ?2 ",nativeQuery = true)
 	public void deleteMood(int userId, LocalDate date);
 	
-	@Query(value="select * from mood where user_id = ?1 and date like 2025-?2%",nativeQuery = true)
-	public List<Mood> getMoodByUserIdMonth(int userId, String month);
+	@Query(value="select * from mood where user_id = ?1 and date  AND YEAR(date) = 2025 "
+			+ "AND MONTH(date) = ?2",nativeQuery = true)
+	public List<Mood> getMoodByUserIdMonth(int userId, int month);
 }
