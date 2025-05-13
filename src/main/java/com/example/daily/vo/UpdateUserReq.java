@@ -10,8 +10,7 @@ public class UpdateUserReq {
     @NotBlank(message= ResMessage.ConstantsMessage.PARAM_TOKEN_ERROR)
     private String token;
 
-    @NotBlank(message= ResMessage.ConstantsMessage.PARAM_PASSWORD_ERROR)
-    private String password;
+    private String password="";
 
     private String name ="使用者名稱";
 

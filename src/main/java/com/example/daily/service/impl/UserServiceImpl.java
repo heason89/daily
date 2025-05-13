@@ -8,6 +8,7 @@ import com.example.daily.service.ifs.EmailService;
 import com.example.daily.service.ifs.UserService;
 import com.example.daily.util.JwtUtil;
 import com.example.daily.vo.*;
+import io.micrometer.common.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -117,12 +118,12 @@ public class UserServiceImpl implements UserService {
         int version = res.getVersion();
         // 取得 userinfo
         User userInfo =userDao.getByUserId(userId);
+        // 取得該帳號之前密碼
+        String encodePassword = userInfo.getPassword();
         // 建立加密物件
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        String encodePassword = req.getPassword();
-        // 檢查密碼是否與之前相同
-        if(!req.getPassword().equals(userInfo.getPassword())){
-            // 將 password 變成亂碼
+        // 檢查 password
+        if(!StringUtils.isBlank(req.getPassword())){
             encodePassword = encoder.encode(req.getPassword());
             version++;
         }
@@ -180,7 +181,7 @@ public class UserServiceImpl implements UserService {
         int userId = res.getUserId();
         // 取得 userinfo
         User userInfo = userDao.getByUserId(userId);
-        UserDto user = new UserDto(userInfo.getName(),userInfo.getEmail(),userInfo.getPassword(),userInfo.getBirthdate(),
+        UserDto user = new UserDto(userInfo.getName(),userInfo.getEmail(),userInfo.getBirthdate(),
                 userInfo.getHeight(),userInfo.getWeight(),userInfo.getWorkType(),userInfo.getGender(),
                 userInfo.getPhoto(),userInfo.getNote(),userInfo.getBodyType());
 

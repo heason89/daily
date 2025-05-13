@@ -8,8 +8,6 @@ public class UserDto {
 
     private String email;
 
-    private String password;
-
     private LocalDate birthdate;
 
     private double height;
@@ -26,11 +24,10 @@ public class UserDto {
 
     private String bodyType;
 
-    public UserDto(String name, String email,String password, LocalDate birthdate, double height, double weight,
+    public UserDto(String name, String email, LocalDate birthdate, double height, double weight,
                        String workType, String gender, String photo, String note, String bodyType) {
         this.name = name;
         this.email = email;
-        this.password = password;
         this.birthdate = birthdate;
         this.height = height;
         this.weight = weight;
@@ -55,14 +52,6 @@ public class UserDto {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public LocalDate getBirthdate() {
