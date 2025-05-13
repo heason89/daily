@@ -180,7 +180,7 @@ public class UserServiceImpl implements UserService {
         int userId = res.getUserId();
         // 取得 userinfo
         User userInfo = userDao.getByUserId(userId);
-        UserDto user = new UserDto(userInfo.getName(),userInfo.getEmail(),userInfo.getBirthdate(),
+        UserDto user = new UserDto(userInfo.getName(),userInfo.getEmail(),userInfo.getPassword(),userInfo.getBirthdate(),
                 userInfo.getHeight(),userInfo.getWeight(),userInfo.getWorkType(),userInfo.getGender(),
                 userInfo.getPhoto(),userInfo.getNote(),userInfo.getBodyType());
 
