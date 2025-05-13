@@ -3,184 +3,133 @@ package com.example.daily.entity;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name="food")
-@IdClass(value= FoodId.class)
+@Table(name = "food")
+@IdClass(value = FoodId.class)
 public class Food {
 
-    @Id //@Id: 標示此欄位是 PK(primary key)
-    @Column(name ="food_name")//@Column: 將此屬性關聯到指定的欄位，括號中的字串是欄位名稱
-    private String foodName;
+	@Id // @Id: 標示此欄位是 PK(primary key)
+	@Column(name = "food_name") // @Column: 將此屬性關聯到指定的欄位，括號中的字串是欄位名稱
+	private String foodName;
 
-    @Id
-    @Column(name ="cooking_method")
-    private String cookingMethod;
+	@Id
+	@Column(name = "cooking_method")
+	private String cookingMethod;
 
-    @Column(name ="type")
-    private String type;
+	@Column(name = "type")
+	private String type;
 
-    @Column(name ="calorie")
-    private int calorie;
+	@Column(name = "calorie")
+	private int calorie;
 
-    @Column(name ="total_fat")
-    private int totalFat;
+	@Column(name = "total_fat")
+	private double totalFat;
 
-    @Column(name ="trans_fat")
-    private int transFat;
+	@Column(name = "trans_fat")
+	private double transFat;
 
-    @Column(name ="saturated_fat")
-    private int saturatedFat;
+	@Column(name = "saturated_fat")
+	private double saturatedFat;
 
-    @Column(name ="total_carbohydrate")
-    private int totalCarbohydrate;
+	@Column(name = "total_carbohydrate")
+	private double totalCarbohydrate;
 
-    @Column(name ="sugar")
-    private int sugar;
+	@Column(name = "sugar")
+	private double sugar;
 
-    @Column(name ="dietary_fiber")
-    private int dietaryFiber;
+	@Column(name = "dietary_fiber")
+	private double dietaryFiber;
 
-    @Column(name ="protein")
-    private int protein;
+	@Column(name = "protein")
+	private double protein;
 
-    @Column(name ="sodium")
-    private int sodium;
+	@Column(name = "sodium")
+	private int sodium;
 
-    @Column(name ="cholesterol")
-    private int cholesterol;
-    
-    @Column(name ="photo")
-    private String photo;
+	@Column(name = "cholesterol")
+	private int cholesterol;
 
-    public Food() {
-    }
+	@Column(name = "photo")
+	private String photo;
 
-	public Food(String foodName, String cookingMethod, String type, int calorie, int totalFat, int transFat,//
-			int saturatedFat, int totalCarbohydrate, int sugar, int dietaryFiber, int protein, int sodium,//
-			int cholesterol, String photo) {
-		this.foodName = foodName;
-		this.cookingMethod = cookingMethod;
-		this.type = type;
-		this.calorie = calorie;
-		this.totalFat = totalFat;
-		this.transFat = transFat;
-		this.saturatedFat = saturatedFat;
-		this.totalCarbohydrate = totalCarbohydrate;
-		this.sugar = sugar;
-		this.dietaryFiber = dietaryFiber;
-		this.protein = protein;
-		this.sodium = sodium;
-		this.cholesterol = cholesterol;
-		this.photo = photo;
-	}
 	public String getFoodName() {
 		return foodName;
-	}
-
-	public void setFoodName(String foodName) {
-		this.foodName = foodName;
 	}
 
 	public String getCookingMethod() {
 		return cookingMethod;
 	}
 
-	public void setCookingMethod(String cookingMethod) {
-		this.cookingMethod = cookingMethod;
-	}
-
 	public String getType() {
 		return type;
-	}
-
-	public void setType(String type) {
-		this.type = type;
 	}
 
 	public int getCalorie() {
 		return calorie;
 	}
 
-	public void setCalorie(int calorie) {
-		this.calorie = calorie;
-	}
-
-	public int getTotalFat() {
+	public double getTotalFat() {
 		return totalFat;
 	}
 
-	public void setTotalFat(int totalFat) {
-		this.totalFat = totalFat;
-	}
-
-	public int getTransFat() {
+	public double getTransFat() {
 		return transFat;
 	}
 
-	public void setTransFat(int transFat) {
-		this.transFat = transFat;
-	}
-
-	public int getSaturatedFat() {
+	public double getSaturatedFat() {
 		return saturatedFat;
 	}
 
-	public void setSaturatedFat(int saturatedFat) {
-		this.saturatedFat = saturatedFat;
-	}
-
-	public int getTotalCarbohydrate() {
+	public double getTotalCarbohydrate() {
 		return totalCarbohydrate;
 	}
 
-	public void setTotalCarbohydrate(int totalCarbohydrate) {
-		this.totalCarbohydrate = totalCarbohydrate;
-	}
-
-	public int getSugar() {
+	public double getSugar() {
 		return sugar;
 	}
 
-	public void setSugar(int sugar) {
-		this.sugar = sugar;
-	}
-
-	public int getDietaryFiber() {
+	public double getDietaryFiber() {
 		return dietaryFiber;
 	}
 
-	public void setDietaryFiber(int dietaryFiber) {
-		this.dietaryFiber = dietaryFiber;
-	}
-
-	public int getProtein() {
+	public double getProtein() {
 		return protein;
-	}
-
-	public void setProtein(int protein) {
-		this.protein = protein;
 	}
 
 	public int getSodium() {
 		return sodium;
 	}
 
-	public void setSodium(int sodium) {
-		this.sodium = sodium;
-	}
-
 	public int getCholesterol() {
 		return cholesterol;
-	}
-
-	public void setCholesterol(int cholesterol) {
-		this.cholesterol = cholesterol;
 	}
 
 	public String getPhoto() {
 		return photo;
 	}
 
-	public void setPhoto(String photo) {
+	public Food(String foodName, String cookingMethod, String type, int calorie, double totalFat, double transFat,
+			double saturatedFat, double totalCarbohydrate, double sugar, double dietaryFiber, double protein,
+			int sodium, int cholesterol, String photo) {
+		super();
+		this.foodName = foodName;
+		this.cookingMethod = cookingMethod;
+		this.type = type;
+		this.calorie = calorie;
+		this.totalFat = totalFat;
+		this.transFat = transFat;
+		this.saturatedFat = saturatedFat;
+		this.totalCarbohydrate = totalCarbohydrate;
+		this.sugar = sugar;
+		this.dietaryFiber = dietaryFiber;
+		this.protein = protein;
+		this.sodium = sodium;
+		this.cholesterol = cholesterol;
 		this.photo = photo;
 	}
+
+	public Food() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 }

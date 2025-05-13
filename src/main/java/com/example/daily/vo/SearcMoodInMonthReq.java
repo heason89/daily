@@ -11,7 +11,7 @@ public class SearcMoodInMonthReq {
 	private String token;
 
 	@NotNull(message = ResMessage.ConstantsMessage.PARAM_DATE_ERROR)
-	private String month;
+	private int month;
 
 	public String getToken() {
 		return token;
@@ -21,13 +21,15 @@ public class SearcMoodInMonthReq {
 		this.token = token;
 	}
 
-	public String getMonth() {
+	public int getMonth() {
 		return month;
 	}
 
-	public void setMonth(String month) {
+	public void setMonth(int month) {
 		this.month = month;
 	}
+
+	
 
 	
 	
