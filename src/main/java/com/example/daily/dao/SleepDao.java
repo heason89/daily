@@ -18,15 +18,17 @@ public interface SleepDao extends JpaRepository<Sleep, Integer> {
 	
 	@Modifying
 	@Transactional
-	@Query(value = "insert into sleep (user_id,sleep_time,awake_time, insomnia, sleep_latency, phone)"
-			 + "values( :userId, :sleepTime, :awakeTime, :insomnia, :sleepLatency, :phone)" , nativeQuery = true)
+	@Query(value = "insert into sleep (user_id,sleep_time,awake_time, insomnia, sleep_latency, phone, hours)"
+			 + "values( :userId, :sleepTime, :awakeTime, :insomnia, :sleepLatency, :phone, :hours)" , nativeQuery = true)
 	public void insertSleep(//			
 			@Param("userId") int userId,//
 			@Param("sleepTime")LocalDateTime sleepTime, //
 			@Param("awakeTime")LocalDateTime awakeTime,//
 			@Param("insomnia")boolean insomnia,//
 			@Param("sleepLatency")boolean sleepLatency,//
-	        @Param("phone")boolean phone);
+	        @Param("phone")boolean phone,//
+	        @Param("hours")double hours
+	        );
 	
 	@Query(value="select count(email) from sleep where email = ?1 ",nativeQuery = true)
 	public int selectCountByemail(String email);
@@ -34,8 +36,8 @@ public interface SleepDao extends JpaRepository<Sleep, Integer> {
 	@Modifying
 	@Transactional
 	@Query(value="update sleep set sleep_time = :sleepTime, awake_time = :awakeTime,"
-			+ " insomnia = :insomnia, sleep_latency = :sleepLatency, phone = :phone"
-			+ " where  sleep_id = :sleepId"
+			+ " insomnia = :insomnia, sleep_latency = :sleepLatency, phone = :phone,"
+			+ " hours = :hours where  sleep_id = :sleepId"
 			,nativeQuery = true)
 	public void updateSleep(//
 			@Param("sleepId") int sleepId, //			
@@ -43,7 +45,9 @@ public interface SleepDao extends JpaRepository<Sleep, Integer> {
 			@Param("awakeTime")LocalDateTime awakeTime,//
 			@Param("insomnia")boolean insomnia,//
 			@Param("sleepLatency")boolean sleepLatency,//
-			@Param("phone")boolean phone);
+			@Param("phone")boolean phone,//
+			@Param("hours")double hours
+			);
 	
 	@Modifying
 	@Transactional

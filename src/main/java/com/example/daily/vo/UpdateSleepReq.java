@@ -19,6 +19,9 @@ public class UpdateSleepReq {
 
 	@NotNull(message= ResMessage.ConstantsMessage.PARAM_AWAKE_TIME_ERROR)
 	private LocalDateTime awakeTime;
+	
+	@NotNull(message= ResMessage.ConstantsMessage.PARAM_HOURS_ERROR)
+	private double hours;
 	 
 	private Boolean insomnia = false;
 	 
@@ -53,4 +56,13 @@ public class UpdateSleepReq {
 	public Boolean getPhone() {
 		return phone;
 	}
+
+	public double getHours() {
+		return hours;
+	}
+
+	public void setHours(double hours) {
+		this.hours = hours;
+	}
+	
 }

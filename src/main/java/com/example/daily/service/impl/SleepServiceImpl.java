@@ -38,7 +38,7 @@ public class SleepServiceImpl implements SleepService {
 			return date;
 		}
 		sleepDao.insertSleep(userId, req.getSleepTime(), req.getAwakeTime(), req.getInsomnia(),
-				req.getSleepLatency(), req.getPhone());
+				req.getSleepLatency(), req.getPhone(), req.getHours());
 		return new BasicRes(ResMessage.SUCCESS.getCode(), //
 				ResMessage.SUCCESS.getMessage());
 	}
@@ -80,7 +80,7 @@ public class SleepServiceImpl implements SleepService {
 					ResMessage.DATE_EXPIRED.getMessage());
 		}
 		sleepDao.updateSleep(req.getSleepId(), req.getSleepTime(), req.getAwakeTime(), req.getInsomnia(),
-				req.getSleepLatency(), req.getPhone());
+				req.getSleepLatency(), req.getPhone(), req.getHours());
 		return new BasicRes(ResMessage.SUCCESS.getCode(), //
 				ResMessage.SUCCESS.getMessage());
 	}

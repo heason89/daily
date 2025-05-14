@@ -76,7 +76,7 @@ public enum ResMessage {
 		public static final String PARAM_TYPE_ERROR = "Param type error!";
 		public static final String PARAM_TOKEN_ERROR = "Param token error!";
 		public static final String PARAM_USER_ID_ERROR = "Param user_id error!";
-
+		public static final String PARAM_HOURS_ERROR = "Param hours error!";
 	}
 
 }

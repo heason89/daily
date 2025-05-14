@@ -16,6 +16,9 @@ public class SleepReq{
 
 	@NotNull(message= ResMessage.ConstantsMessage.PARAM_AWAKE_TIME_ERROR)
 	private LocalDateTime awakeTime;
+	
+	@NotNull(message= ResMessage.ConstantsMessage.PARAM_HOURS_ERROR)
+	private double hours;
 
 	private Boolean insomnia = false;
 
@@ -35,6 +38,10 @@ public class SleepReq{
 		return awakeTime;
 	}
 
+	public double getHours() {
+		return hours;
+	}
+
 	public Boolean getInsomnia() {
 		return insomnia;
 	}
@@ -46,4 +53,6 @@ public class SleepReq{
 	public Boolean getPhone() {
 		return phone;
 	}
+
+	
 }

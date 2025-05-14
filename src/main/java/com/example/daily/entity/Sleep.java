@@ -30,6 +30,10 @@ public class Sleep {
     @NotNull(message = ResMessage.ConstantsMessage.PARAM_AWAKE_TIME_ERROR)
     @Column(name ="awake_time")
     private LocalDateTime awakeTime;
+    
+    @NotNull(message = ResMessage.ConstantsMessage.PARAM_HOURS_ERROR)
+    @Column(name ="hours")
+    private double hours;
 
     @Column(name ="insomnia")
     private Boolean insomnia;
@@ -44,7 +48,7 @@ public class Sleep {
 	}
 
 	public Sleep(int sleepId, int userId, LocalDateTime sleepTime, LocalDateTime awakeTime,//
-				 Boolean insomnia, Boolean sleepLatency, Boolean phone) {
+				 Boolean insomnia, Boolean sleepLatency, Boolean phone, double hours) {
 		this.sleepId = sleepId;
 		this.userId = userId;
 		this.sleepTime = sleepTime;
@@ -52,6 +56,7 @@ public class Sleep {
 		this.insomnia = insomnia;
 		this.sleepLatency = sleepLatency;
 		this.phone = phone;
+		this.hours = hours;
 	}
 
 	public int getSleepId() {
@@ -109,4 +114,14 @@ public class Sleep {
 	public void setPhone(Boolean phone) {
 		this.phone = phone;
 	}
+
+	public double getHours() {
+		return hours;
+	}
+
+	public void setHours(double hours) {
+		this.hours = hours;
+	}
+	
+	
 }
