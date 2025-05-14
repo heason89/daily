@@ -6,14 +6,14 @@ import com.example.daily.entity.Exercise;
 
 public class GetExerciseRes extends BasicRes{
 	
-	private List<Exercise> exerciselist;
+	private List<Exercise> exerciseList;
 
-	public List<Exercise> getExerciselist() {
-		return exerciselist;
+	public List<Exercise> getExerciseList() {
+		return exerciseList;
 	}
 
-	public void setExerciselist(List<Exercise> exerciselist) {
-		this.exerciselist = exerciselist;
+	public void setExerciseList(List<Exercise> exerciseList) {
+		this.exerciseList = exerciseList;
 	}
 
 	public GetExerciseRes() {
@@ -25,6 +25,6 @@ public class GetExerciseRes extends BasicRes{
 
 	public GetExerciseRes(int code, String message, List<Exercise> exerciselist) {
 		super(code, message);
-		this.exerciselist = exerciselist;
+		this.exerciseList = exerciselist;
 	}
 }

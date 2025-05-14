@@ -5,6 +5,8 @@ import java.time.LocalDate;
 import java.time.temporal.TemporalAdjusters;
 import java.util.List;
 
+import com.example.daily.dao.SportsDao;
+import com.example.daily.entity.Sports;
 import com.example.daily.util.JwtUtil;
 import com.example.daily.vo.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +26,9 @@ public class ExerciseServiceImpl implements ExerciseService{
 	@Autowired
 	private JwtUtil jwtUtil;
 
+	@Autowired
+	private SportsDao sportsDao;
+
 	@Override
 	public BasicRes fillInExercise(ExerciseReq req) {
 		// 驗證 token 是否有效 及 解析出 userId
@@ -39,7 +44,11 @@ public class ExerciseServiceImpl implements ExerciseService{
 		if(date.getCode()==400){
 			return date;
 		}
-		exerciseDao.insertExercise(userId, req.getDate(), req.getDuration(), req.getExerciseName());
+		// 取得該運動消耗的卡路里並計算總消耗
+		Sports sports = sportsDao.getBySportsName(req.getExerciseName());
+		int totalConsumed = sports.getConsume()*req.getDuration();
+		exerciseDao.insertExercise(userId, req.getDate(),//
+				req.getDuration(), req.getExerciseName(),totalConsumed);
 		return new BasicRes(ResMessage.SUCCESS.getCode(), //
 				ResMessage.SUCCESS.getMessage());
 	}
@@ -65,8 +74,11 @@ public class ExerciseServiceImpl implements ExerciseService{
 		if(date.getCode()==400){
 			return date;
 		}
+		// 取得該運動消耗的卡路里並計算總消耗
+		Sports sports = sportsDao.getBySportsName(req.getExerciseName());
+		int totalConsumed = sports.getConsume()*req.getDuration();
 		exerciseDao.updateByExercise(req.getExerciseId(),req.getDate(),//
-				req.getDuration(),req.getExerciseName());
+				req.getDuration(),req.getExerciseName(),totalConsumed);
 		return new BasicRes(ResMessage.SUCCESS.getCode(), //
 				ResMessage.SUCCESS.getMessage());
 	}

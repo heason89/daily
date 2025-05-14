@@ -16,24 +16,27 @@ public interface ExerciseDao extends JpaRepository<Exercise, Integer> {
 	
 	@Modifying
 	@Transactional
-	@Query(value = "insert into exercise (user_id, date, duration, exercise_name)"
-			 + "values( :userId, :date, :duration, :exerciseName)" , nativeQuery = true)
+	@Query(value = "insert into exercise (user_id, date, duration, exercise_name,total_consumed)"
+			 + "values( :userId, :date, :duration, :exerciseName, :totalConsumed)" , nativeQuery = true)
 	public void insertExercise(//			
 			@Param("userId") int userId,//
 			@Param("date")LocalDate date, //
 			@Param("duration")int duration, //
-			@Param("exerciseName")String exerciseName);
+			@Param("exerciseName")String exerciseName,//
+			@Param("totalConsumed")int totalConsumed);
 	
 	@Modifying
 	@Transactional
 	@Query(value="update exercise set date = :date, duration = :duration,"
-			+ "exercise_name = :exerciseName where  exercise_id = :exerciseId"
+			+ " exercise_name = :exerciseName, total_consumed = :totalConsumed "
+			+ " where  exercise_id = :exerciseId"
 			,nativeQuery = true)
 	public void updateByExercise(//
 			@Param("exerciseId") int exerciseId, //			
 			@Param("date")LocalDate date, //
 			@Param("duration")int duration,//
-			@Param("exerciseName")String exerciseName);
+			@Param("exerciseName")String exerciseName,//
+			@Param("totalConsumed")int totalConsumed);
 	
 	@Query(value="select * from exercise where user_id = ?1 ",nativeQuery = true)
 	public List<Exercise> getByUserId(int userId);
