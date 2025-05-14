@@ -35,6 +35,8 @@ public class FoodReq {
     private int cholesterol =0;
 
     private String photo ="";
+    
+    private String unit ="1份";
 
 	public String getFoodName() {
 		return foodName;
@@ -91,6 +93,12 @@ public class FoodReq {
 	public String getPhoto() {
 		return photo;
 	}
+
+	public String getUnit() {
+		return unit;
+	}
+
+	
 
 	
 }

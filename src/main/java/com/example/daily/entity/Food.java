@@ -50,6 +50,35 @@ public class Food {
 
 	@Column(name = "photo")
 	private String photo;
+	
+	@Column(name = "unit")
+	private String unit;
+
+	public Food() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Food(String foodName, String cookingMethod, String type, int calorie, double totalFat, double transFat,
+			double saturatedFat, double totalCarbohydrate, double sugar, double dietaryFiber, double protein,
+			int sodium, int cholesterol, String photo, String unit) {
+		super();
+		this.foodName = foodName;
+		this.cookingMethod = cookingMethod;
+		this.type = type;
+		this.calorie = calorie;
+		this.totalFat = totalFat;
+		this.transFat = transFat;
+		this.saturatedFat = saturatedFat;
+		this.totalCarbohydrate = totalCarbohydrate;
+		this.sugar = sugar;
+		this.dietaryFiber = dietaryFiber;
+		this.protein = protein;
+		this.sodium = sodium;
+		this.cholesterol = cholesterol;
+		this.photo = photo;
+		this.unit = unit;
+	}
 
 	public String getFoodName() {
 		return foodName;
@@ -107,29 +136,11 @@ public class Food {
 		return photo;
 	}
 
-	public Food(String foodName, String cookingMethod, String type, int calorie, double totalFat, double transFat,
-			double saturatedFat, double totalCarbohydrate, double sugar, double dietaryFiber, double protein,
-			int sodium, int cholesterol, String photo) {
-		super();
-		this.foodName = foodName;
-		this.cookingMethod = cookingMethod;
-		this.type = type;
-		this.calorie = calorie;
-		this.totalFat = totalFat;
-		this.transFat = transFat;
-		this.saturatedFat = saturatedFat;
-		this.totalCarbohydrate = totalCarbohydrate;
-		this.sugar = sugar;
-		this.dietaryFiber = dietaryFiber;
-		this.protein = protein;
-		this.sodium = sodium;
-		this.cholesterol = cholesterol;
-		this.photo = photo;
+	public String getUnit() {
+		return unit;
 	}
+	
 
-	public Food() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+	
 
 }

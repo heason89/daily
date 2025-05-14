@@ -22,7 +22,7 @@ public interface FoodDao extends JpaRepository<Food, FoodId> {
     @Query(value ="insert into food(food_name, cooking_method, type, calorie, total_fat, trans_fat, " +
             " saturated_fat, total_carbohydrate, sugar, dietary_fiber, protein, sodium, cholesterol, photo) " +
             " values (:foodName, :cookingMethod, :type, :calorie, :totalFat, :transFat, :saturatedFat, " +
-            " :totalCarbohydrate, :sugar, :dietaryFiber, :protein, :sodium, :cholesterol, :photo)"
+            " :totalCarbohydrate, :sugar, :dietaryFiber, :protein, :sodium, :cholesterol, :photo, :unit)"
             , nativeQuery =true)
     public void insertFood(
             @Param("foodName") String foodName,//
@@ -38,7 +38,8 @@ public interface FoodDao extends JpaRepository<Food, FoodId> {
             @Param("protein")double protein,//
             @Param("sodium")int sodium,//
             @Param("cholesterol")int cholesterol,//
-            @Param("photo") String photo//
+            @Param("photo") String photo,//
+            @Param("unit") String unit//
             );
     		
     @Modifying
@@ -63,7 +64,8 @@ public interface FoodDao extends JpaRepository<Food, FoodId> {
             @Param("protein")double protein,//
             @Param("sodium")int sodium,//
             @Param("cholesterol")int cholesterol,//
-            @Param("photo") String photo//
+            @Param("photo") String photo,//
+            @Param("unit") String unit//
             );
 
     @Modifying
