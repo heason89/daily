@@ -21,7 +21,10 @@ public enum ResMessage {
 	EXERCISE_NOT_EXISTED(400, "Exercise not existed!"), //
 	SLEEP_NOT_EXISTED(400, "Sleep not existed!"), //
 	BEYOND_THE_DATE(400, "beyond the day !"),// 超過現在時間
-	LOGIN_ERROR(400, "Login error!");
+	LOGIN_ERROR(400, "Login error!"),//
+	FEEDBACK_EXISTED(400, "Feedback existed!"),//
+	;
+
 
 	private int code;
 
