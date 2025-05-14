@@ -22,21 +22,7 @@ public class EmailServiceImpl implements EmailService {
 
     @Override
     public BasicRes sendVerificationEmail(String toEmail, String token) {
-        Sender sender = senderDao.getSender();
-        JavaMailSenderImpl mailSender =new JavaMailSenderImpl();
-
-        // 設定寄件者資料
-        mailSender.setHost("smtp.gmail.com");
-        mailSender.setPort(587);
-        mailSender.setUsername(sender.getEmail());
-        mailSender.setPassword(sender.getPassword());
-
-        //取得 JavaMailSenderImpl 裡面負責 SMTP 傳輸協議的屬性設定表
-        Properties props = mailSender.getJavaMailProperties();
-        // 發信時要啟用「SMTP 驗證」機制，這對於 Gmail 來說是 必要的，否則你會被拒絕連線。
-        props.put("mail.smtp.auth", "true");
-        // 啟用 STARTTLS 加密機制，由於 Gmail 必須啟用 STARTTLS 才能寄信
-        props.put("mail.smtp.starttls.enable", "true");
+        JavaMailSenderImpl mailSender = setSender();
 
         SimpleMailMessage message = getVerificationMessage(toEmail, token);
         mailSender.send(message);
@@ -63,21 +49,7 @@ public class EmailServiceImpl implements EmailService {
 
     @Override
     public BasicRes sendResetPasswordEmail(String toEmail, String token) {
-        Sender sender = senderDao.getSender();
-        JavaMailSenderImpl mailSender =new JavaMailSenderImpl();
-
-        // 設定寄件者資料
-        mailSender.setHost("smtp.gmail.com");
-        mailSender.setPort(587);
-        mailSender.setUsername(sender.getEmail());
-        mailSender.setPassword(sender.getPassword());
-
-        //取得 JavaMailSenderImpl 裡面負責 SMTP 傳輸協議的屬性設定表
-        Properties props = mailSender.getJavaMailProperties();
-        // 發信時要啟用「SMTP 驗證」機制，這對於 Gmail 來說是 必要的，否則你會被拒絕連線。
-        props.put("mail.smtp.auth", "true");
-        // 啟用 STARTTLS 加密機制，由於 Gmail 必須啟用 STARTTLS 才能寄信
-        props.put("mail.smtp.starttls.enable", "true");
+        JavaMailSenderImpl mailSender = setSender();
 
         SimpleMailMessage message = getResetPasswordMessage(toEmail, token);
         mailSender.send(message);
@@ -102,5 +74,28 @@ public class EmailServiceImpl implements EmailService {
         message.setSubject(subject);
         message.setText(content);
         return message;
+    }
+
+    private Sender sender = null;
+    // 從資料庫取出 sender
+    private JavaMailSenderImpl setSender(){
+        if (sender == null){
+            sender = senderDao.getSender();
+        }
+        JavaMailSenderImpl mailSender =new JavaMailSenderImpl();
+
+        // 設定寄件者資料
+        mailSender.setHost("smtp.gmail.com");
+        mailSender.setPort(587);
+        mailSender.setUsername(sender.getEmail());
+        mailSender.setPassword(sender.getPassword());
+        //取得 JavaMailSenderImpl 裡面負責 SMTP 傳輸協議的屬性設定表
+        Properties props = mailSender.getJavaMailProperties();
+        // 發信時要啟用「SMTP 驗證」機制，這對於 Gmail 來說是 必要的，否則你會被拒絕連線。
+        props.put("mail.smtp.auth", "true");
+        // 啟用 STARTTLS 加密機制，由於 Gmail 必須啟用 STARTTLS 才能寄信
+        props.put("mail.smtp.starttls.enable", "true");
+
+        return mailSender;
     }
 }

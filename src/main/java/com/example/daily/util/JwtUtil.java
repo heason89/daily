@@ -11,6 +11,7 @@ import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import io.jsonwebtoken.security.SignatureException;
 
 import java.security.Key;
 import java.util.Base64;
@@ -55,6 +56,20 @@ public class JwtUtil {
                 .compact();
     }
 
+    // 產生重設密碼驗證碼
+    public String generateResetPasswordToken(String email) {
+        Secret secret = getSecret();
+        String emailSecret = secret.getEmailSecret();
+        Key emailKey = Keys.hmacShaKeyFor(Base64.getDecoder().decode(emailSecret));
+        int expirationMillis = 1000 * 60 * 30; // 30 分鐘
+        return Jwts.builder()
+                .setSubject(email)
+                .setIssuedAt(new Date())
+                .setExpiration(new Date(System.currentTimeMillis() + expirationMillis))
+                .signWith(emailKey,SignatureAlgorithm.HS256)
+                .compact();
+    }
+
     // 驗證 JWT 是否過期，並拿出裡面的 Email
     public ExtractEmailTokenRes extractEmailToken(String token) {
         try {
@@ -77,48 +92,19 @@ public class JwtUtil {
             }
             return new ExtractEmailTokenRes(ResMessage.SUCCESS.getCode(),//
                     ResMessage.SUCCESS.getMessage(),email);
-        }catch (Exception e) {
+        }catch (ExpiredJwtException e) {
             return new ExtractEmailTokenRes(ResMessage.TOKEN_EXPIRED.getCode(),//
                     ResMessage.TOKEN_EXPIRED.getMessage());
+        }catch ( SignatureException | MalformedJwtException e) {
+            return new ExtractEmailTokenRes(ResMessage.INVALID_TOKEN.getCode(),//
+                    ResMessage.INVALID_TOKEN.getMessage());
+        }catch (Exception e) {
+            return new ExtractEmailTokenRes(ResMessage.TOKEN_ERROR.getCode(),//
+                    ResMessage.TOKEN_ERROR.getMessage());
         }
     }
 
-    // 驗證 email 的 JWT 是否過期
-    public boolean isTokenValid(String token) {
-        try {
-            Secret secret = getSecret();
-            String emailSecret = secret.getEmailSecret();
-            Key emailKey = Keys.hmacShaKeyFor(Base64.getDecoder().decode(emailSecret));
 
-            Claims claims = Jwts.parserBuilder()
-                    .setSigningKey(emailKey)
-                    .build()
-                    .parseClaimsJws(token)
-                    .getBody();
-            String email = claims.getSubject();
-            User user = userDao.getByEmail(email);
-            if(user == null){
-                return false;
-            }
-            return true;
-        } catch (Exception e) {
-            return false;
-        }
-    }
-
-    // 產生重設密碼驗證碼
-    public String generateResetPasswordToken(String email) {
-        Secret secret = getSecret();
-        String emailSecret = secret.getEmailSecret();
-        Key emailKey = Keys.hmacShaKeyFor(Base64.getDecoder().decode(emailSecret));
-        int expirationMillis = 1000 * 60 * 30; // 30 分鐘
-        return Jwts.builder()
-                .setSubject(email)
-                .setIssuedAt(new Date())
-                .setExpiration(new Date(System.currentTimeMillis() + expirationMillis))
-                .signWith(emailKey,SignatureAlgorithm.HS256)
-                .compact();
-    }
 
     // 產生登入驗證碼用
     public String generateLoginToken(int userId, int version) {
@@ -157,39 +143,24 @@ public class JwtUtil {
             }
             return new ExtractUserTokenRes(ResMessage.SUCCESS.getCode(),//
                     ResMessage.SUCCESS.getMessage(), userId, version);
-        }catch (Exception e) {
+        }catch (ExpiredJwtException e) {
             return new ExtractUserTokenRes(ResMessage.TOKEN_EXPIRED.getCode(),//
                     ResMessage.TOKEN_EXPIRED.getMessage());
+        }catch ( SignatureException | MalformedJwtException e) {
+            return new ExtractUserTokenRes(ResMessage.INVALID_TOKEN.getCode(),//
+                    ResMessage.INVALID_TOKEN.getMessage());
+        }catch (Exception e) {
+            return new ExtractUserTokenRes(ResMessage.TOKEN_ERROR.getCode(),//
+                    ResMessage.TOKEN_ERROR.getMessage());
         }
     }
 
-    // 驗證 userId 的 JWT 是否過期
-    public boolean isUserIdTokenValid(String token) {
-        try {
-            Secret secret = getSecret();
-            String userSecret = secret.getUserSecret();
-            Key userKey = Keys.hmacShaKeyFor(Base64.getDecoder().decode(userSecret));
-
-            Claims claims = Jwts.parserBuilder()
-                    .setSigningKey(userKey)
-                    .build()
-                    .parseClaimsJws(token)
-                    .getBody();
-            int userId = Integer.parseInt(claims.getSubject());
-            int version = claims.get("version", Integer.class);
-
-            User user = userDao.getByUserId(userId);
-            if(user == null){
-                return false;
-            }
-            return user.getVersion()==version;
-        } catch (Exception e) {
-            return false;
-        }
-    }
-
+    private Secret secret = null;
     // 從資料庫取出 secret
     private Secret getSecret(){
-        return secretDao.getSecret();
+        if(secret== null){
+            secret =  secretDao.getSecret();
+        }
+        return  secret;
     }
 }

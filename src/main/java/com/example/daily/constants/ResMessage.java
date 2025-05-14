@@ -23,6 +23,8 @@ public enum ResMessage {
 	BEYOND_THE_DATE(400, "beyond the day !"),// 超過現在時間
 	LOGIN_ERROR(400, "Login error!"),//
 	FEEDBACK_EXISTED(400, "Feedback existed!"),//
+	INVALID_TOKEN(400, "Invalid token!"),//
+	TOKEN_ERROR(400, "Token error!"),//
 	;
 
 

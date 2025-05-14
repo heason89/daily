@@ -71,9 +71,8 @@ public class FeedbackServiceImpl implements FeedbackService {
     public GetDailyFeedbackRes getDailyFeedback(GetUserDataReq req) {
         // 驗證 token 是否有效 及 解析出 userId
         ExtractUserTokenRes res = jwtUtil.extractUserToken(req.getToken());
-        if(res.getCode()!=200)
-        {
-            return new GetDailyFeedbackRes(res.getCode(),res.getMessage());
+        if (res.getCode() != 200) {
+            return new GetDailyFeedbackRes(res.getCode(), res.getMessage());
         }
         // 取得 userId
         int userId = res.getUserId();
