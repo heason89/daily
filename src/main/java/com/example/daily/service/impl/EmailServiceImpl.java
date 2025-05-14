@@ -5,7 +5,6 @@ import com.example.daily.constants.ResMessage;
 import com.example.daily.dao.SenderDao;
 import com.example.daily.entity.Sender;
 import com.example.daily.service.ifs.EmailService;
-import com.example.daily.util.JwtUtil;
 import com.example.daily.vo.BasicRes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
@@ -22,7 +21,7 @@ public class EmailServiceImpl implements EmailService {
 
     @Override
     public BasicRes sendVerificationEmail(String receiver, String token) {
-        JavaMailSenderImpl mailSender = setSender();
+        JavaMailSenderImpl mailSender = getMailSender();
         SimpleMailMessage message = getVerificationMessage(receiver, token);
         mailSender.send(message);
         return new BasicRes(ResMessage.SUCCESS.getCode(),//
@@ -48,7 +47,7 @@ public class EmailServiceImpl implements EmailService {
 
     @Override
     public BasicRes sendResetPasswordEmail(String receiver, String token) {
-        JavaMailSenderImpl mailSender = setSender();
+        JavaMailSenderImpl mailSender = getMailSender();
         SimpleMailMessage message = getResetPasswordMessage(receiver, token);
         mailSender.send(message);
 
@@ -75,8 +74,8 @@ public class EmailServiceImpl implements EmailService {
     }
 
     private Sender sender = null;
-
-    private JavaMailSenderImpl setSender(){
+    // 設定寄件者
+    private JavaMailSenderImpl getMailSender(){
         // 從資料庫取出 sender
         if (sender == null){
             sender = senderDao.getSender();
@@ -93,7 +92,6 @@ public class EmailServiceImpl implements EmailService {
         props.put("mail.smtp.auth", "true");
         // 啟用 STARTTLS 加密機制，由於 Gmail 必須啟用 STARTTLS 才能寄信
         props.put("mail.smtp.starttls.enable", "true");
-
         return mailSender;
     }
 }
