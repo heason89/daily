@@ -24,8 +24,6 @@ public interface MealsDao extends JpaRepository<Meals, Integer> {
 			@Param("userId") int userId, //
 			@Param("mealsName") String mealsName, //
 			@Param("eatTime") LocalDateTime eatTime);//
-	@Query(value = "select count(email) from meals where email = ?1 ", nativeQuery = true)
-	public int selectCountByEmail(String email);
 
 	//全部
 	@Query(value = "select * from meals where user_id = ?1 ", nativeQuery = true)
@@ -42,7 +40,6 @@ public interface MealsDao extends JpaRepository<Meals, Integer> {
 			@Param("mealsId") int mealsId, //
 			@Param("mealsName") String mealsName, //
 			@Param("eatTime") LocalDateTime eatTime//
-	//
 	);
 
 	@Modifying

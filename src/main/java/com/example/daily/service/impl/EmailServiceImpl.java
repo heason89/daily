@@ -73,6 +73,7 @@ public class EmailServiceImpl implements EmailService {
         return message;
     }
 
+    // 預設值，目的是讓資料庫只取一次
     private Sender sender = null;
     // 設定寄件者
     private JavaMailSenderImpl getMailSender(){

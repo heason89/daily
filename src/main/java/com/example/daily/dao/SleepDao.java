@@ -30,9 +30,6 @@ public interface SleepDao extends JpaRepository<Sleep, Integer> {
 	        @Param("hours")double hours
 	        );
 	
-	@Query(value="select count(email) from sleep where email = ?1 ",nativeQuery = true)
-	public int selectCountByemail(String email);
-	
 	@Modifying
 	@Transactional
 	@Query(value="update sleep set sleep_time = :sleepTime, awake_time = :awakeTime,"
