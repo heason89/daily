@@ -150,5 +150,20 @@ public class ExerciseServiceImpl implements ExerciseService{
 		return new BasicRes(ResMessage.SUCCESS.getCode(),//
 				ResMessage.SUCCESS.getMessage());
 	}
+
+	@Override
+	public GetExerciseRes getExercisebyDate(GetExerciseDateReq req) {
+		ExtractUserTokenRes res = jwtUtil.extractUserToken(req.getToken());
+		if(res.getCode()!=200)
+		{
+			return new GetExerciseRes(res.getCode(),res.getMessage());
+		}
+		// 取得 userId
+		int userId = res.getUserId();
+		List<Exercise> list = exerciseDao.getByDate(userId,req.getDate());
+		return new GetExerciseRes(ResMessage.SUCCESS.getCode(), //
+				ResMessage.SUCCESS.getMessage(), list);
+		
+	}
 	
 }

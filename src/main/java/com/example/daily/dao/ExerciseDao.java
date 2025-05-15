@@ -45,6 +45,9 @@ public interface ExerciseDao extends JpaRepository<Exercise, Integer> {
 
 	@Query(value="select * from exercise where user_id = ?1 and date >= ?2",nativeQuery = true)
 	public List<Exercise> getByMonday(int userId, LocalDate monday);
+	
+	@Query(value="select * from exercise where user_id = ?1 and date = ?2",nativeQuery = true)
+	public List<Exercise> getByDate(int userId, LocalDate date);
 
 	@Query(value="select * from exercise where exercise_id = ?1 and user_id =?2",nativeQuery = true)
 	public Exercise getByExerciseId(int exerciseId,int userId);
