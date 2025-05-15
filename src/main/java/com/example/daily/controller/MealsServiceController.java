@@ -38,6 +38,11 @@ public class MealsServiceController {
 	public GetMealsRes getMeals(@Valid @RequestBody GetUserDataReq req) {
 		return mealsService.getMeals(req);
 	}
+	
+	@PostMapping(value ="meals/get_date_meals")
+	public GetMealsRes getDateMeals(@Valid @RequestBody GetDateMealsReq req) {
+		return mealsService.getDateMeals(req);
+	}
 
 	@Operation(summary = "刪除飲食紀錄", description = "刪除特定飲食資料")
 	@PostMapping(value ="meals/delete_meals")

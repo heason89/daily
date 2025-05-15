@@ -1,14 +1,17 @@
 package com.example.daily.controller;
 
 import com.example.daily.vo.*;
+
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import com.example.daily.service.ifs.SportsService;
 
 import jakarta.validation.Valid;
+
 @CrossOrigin
 @RestController
 @Tag(name = "Sports APIs", description = "運動選項相關 API")

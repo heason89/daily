@@ -27,9 +27,8 @@ public class MealsServiceImpl implements MealsService {
 	public BasicRes fillInMeals(MealsReq req) {
 		// 驗證 token 是否有效 及 解析出 userId
 		ExtractUserTokenRes res = jwtUtil.extractUserToken(req.getToken());
-		if(res.getCode()!=200)
-		{
-			return new BasicRes(res.getCode(),res.getMessage());
+		if (res.getCode() != 200) {
+			return new BasicRes(res.getCode(), res.getMessage());
 		}
 		// 取得 userId
 		int userId = res.getUserId();
@@ -48,9 +47,8 @@ public class MealsServiceImpl implements MealsService {
 	public GetMealsRes getMeals(GetUserDataReq req) {
 		// 驗證 token 是否有效 及 解析出 userId
 		ExtractUserTokenRes res = jwtUtil.extractUserToken(req.getToken());
-		if(res.getCode()!=200)
-		{
-			return new GetMealsRes(res.getCode(),res.getMessage());
+		if (res.getCode() != 200) {
+			return new GetMealsRes(res.getCode(), res.getMessage());
 		}
 		// 取得 userId
 		int userId = res.getUserId();
@@ -64,15 +62,14 @@ public class MealsServiceImpl implements MealsService {
 	public BasicRes updateMeals(UpdateMealsReq req) {
 		// 驗證 token 是否有效 及 解析出 userId
 		ExtractUserTokenRes res = jwtUtil.extractUserToken(req.getToken());
-		if(res.getCode()!=200)
-		{
-			return new GetMealsRes(res.getCode(),res.getMessage());
+		if (res.getCode() != 200) {
+			return new GetMealsRes(res.getCode(), res.getMessage());
 		}
 		// 取得 userId
 		int userId = res.getUserId();
 		// 檢查日期是不是7天內
-		Meals list = mealsDao.GetByMealsId(req.getMealsId(),userId);
-		if(list == null){
+		Meals list = mealsDao.GetByMealsId(req.getMealsId(), userId);
+		if (list == null) {
 			return new BasicRes(ResMessage.ID_MISMATCH.getCode(), //
 					ResMessage.ID_MISMATCH.getMessage());
 		}
@@ -92,14 +89,13 @@ public class MealsServiceImpl implements MealsService {
 	public BasicRes deleteMeals(DeleteMealsReq req) {
 		// 驗證 token 是否有效 及 解析出 userId
 		ExtractUserTokenRes res = jwtUtil.extractUserToken(req.getToken());
-		if(res.getCode()!=200)
-		{
-			return new GetMealsRes(res.getCode(),res.getMessage());
+		if (res.getCode() != 200) {
+			return new GetMealsRes(res.getCode(), res.getMessage());
 		}
 		// 取得 userId
 		int userId = res.getUserId();
 		// 檢查日期是不是7天內
-		Meals list = mealsDao.GetByMealsId(req.getMealsId(),userId);
+		Meals list = mealsDao.GetByMealsId(req.getMealsId(), userId);
 		// 呼叫 checkDate 檢查日期
 		BasicRes date = checkDate(list.getEatTime());
 		if (res.getCode() == 400) {
@@ -111,7 +107,7 @@ public class MealsServiceImpl implements MealsService {
 	}
 
 	// 檢查日期
-	private BasicRes checkDate(LocalDateTime eatTime){
+	private BasicRes checkDate(LocalDateTime eatTime) {
 		// 檢查日期是不是7天內
 		if (LocalDateTime.now().minusDays(7).isAfter(eatTime)) {
 			return new BasicRes(ResMessage.DATE_EXPIRED.getCode(), //
@@ -119,5 +115,20 @@ public class MealsServiceImpl implements MealsService {
 		}
 		return new BasicRes(ResMessage.SUCCESS.getCode(), //
 				ResMessage.SUCCESS.getMessage());
+	}
+
+//搜尋當天
+	@Override
+	public GetMealsRes getDateMeals(GetDateMealsReq req) {
+		ExtractUserTokenRes res = jwtUtil.extractUserToken(req.getToken());
+		if (res.getCode() != 200) {
+			return new GetMealsRes(res.getCode(), res.getMessage());
+		}
+		// 取得 userId
+		int userId = res.getUserId();
+		List<Meals> list = mealsDao.GetDateMeals(userId, req.getEatDate());
+		return new GetMealsRes(ResMessage.SUCCESS.getCode(), //
+				ResMessage.SUCCESS.getMessage(), list);
+
 	}
 }
