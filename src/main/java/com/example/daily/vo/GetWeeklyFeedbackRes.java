@@ -1,20 +1,17 @@
 package com.example.daily.vo;
 
-import com.example.daily.entity.DailyFeedback;
 import com.example.daily.entity.WeeklyFeedback;
-
-import java.util.List;
 
 public class GetWeeklyFeedbackRes extends BasicRes{
 
-    private WeeklyFeedback weeklyFeedbackList;
+    private WeeklyFeedback weeklyFeedback;
 
-    public WeeklyFeedback getWeeklyFeedbackList() {
-        return weeklyFeedbackList;
+    public WeeklyFeedback getWeeklyFeedback() {
+        return weeklyFeedback;
     }
 
-    public void setWeeklyFeedbackList(WeeklyFeedback weeklyFeedbackList) {
-        this.weeklyFeedbackList = weeklyFeedbackList;
+    public void setWeeklyFeedback(WeeklyFeedback weeklyFeedback) {
+        this.weeklyFeedback = weeklyFeedback;
     }
 
     public GetWeeklyFeedbackRes() {
@@ -26,6 +23,6 @@ public class GetWeeklyFeedbackRes extends BasicRes{
 
     public GetWeeklyFeedbackRes(int code, String message, WeeklyFeedback weeklyFeedbackList) {
         super(code, message);
-        this.weeklyFeedbackList = weeklyFeedbackList;
+        this.weeklyFeedback = weeklyFeedbackList;
     }
 }

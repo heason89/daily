@@ -2,18 +2,16 @@ package com.example.daily.vo;
 
 import com.example.daily.entity.DailyFeedback;
 
-import java.util.List;
-
 public class GetDailyFeedbackRes extends BasicRes{
 
-    private DailyFeedback dailyFeedbackList;
+    private DailyFeedback dailyFeedback;
 
-    public DailyFeedback getDailyFeedbackList() {
-        return dailyFeedbackList;
+    public DailyFeedback getDailyFeedback() {
+        return dailyFeedback;
     }
 
-    public void setDailyFeedbackList(DailyFeedback dailyFeedbackList) {
-        this.dailyFeedbackList = dailyFeedbackList;
+    public void setDailyFeedback(DailyFeedback dailyFeedback) {
+        this.dailyFeedback = dailyFeedback;
     }
 
     public GetDailyFeedbackRes() {
@@ -25,6 +23,6 @@ public class GetDailyFeedbackRes extends BasicRes{
 
     public GetDailyFeedbackRes(int code, String message, DailyFeedback dailyFeedbackList) {
         super(code, message);
-        this.dailyFeedbackList = dailyFeedbackList;
+        this.dailyFeedback = dailyFeedbackList;
     }
 }
