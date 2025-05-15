@@ -12,4 +12,6 @@ public interface MealsService {
 	public BasicRes updateMeals(UpdateMealsReq  req);
 	
 	public BasicRes deleteMeals(DeleteMealsReq  req);
+	
+	public GetMealsRes getDateMeals(GetDateMealsReq  req);
 }

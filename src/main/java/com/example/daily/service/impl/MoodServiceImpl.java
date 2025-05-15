@@ -100,6 +100,7 @@ public class MoodServiceImpl implements MoodService {
 		return new GetMoodRes(ResMessage.SUCCESS.getCode(), //
 				ResMessage.SUCCESS.getMessage(), list);
 	}
+
 	// 取得一個月全部
 	@Override
 	public GetMoodRes getMonthMood(SearcMoodInMonthReq req) {
@@ -113,6 +114,19 @@ public class MoodServiceImpl implements MoodService {
 		List<Mood> list = moodDao.getMoodByUserIdMonth(userId, req.getMonth());
 		return new GetMoodRes(ResMessage.SUCCESS.getCode(), //
 				ResMessage.SUCCESS.getMessage(), list);
+	}
+
+	@Override
+	public GetDateMoodRes getDateMood(MoodReq req) {
+		// 驗證 token 是否有效 及 解析出 userId
+		ExtractUserTokenRes res = jwtUtil.extractUserToken(req.getToken());
+		if (res.getCode() != 200) {
+			return new GetDateMoodRes(res.getCode(), res.getMessage());
+		}
+		int userId = res.getUserId();
+		Mood mood = moodDao.getMoodByUserIdDate(userId, req.getDate());
+		return new GetDateMoodRes(ResMessage.SUCCESS.getCode(), //
+				ResMessage.SUCCESS.getMessage(), mood);
 	}
 
 }

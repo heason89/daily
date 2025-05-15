@@ -32,6 +32,11 @@ public class MealsServiceController {
 	public GetMealsRes getMeals(@Valid @RequestBody GetUserDataReq req) {
 		return mealsService.getMeals(req);
 	}
+	
+	@PostMapping(value ="meals/get_date_meals")
+	public GetMealsRes getDateMeals(@Valid @RequestBody GetDateMealsReq req) {
+		return mealsService.getDateMeals(req);
+	}
 
 	@PostMapping(value ="meals/delete_meals")
 	public BasicRes deleteMeals(@Valid @RequestBody DeleteMealsReq req) {

@@ -42,4 +42,8 @@ public class MoodServiceController {
 	public GetMoodRes getMonthMood(@Valid @RequestBody SearcMoodInMonthReq req) {
 		return moodService.getMonthMood(req);
 	}
+	@PostMapping(value = "mood/get_date_mood")
+	public GetDateMoodRes getDateMood(@Valid @RequestBody MoodReq req) {
+		return moodService.getDateMood(req);
+	}
 }

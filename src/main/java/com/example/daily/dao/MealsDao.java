@@ -4,6 +4,7 @@ import com.example.daily.entity.Meals;
 
 import jakarta.transaction.Transactional;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -31,7 +32,9 @@ public interface MealsDao extends JpaRepository<Meals, Integer> {
 	//單筆
 	@Query(value = "select * from meals where meals_id = ?1 and user_id =?2", nativeQuery = true)
 	public Meals GetByMealsId(int mealsId,int userId);
-
+	//當天
+	@Query(value = "select * from meals where user_id = ?1 and date(eat_time) = ?2", nativeQuery = true)
+	public List<Meals> GetDateMeals(int userId,LocalDate eatDate);
 	@Modifying
 	@Transactional
 	@Query(value = "update meals set meals_name = :mealsName, eat_time = :eatTime "
