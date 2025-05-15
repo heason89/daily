@@ -72,8 +72,8 @@ public interface UserDao extends JpaRepository<User, Integer> {
 
     @Modifying
     @Transactional
-    @Query(value ="update user set user_name = :name, password = :password, admin = :admin, " +
-            " enable = :enable, birthdate = :birthdate, height = :height, weight = :weight, " +
+    @Query(value ="update user set user_name = :name, password = :password, " +
+            " birthdate = :birthdate, height = :height, weight = :weight, " +
             " work_type = :workType, gender = :gender, photo = :photo, note = :note, " +
             " body_type = :bodyType, version = :version where user_id = :userId",
             nativeQuery =true)
@@ -81,8 +81,6 @@ public interface UserDao extends JpaRepository<User, Integer> {
             @Param("userId") int userId,//
             @Param("name") String name,//
             @Param("password") String password,//
-            @Param("admin")Boolean admin,//
-            @Param("enable") Boolean enable,//
             @Param("birthdate")LocalDate birthdate,//
             @Param("height")double height,//
             @Param("weight")double weight,//

@@ -6,13 +6,13 @@ import java.util.List;
 
 public class GetDailyFeedbackRes extends BasicRes{
 
-    private List<DailyFeedback> dailyFeedbackList;
+    private DailyFeedback dailyFeedbackList;
 
-    public List<DailyFeedback> getDailyFeedbackList() {
+    public DailyFeedback getDailyFeedbackList() {
         return dailyFeedbackList;
     }
 
-    public void setDailyFeedbackList(List<DailyFeedback> dailyFeedbackList) {
+    public void setDailyFeedbackList(DailyFeedback dailyFeedbackList) {
         this.dailyFeedbackList = dailyFeedbackList;
     }
 
@@ -23,7 +23,7 @@ public class GetDailyFeedbackRes extends BasicRes{
         super(code, message);
     }
 
-    public GetDailyFeedbackRes(int code, String message, List<DailyFeedback> dailyFeedbackList) {
+    public GetDailyFeedbackRes(int code, String message, DailyFeedback dailyFeedbackList) {
         super(code, message);
         this.dailyFeedbackList = dailyFeedbackList;
     }

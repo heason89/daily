@@ -2,7 +2,6 @@ package com.example.daily.service.ifs;
 
 import com.example.daily.vo.*;
 
-
 public interface UserService {
 
     public LoginRes login(LoginReq req);

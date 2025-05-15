@@ -88,8 +88,8 @@ public class UserServiceImpl implements UserService {
         //  email 已存在但未啟用
         if (userEmail != null && !userEmail.isEnable()){
             // 改用更新的方式處理
-            userDao.updateNotEnableEmail(req.getName(),req.getEmail(),encodePassword,req.isAdmin(),
-                    req.isEnable(),req.getBirthdate(),req.getHeight(),req.getWeight(),
+            userDao.updateNotEnableEmail(req.getName(),req.getEmail(),encodePassword,false,
+                    false,req.getBirthdate(),req.getHeight(),req.getWeight(),
                     req.getWorkType(),req.getGender(),
                     req.getPhoto(), req.getNote(), req.getBodyType(),1);
             emailService.sendVerificationEmail(req.getEmail(),token);
@@ -97,7 +97,7 @@ public class UserServiceImpl implements UserService {
                     ResMessage.SUCCESS.getMessage());
         }
         // 新增資訊
-        userDao.insert(req.getName(),req.getEmail(),encodePassword,req.isAdmin(),req.isEnable()
+        userDao.insert(req.getName(),req.getEmail(),encodePassword,false,false
                 ,req.getBirthdate(),req.getHeight(),req.getWeight(),req.getWorkType(),
                 req.getGender(),req.getPhoto(), req.getNote(), req.getBodyType(),1);
         emailService.sendVerificationEmail(req.getEmail(),token);
@@ -128,9 +128,9 @@ public class UserServiceImpl implements UserService {
             version++;
         }
         // 更新資訊
-        userDao.updateUserInfo(userId,req.getName(),encodePassword,req.isAdmin(),req.isEnable()
-                ,req.getBirthdate(),req.getHeight(),req.getWeight(),req.getWorkType()
-                ,req.getGender(),req.getPhoto(),req.getNote(), req.getBodyType(),version);
+        userDao.updateUserInfo(userId,req.getName(),encodePassword,req.getBirthdate(),
+                req.getHeight(),req.getWeight(),req.getWorkType(),req.getGender(),
+                req.getPhoto(),req.getNote(), req.getBodyType(),version);
         return new BasicRes(ResMessage.SUCCESS.getCode(),//
                 ResMessage.SUCCESS.getMessage());
     }

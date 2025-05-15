@@ -9,7 +9,6 @@ public enum ResMessage {
 	EMAIL_HAS_BEEN_CANCELED(400, "Email has been canceled!"), //
 	PASSWORD_MISMATCH(400, "Password mismatch!"), //
 	PARAM_DATE_TIME_ERROR(400, "Param date time error"), // 開始時間 > 結束時間
-	EMAIL_DUPLICATED(400, "Email duplicated!!"), // email重複
 	FOOD_EXISTED(400, "Food existed!"), //
 	FOOD_NOT_EXISTED(400, "Food not existed!"), //
 	SPORTS_EXISTED(400, "Sports existed!"), //
@@ -18,10 +17,6 @@ public enum ResMessage {
 	DATE_EXPIRED(400, "Date expired!"),//
 	PARAM_DURATION_ERROR(400, "Param duration error!"),//
 	ID_MISMATCH(400, "Id mismatch!"),//
-	EXERCISE_NOT_EXISTED(400, "Exercise not existed!"), //
-	SLEEP_NOT_EXISTED(400, "Sleep not existed!"), //
-	BEYOND_THE_DATE(400, "beyond the day !"),// 超過現在時間
-	LOGIN_ERROR(400, "Login error!"),//
 	FEEDBACK_EXISTED(400, "Feedback existed!"),//
 	INVALID_TOKEN(400, "Invalid token!"),//
 	TOKEN_ERROR(400, "Token error!"),//

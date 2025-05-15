@@ -6,7 +6,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 
-
 import java.time.LocalDateTime;
 
 import com.example.daily.constants.ResMessage;

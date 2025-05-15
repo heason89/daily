@@ -66,9 +66,8 @@ public class FeedbackServiceImpl implements FeedbackService {
         return new BasicRes(ResMessage.SUCCESS.getCode(), //
                 ResMessage.SUCCESS.getMessage());
     }
-
     @Override
-    public GetDailyFeedbackRes getDailyFeedback(GetUserDataReq req) {
+    public GetDailyFeedbackRes getDailyFeedback(GetByDateReq req) {
         // 驗證 token 是否有效 及 解析出 userId
         ExtractUserTokenRes res = jwtUtil.extractUserToken(req.getToken());
         if (res.getCode() != 200) {
@@ -77,13 +76,28 @@ public class FeedbackServiceImpl implements FeedbackService {
         // 取得 userId
         int userId = res.getUserId();
         // 取得 dailyFeedback
-        List<DailyFeedback> feedback= dailyFeedbackDao.getDailyByUserId(userId);
+        DailyFeedback feedback = dailyFeedbackDao.getDailyByDate(userId,req.getDate());
         return new GetDailyFeedbackRes(ResMessage.SUCCESS.getCode(), //
                 ResMessage.SUCCESS.getMessage(),feedback);
     }
 
     @Override
-    public GetWeeklyFeedbackRes getWeeklyFeedback(GetUserDataReq req) {
+    public GetAllDailyFeedbackRes getAllDailyFeedback(GetUserDataReq req) {
+        // 驗證 token 是否有效 及 解析出 userId
+        ExtractUserTokenRes res = jwtUtil.extractUserToken(req.getToken());
+        if (res.getCode() != 200) {
+            return new GetAllDailyFeedbackRes(res.getCode(), res.getMessage());
+        }
+        // 取得 userId
+        int userId = res.getUserId();
+        // 取得 dailyFeedback
+        List<DailyFeedback> feedback= dailyFeedbackDao.getDailyByUserId(userId);
+        return new GetAllDailyFeedbackRes(ResMessage.SUCCESS.getCode(), //
+                ResMessage.SUCCESS.getMessage(),feedback);
+    }
+
+    @Override
+    public GetWeeklyFeedbackRes getWeeklyFeedback(GetByDateReq req) {
         // 驗證 token 是否有效 及 解析出 userId
         ExtractUserTokenRes res = jwtUtil.extractUserToken(req.getToken());
         if(res.getCode()!=200)
@@ -93,8 +107,24 @@ public class FeedbackServiceImpl implements FeedbackService {
         // 取得 userId
         int userId = res.getUserId();
         // 取得 weeklyFeedback
-        List<WeeklyFeedback> feedback= weeklyFeedbackDao.getWeeklyByUserId(userId);
+        WeeklyFeedback feedback = weeklyFeedbackDao.getWeeklyByDate(userId,req.getDate());
         return new GetWeeklyFeedbackRes(ResMessage.SUCCESS.getCode(), //
+                ResMessage.SUCCESS.getMessage(),feedback);
+    }
+
+    @Override
+    public GetAllWeeklyFeedbackRes getAllWeeklyFeedback(GetUserDataReq req) {
+        // 驗證 token 是否有效 及 解析出 userId
+        ExtractUserTokenRes res = jwtUtil.extractUserToken(req.getToken());
+        if(res.getCode()!=200)
+        {
+            return new GetAllWeeklyFeedbackRes(res.getCode(),res.getMessage());
+        }
+        // 取得 userId
+        int userId = res.getUserId();
+        // 取得 weeklyFeedback
+        List<WeeklyFeedback> feedback = weeklyFeedbackDao.getWeeklyByUserId(userId);
+        return new GetAllWeeklyFeedbackRes(ResMessage.SUCCESS.getCode(), //
                 ResMessage.SUCCESS.getMessage(),feedback);
     }
 }

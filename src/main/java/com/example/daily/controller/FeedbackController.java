@@ -27,12 +27,22 @@ public class FeedbackController {
     }
 
     @PostMapping(value ="feedback/get_daily")
-    public GetDailyFeedbackRes getDailyFeedback(@Valid @RequestBody GetUserDataReq req){
+    public GetDailyFeedbackRes getDailyFeedback(@Valid @RequestBody GetByDateReq req){
         return feedbackService.getDailyFeedback(req);
     }
 
+    @PostMapping(value ="feedback/get_all_daily")
+    public GetAllDailyFeedbackRes getAllDailyFeedback(@Valid @RequestBody GetUserDataReq req){
+        return feedbackService.getAllDailyFeedback(req);
+    }
+
     @PostMapping(value ="feedback/get_weekly")
-    public GetWeeklyFeedbackRes getWeeklyFeedback(@Valid @RequestBody GetUserDataReq req){
+    public GetWeeklyFeedbackRes getWeeklyFeedback(@Valid @RequestBody GetByDateReq req){
         return feedbackService.getWeeklyFeedback(req);
+    }
+
+    @PostMapping(value ="feedback/get_all_weekly")
+    public GetAllWeeklyFeedbackRes getAllWeeklyFeedback(@Valid @RequestBody GetUserDataReq req){
+        return feedbackService.getAllWeeklyFeedback(req);
     }
 }

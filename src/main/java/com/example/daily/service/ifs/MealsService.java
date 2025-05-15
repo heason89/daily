@@ -2,7 +2,6 @@ package com.example.daily.service.ifs;
 
 import com.example.daily.vo.*;
 
-
 public interface MealsService {
 	
 	public BasicRes fillInMeals(MealsReq  req);

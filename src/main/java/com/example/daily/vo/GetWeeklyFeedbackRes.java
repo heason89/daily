@@ -7,13 +7,13 @@ import java.util.List;
 
 public class GetWeeklyFeedbackRes extends BasicRes{
 
-    private List<WeeklyFeedback> weeklyFeedbackList;
+    private WeeklyFeedback weeklyFeedbackList;
 
-    public List<WeeklyFeedback> getWeeklyFeedbackList() {
+    public WeeklyFeedback getWeeklyFeedbackList() {
         return weeklyFeedbackList;
     }
 
-    public void setWeeklyFeedbackList(List<WeeklyFeedback> weeklyFeedbackList) {
+    public void setWeeklyFeedbackList(WeeklyFeedback weeklyFeedbackList) {
         this.weeklyFeedbackList = weeklyFeedbackList;
     }
 
@@ -24,7 +24,7 @@ public class GetWeeklyFeedbackRes extends BasicRes{
         super(code, message);
     }
 
-    public GetWeeklyFeedbackRes(int code, String message, List<WeeklyFeedback> weeklyFeedbackList) {
+    public GetWeeklyFeedbackRes(int code, String message, WeeklyFeedback weeklyFeedbackList) {
         super(code, message);
         this.weeklyFeedbackList = weeklyFeedbackList;
     }

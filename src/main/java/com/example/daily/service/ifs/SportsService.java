@@ -2,7 +2,6 @@ package com.example.daily.service.ifs;
 
 import com.example.daily.vo.*;
 
-
 public interface SportsService {
 	
 	public BasicRes insertSports(SportsReq req);

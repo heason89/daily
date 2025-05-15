@@ -3,6 +3,7 @@ package com.example.daily.service.ifs;
 import com.example.daily.vo.*;
 
 public interface FoodService {
+
     public BasicRes insertFood(FoodReq req);
 
     public BasicRes updateFood(FoodReq req);

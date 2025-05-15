@@ -1,6 +1,7 @@
 package com.example.daily.vo;
 
 import com.example.daily.constants.ResMessage;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 
@@ -8,37 +9,41 @@ import java.time.LocalDate;
 
 public class RegisterReq {
 
+    @Schema(description = "使用者的電子郵件", example = "test@example.com", required = true)
     @NotBlank(message= ResMessage.ConstantsMessage.PARAM_EMAIL_ERROR)
     @Email(message = ResMessage.ConstantsMessage.EMAIL_FORMAT_ERROR)
     private String email;
 
+    @Schema(description = "使用者的登入密碼", example = "Password123!", required = true)
     @NotBlank(message= ResMessage.ConstantsMessage.PARAM_PASSWORD_ERROR)
     private String password;
 
+    @Schema(description = "使用者的名稱", example = "老王!")
     private String name ="使用者名稱";
 
-    private boolean admin = false;
-
-    // 0:帳號註銷 1 :帳號啟用
-    private boolean enable = false;
-
+    @Schema(description = "使用者的生日", example = "2000-01-01")
     private LocalDate birthdate = LocalDate.now() ;
 
-    private int height =0;
+    @Schema(description = "使用者的身高", example = "180.5")
+    private double height =0.0;
 
-    private int weight =0;
+    @Schema(description = "使用者的體重", example = "80.5")
+    private double weight =0.0;
 
+    @Schema(description = "使用者的生日", example = "輕度工作型態")
     private String workType = "Static";
 
+    @Schema(description = "使用者的性別", example = "man")
     private String gender = "man";
 
+    @Schema(description = "使用者的頭像", example = "Base64格式")
     private String photo ="";
 
+    @Schema(description = "使用者的note", example = "我的note")
     private String note ="";
 
+    @Schema(description = "使用者的理想身材", example = "husky")
     private String bodyType ="";
-
-    private int version =0;
 
     public String getEmail() {
         return email;
@@ -52,23 +57,15 @@ public class RegisterReq {
         return name;
     }
 
-    public boolean isAdmin() {
-        return admin;
-    }
-
-    public boolean isEnable() {
-        return enable;
-    }
-
     public LocalDate getBirthdate() {
         return birthdate;
     }
 
-    public int getHeight() {
+    public double getHeight() {
         return height;
     }
 
-    public int getWeight() {
+    public double getWeight() {
         return weight;
     }
 
@@ -90,9 +87,5 @@ public class RegisterReq {
 
     public String getBodyType() {
         return bodyType;
-    }
-
-    public int getVersion() {
-        return version;
     }
 }
