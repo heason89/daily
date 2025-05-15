@@ -14,5 +14,5 @@ public interface ExerciseService {
 
 	public GetExerciseRes getCalendarExercise(GetUserDataReq req);
 	
-	public GetExerciseRes getExercisebyDate(GetExerciseDateReq req);
+	public GetExerciseRes getDateExercise(GetDateExerciseReq req);
 }

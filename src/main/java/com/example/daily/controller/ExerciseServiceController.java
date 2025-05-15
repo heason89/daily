@@ -44,7 +44,7 @@ public class ExerciseServiceController {
 		return exerciseService.getCalendarExercise(req);
 	}
 	@PostMapping(value ="exercise/get_date_exercise")
-	public GetExerciseRes getCalendarExercise(@Valid @RequestBody GetExerciseDateReq req) {
-		return exerciseService.getExercisebyDate(req);
+	public GetExerciseRes getCalendarExercise(@Valid @RequestBody GetDateExerciseReq req) {
+		return exerciseService.getDateExercise(req);
 	}
 }

@@ -14,14 +14,19 @@ public class GetDateMealsReq {
 	private String token;
 	
 	@NotNull(message= ResMessage.ConstantsMessage.PARAM_EAT_DATE_ERROR)
-	private LocalDate eatDate;
+	private LocalDate date;
 
 	public String getToken() {
 		return token;
 	}
 
-	public LocalDate getEatDate() {
-		return eatDate;
+	public LocalDate getDate() {
+		return date;
 	}
 
+	public void setDate(LocalDate date) {
+		this.date = date;
+	}
+
+	
 }

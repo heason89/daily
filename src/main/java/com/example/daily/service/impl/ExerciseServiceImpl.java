@@ -152,7 +152,7 @@ public class ExerciseServiceImpl implements ExerciseService{
 	}
 
 	@Override
-	public GetExerciseRes getExercisebyDate(GetExerciseDateReq req) {
+	public GetExerciseRes getDateExercise(GetDateExerciseReq req) {
 		ExtractUserTokenRes res = jwtUtil.extractUserToken(req.getToken());
 		if(res.getCode()!=200)
 		{

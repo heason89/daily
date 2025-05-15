@@ -32,6 +32,11 @@ public class SleepServiceController {
 	public GetSleepRes getSleep(@Valid @RequestBody GetUserDataReq req) {
 		return sleepService.getSleep(req);
 	}
+	@Operation(summary = "取得當天睡眠紀錄", description = "取得使用者當天睡眠資料")
+	@PostMapping(value ="sleep/get_date_sleep")
+	public GetSleepRes getDateSleep(@Valid @RequestBody GetDateSleepReq req) {
+		return sleepService.getDateSleep(req);
+	}
 
 	@Operation(summary = "更新睡眠紀錄", description = "更新使用者既有的睡眠資料")
 	@PostMapping(value ="sleep/update_sleep")

@@ -26,9 +26,8 @@ public class SleepServiceImpl implements SleepService {
 	public BasicRes fillInSleep(SleepReq req) {
 		// 驗證 token 是否有效 及 解析出 userId
 		ExtractUserTokenRes res = jwtUtil.extractUserToken(req.getToken());
-		if(res.getCode()!=200)
-		{
-			return new BasicRes(res.getCode(),res.getMessage());
+		if (res.getCode() != 200) {
+			return new BasicRes(res.getCode(), res.getMessage());
 		}
 		// 取得 userId
 		int userId = res.getUserId();
@@ -37,8 +36,8 @@ public class SleepServiceImpl implements SleepService {
 		if (date.getCode() == 400) {
 			return date;
 		}
-		sleepDao.insertSleep(userId, req.getSleepTime(), req.getAwakeTime(), req.getInsomnia(),
-				req.getSleepLatency(), req.getPhone(), req.getHours());
+		sleepDao.insertSleep(userId, req.getSleepTime(), req.getAwakeTime(), req.getInsomnia(), req.getSleepLatency(),
+				req.getPhone(), req.getHours());
 		return new BasicRes(ResMessage.SUCCESS.getCode(), //
 				ResMessage.SUCCESS.getMessage());
 	}
@@ -47,9 +46,8 @@ public class SleepServiceImpl implements SleepService {
 	public GetSleepRes getSleep(GetUserDataReq req) {
 		// 驗證 token 是否有效 及 解析出 userId
 		ExtractUserTokenRes res = jwtUtil.extractUserToken(req.getToken());
-		if(res.getCode()!=200)
-		{
-			return new GetSleepRes(res.getCode(),res.getMessage());
+		if (res.getCode() != 200) {
+			return new GetSleepRes(res.getCode(), res.getMessage());
 		}
 		// 取得 userId
 		int userId = res.getUserId();
@@ -59,16 +57,31 @@ public class SleepServiceImpl implements SleepService {
 	}
 
 	@Override
-	public BasicRes updateSleep(UpdateSleepReq req) {
+
+	public GetSleepRes getDateSleep(GetDateSleepReq req) {
 		// 驗證 token 是否有效 及 解析出 userId
 		ExtractUserTokenRes res = jwtUtil.extractUserToken(req.getToken());
-		if(res.getCode()!=200)
-		{
-			return new GetSleepRes(res.getCode(),res.getMessage());
+		if (res.getCode() != 200) {
+			return new GetSleepRes(res.getCode(), res.getMessage());
 		}
 		// 取得 userId
 		int userId = res.getUserId();
-		Sleep list = sleepDao.GetBySleepId(req.getSleepId(),userId);
+		List<Sleep> list = sleepDao.GetAllByUserId(userId);
+		return new GetSleepRes(ResMessage.SUCCESS.getCode(), //
+				ResMessage.SUCCESS.getMessage(), list);
+
+	}
+
+	@Override
+	public BasicRes updateSleep(UpdateSleepReq req) {
+		// 驗證 token 是否有效 及 解析出 userId
+		ExtractUserTokenRes res = jwtUtil.extractUserToken(req.getToken());
+		if (res.getCode() != 200) {
+			return new GetSleepRes(res.getCode(), res.getMessage());
+		}
+		// 取得 userId
+		int userId = res.getUserId();
+		Sleep list = sleepDao.GetBySleepId(req.getSleepId(), userId);
 		// 檢查時間
 		BasicRes date = checkReq(req.getSleepTime(), req.getAwakeTime());
 		if (date.getCode() == 400) {
@@ -89,19 +102,18 @@ public class SleepServiceImpl implements SleepService {
 	public BasicRes deleteSleep(DeleteSleepReq req) {
 		// 驗證 token 是否有效 及 解析出 userId
 		ExtractUserTokenRes res = jwtUtil.extractUserToken(req.getToken());
-		if(res.getCode()!=200)
-		{
-			return new GetSleepRes(res.getCode(),res.getMessage());
+		if (res.getCode() != 200) {
+			return new GetSleepRes(res.getCode(), res.getMessage());
 		}
 		// 取得 userId
 		int userId = res.getUserId();
-		Sleep list = sleepDao.GetBySleepId(req.getSleepId(),userId);
+		Sleep list = sleepDao.GetBySleepId(req.getSleepId(), userId);
 		// 檢查日期是否在7天內
 		if (LocalDateTime.now().minusDays(7).isAfter(list.getSleepTime())) {
 			return new BasicRes(ResMessage.DATE_EXPIRED.getCode(), //
 					ResMessage.DATE_EXPIRED.getMessage());
 		}
-		sleepDao.deleteSleep(req.getSleepId(),userId);
+		sleepDao.deleteSleep(req.getSleepId(), userId);
 		return new BasicRes(ResMessage.SUCCESS.getCode(), //
 				ResMessage.SUCCESS.getMessage());
 	}
@@ -120,4 +132,5 @@ public class SleepServiceImpl implements SleepService {
 		return new BasicRes(ResMessage.SUCCESS.getCode(), //
 				ResMessage.SUCCESS.getMessage());
 	}
+
 }

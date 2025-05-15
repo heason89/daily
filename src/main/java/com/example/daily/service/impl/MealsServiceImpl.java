@@ -126,7 +126,7 @@ public class MealsServiceImpl implements MealsService {
 		}
 		// 取得 userId
 		int userId = res.getUserId();
-		List<Meals> list = mealsDao.GetDateMeals(userId, req.getEatDate());
+		List<Meals> list = mealsDao.GetDateMeals(userId, req.getDate());
 		return new GetMealsRes(ResMessage.SUCCESS.getCode(), //
 				ResMessage.SUCCESS.getMessage(), list);
 

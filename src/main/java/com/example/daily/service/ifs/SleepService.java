@@ -8,6 +8,8 @@ public interface SleepService {
 	
 	public GetSleepRes getSleep(GetUserDataReq req);
 	
+	public GetSleepRes getDateSleep(GetDateSleepReq req);
+	
 	public BasicRes updateSleep(UpdateSleepReq req);
 	
 	public BasicRes deleteSleep(DeleteSleepReq req);

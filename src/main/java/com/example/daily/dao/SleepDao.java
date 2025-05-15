@@ -4,6 +4,7 @@ import com.example.daily.entity.Sleep;
 
 import jakarta.transaction.Transactional;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -53,6 +54,9 @@ public interface SleepDao extends JpaRepository<Sleep, Integer> {
 			
 	@Query(value="select * from sleep where user_id = ?1 ",nativeQuery = true)
 	public List<Sleep> GetAllByUserId(int userId);
+	
+	@Query(value="select * from sleep where user_id = ?1 and date(sleep_time) = ?2",nativeQuery = true)
+	public List<Sleep> GetSleepbyDate(int userId, LocalDate date);
 	
 	@Query(value="select * from sleep where sleep_id = ?1 and user_id = ?2 ",nativeQuery = true)
 	public Sleep GetBySleepId(int sleepId,int userId);

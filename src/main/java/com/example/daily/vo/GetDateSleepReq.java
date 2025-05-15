@@ -7,7 +7,7 @@ import com.example.daily.constants.ResMessage;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
-public class GetExerciseDateReq {
+public class GetDateSleepReq {
 	
 	@NotNull(message= ResMessage.ConstantsMessage.PARAM_DATE_ERROR)
 	private LocalDate date;
@@ -22,7 +22,6 @@ public class GetExerciseDateReq {
 	public String getToken() {
 		return token;
 	}
-	
 	
 
 }

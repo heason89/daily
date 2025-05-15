@@ -38,7 +38,7 @@ public class MealsServiceController {
 	public GetMealsRes getMeals(@Valid @RequestBody GetUserDataReq req) {
 		return mealsService.getMeals(req);
 	}
-	
+	@Operation(summary = "查詢當天飲食紀錄", description = "取得某使用者當天的飲食資料")
 	@PostMapping(value ="meals/get_date_meals")
 	public GetMealsRes getDateMeals(@Valid @RequestBody GetDateMealsReq req) {
 		return mealsService.getDateMeals(req);
