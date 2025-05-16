@@ -4,7 +4,8 @@ import com.example.daily.constants.ResMessage;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+
 
 public class MealsReq {
 
@@ -15,17 +16,43 @@ public class MealsReq {
 	private String mealsName;
 
 	@NotNull(message= ResMessage.ConstantsMessage.PARAM_EAT_TIME_ERROR)
-	private LocalDateTime eatTime;
+	private LocalDate eatTime;
+	
+	@NotNull(message= ResMessage.ConstantsMessage.PARAM_MEALS_TYPE_ERROR)
+	private String mealsType;
 
 	public String getToken() {
 		return token;
+	}
+
+	public void setToken(String token) {
+		this.token = token;
 	}
 
 	public String getMealsName() {
 		return mealsName;
 	}
 
-	public LocalDateTime getEatTime() {
+	public void setMealsName(String mealsName) {
+		this.mealsName = mealsName;
+	}
+
+	public LocalDate getEatTime() {
 		return eatTime;
 	}
+
+	public void setEatTime(LocalDate eatTime) {
+		this.eatTime = eatTime;
+	}
+
+	public String getMealsType() {
+		return mealsType;
+	}
+
+	public void setMealsType(String mealsType) {
+		this.mealsType = mealsType;
+	}
+
+	
+	
 }

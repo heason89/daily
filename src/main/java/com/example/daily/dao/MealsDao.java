@@ -19,12 +19,14 @@ public interface MealsDao extends JpaRepository<Meals, Integer> {
 
 	@Modifying
 	@Transactional
-	@Query(value = "insert into meals (user_id, meals_name, eat_time )"
+	@Query(value = "insert into meals (user_id, meals_name, eat_time, meals_type )"
 			+ "values( :userId, :mealsName, :eatTime )", nativeQuery = true)
 	public void insertMeals(//
 			@Param("userId") int userId, //
 			@Param("mealsName") String mealsName, //
-			@Param("eatTime") LocalDateTime eatTime);//
+			@Param("eatTime") LocalDate eatTime, //
+			@Param("mealsType") String mealsTypr
+			);//
 
 	//全部
 	@Query(value = "select * from meals where user_id = ?1 ", nativeQuery = true)
@@ -37,12 +39,13 @@ public interface MealsDao extends JpaRepository<Meals, Integer> {
 	public List<Meals> GetDateMeals(int userId,LocalDate eatDate);
 	@Modifying
 	@Transactional
-	@Query(value = "update meals set meals_name = :mealsName, eat_time = :eatTime "
+	@Query(value = "update meals set meals_name = :mealsName, eat_time = :eatTime, meals_type = :mealsType "
 			+ " where  meals_id = :mealsId", nativeQuery = true)
 	public void updateMeals(//
 			@Param("mealsId") int mealsId, //
 			@Param("mealsName") String mealsName, //
-			@Param("eatTime") LocalDateTime eatTime//
+			@Param("eatTime") LocalDate eatTime,//
+			@Param("mealsType") String mealsTypr
 	);
 
 	@Modifying

@@ -4,7 +4,8 @@ import com.example.daily.constants.ResMessage;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+
 
 public class UpdateMealsReq {
 
@@ -18,7 +19,10 @@ public class UpdateMealsReq {
 	private String mealsName;
 
 	@NotNull(message = ResMessage.ConstantsMessage.PARAM_EAT_TIME_ERROR)
-	private LocalDateTime eatTime;
+	private LocalDate eatTime;
+	
+	@NotNull(message= ResMessage.ConstantsMessage.PARAM_MEALS_TYPE_ERROR)
+	private String mealsType;
 
 	public int getMealsId() {
 		return mealsId;
@@ -32,8 +36,14 @@ public class UpdateMealsReq {
 		return mealsName;
 	}
 
-	public LocalDateTime getEatTime() {
+	public LocalDate getEatTime() {
 		return eatTime;
 	}
+
+	public String getMealsType() {
+		return mealsType;
+	}
+
+	
 
 }

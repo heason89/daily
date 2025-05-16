@@ -1,5 +1,6 @@
 package com.example.daily.service.impl;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -37,7 +38,7 @@ public class MealsServiceImpl implements MealsService {
 		if (date.getCode() == 400) {
 			return date;
 		}
-		mealsDao.insertMeals(userId, req.getMealsName(), req.getEatTime());
+		mealsDao.insertMeals(userId, req.getMealsName(), req.getEatTime(),req.getMealsType());
 		return new BasicRes(ResMessage.SUCCESS.getCode(), //
 				ResMessage.SUCCESS.getMessage());
 	}
@@ -79,7 +80,7 @@ public class MealsServiceImpl implements MealsService {
 		if (date.getCode() == 400) {
 			return date;
 		}
-		mealsDao.updateMeals(req.getMealsId(), req.getMealsName(), req.getEatTime());
+		mealsDao.updateMeals(req.getMealsId(), req.getMealsName(), req.getEatTime(), req.getMealsType());
 		return new BasicRes(ResMessage.SUCCESS.getCode(), //
 				ResMessage.SUCCESS.getMessage());
 	}
@@ -107,9 +108,9 @@ public class MealsServiceImpl implements MealsService {
 	}
 
 	// 檢查日期
-	private BasicRes checkDate(LocalDateTime eatTime) {
+	private BasicRes checkDate(LocalDate eatTime) {
 		// 檢查日期是不是7天內
-		if (LocalDateTime.now().minusDays(7).isAfter(eatTime)) {
+		if (LocalDate.now().minusDays(7).isAfter(eatTime)) {
 			return new BasicRes(ResMessage.DATE_EXPIRED.getCode(), //
 					ResMessage.DATE_EXPIRED.getMessage());
 		}

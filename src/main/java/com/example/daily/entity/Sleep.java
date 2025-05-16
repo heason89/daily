@@ -35,27 +35,31 @@ public class Sleep {
     private double hours;
 
     @Column(name ="insomnia")
-    private Boolean insomnia;
+    private boolean insomnia;
 
     @Column(name ="sleep_latency")
-    private Boolean sleepLatency;
+    private boolean sleepLatency;
 
     @Column(name ="phone")
-    private Boolean phone;
+    private boolean phone;
 
 	public Sleep() {
 	}
 
-	public Sleep(int sleepId, int userId, LocalDateTime sleepTime, LocalDateTime awakeTime,//
-				 Boolean insomnia, Boolean sleepLatency, Boolean phone, double hours) {
+	public Sleep(int sleepId, @NotNull(message = "Param user_id error!") int userId,
+			@NotNull(message = "Param sleep_time error!") LocalDateTime sleepTime,
+			@NotNull(message = "Param awake_time error!") LocalDateTime awakeTime,
+			@NotNull(message = "Param hours error!") double hours, boolean insomnia, boolean sleepLatency,
+			boolean phone) {
+		super();
 		this.sleepId = sleepId;
 		this.userId = userId;
 		this.sleepTime = sleepTime;
 		this.awakeTime = awakeTime;
+		this.hours = hours;
 		this.insomnia = insomnia;
 		this.sleepLatency = sleepLatency;
 		this.phone = phone;
-		this.hours = hours;
 	}
 
 	public int getSleepId() {
@@ -90,30 +94,6 @@ public class Sleep {
 		this.awakeTime = awakeTime;
 	}
 
-	public Boolean getInsomnia() {
-		return insomnia;
-	}
-
-	public void setInsomnia(Boolean insomnia) {
-		this.insomnia = insomnia;
-	}
-
-	public Boolean getSleepLatency() {
-		return sleepLatency;
-	}
-
-	public void setSleepLatency(Boolean sleepLatency) {
-		this.sleepLatency = sleepLatency;
-	}
-
-	public Boolean getPhone() {
-		return phone;
-	}
-
-	public void setPhone(Boolean phone) {
-		this.phone = phone;
-	}
-
 	public double getHours() {
 		return hours;
 	}
@@ -121,6 +101,31 @@ public class Sleep {
 	public void setHours(double hours) {
 		this.hours = hours;
 	}
+
+	public boolean isInsomnia() {
+		return insomnia;
+	}
+
+	public void setInsomnia(boolean insomnia) {
+		this.insomnia = insomnia;
+	}
+
+	public boolean isSleepLatency() {
+		return sleepLatency;
+	}
+
+	public void setSleepLatency(boolean sleepLatency) {
+		this.sleepLatency = sleepLatency;
+	}
+
+	public boolean isPhone() {
+		return phone;
+	}
+
+	public void setPhone(boolean phone) {
+		this.phone = phone;
+	}
+
 	
 	
 }
