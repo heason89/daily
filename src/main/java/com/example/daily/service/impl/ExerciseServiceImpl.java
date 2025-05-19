@@ -134,23 +134,8 @@ public class ExerciseServiceImpl implements ExerciseService{
 		List<Exercise> list = exerciseDao.getByMonday(userId,monday);
 		return new GetExerciseRes(ResMessage.SUCCESS.getCode(), //
 				ResMessage.SUCCESS.getMessage(), list);
-	}
-
-	private BasicRes checkReq(ExerciseReq  req){
-		// 檢查 duration 是否大於0
-		if (req.getDuration() <=0){
-			return new BasicRes(ResMessage.PARAM_DURATION_ERROR.getCode(), //
-					ResMessage.PARAM_DURATION_ERROR.getMessage());
-		}
-		// 檢查 date 距離今天是否超過7天
-		if (req.getDate().isBefore(LocalDate.now().minusDays(7))){
-			return new BasicRes(ResMessage.DATE_EXPIRED.getCode(),//
-					ResMessage.DATE_EXPIRED.getMessage());
-		}
-		return new BasicRes(ResMessage.SUCCESS.getCode(),//
-				ResMessage.SUCCESS.getMessage());
-	}
-
+	}	
+	//取得當天
 	@Override
 	public GetExerciseRes getDateExercise(GetDateExerciseReq req) {
 		ExtractUserTokenRes res = jwtUtil.extractUserToken(req.getToken());
@@ -164,6 +149,20 @@ public class ExerciseServiceImpl implements ExerciseService{
 		return new GetExerciseRes(ResMessage.SUCCESS.getCode(), //
 				ResMessage.SUCCESS.getMessage(), list);
 		
+	}
+	private BasicRes checkReq(ExerciseReq  req){
+		// 檢查 duration 是否大於0
+		if (req.getDuration() <=0){
+			return new BasicRes(ResMessage.PARAM_DURATION_ERROR.getCode(), //
+					ResMessage.PARAM_DURATION_ERROR.getMessage());
+		}
+		// 檢查 date 距離今天是否超過7天
+		if (req.getDate().isBefore(LocalDate.now().minusDays(7))){
+			return new BasicRes(ResMessage.DATE_EXPIRED.getCode(),//
+					ResMessage.DATE_EXPIRED.getMessage());
+		}
+		return new BasicRes(ResMessage.SUCCESS.getCode(),//
+				ResMessage.SUCCESS.getMessage());
 	}
 	
 }
