@@ -65,7 +65,7 @@ public class SleepServiceImpl implements SleepService {
 		}
 		// 取得 userId
 		int userId = res.getUserId();
-		List<Sleep> list = sleepDao.GetSleepbyDate(userId,req.getDate());
+		List<Sleep> list = sleepDao.GetSleepByDate(userId,req.getDate());
 		return new GetSleepRes(ResMessage.SUCCESS.getCode(), //
 				ResMessage.SUCCESS.getMessage(), list);
 
