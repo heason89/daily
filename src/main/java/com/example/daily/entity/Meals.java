@@ -8,7 +8,6 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 import com.example.daily.constants.ResMessage;
 
@@ -87,6 +86,4 @@ public class Meals {
 	public void setMealsType(String mealsType) {
 		this.mealsType = mealsType;
 	}
-
-	
 }

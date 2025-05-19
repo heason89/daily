@@ -74,5 +74,4 @@ public enum ResMessage {
 		public static final String PARAM_HOURS_ERROR = "Param hours error!";
 		public static final String PARAM_MEALS_TYPE_ERROR = "Param meals type error!";
 	}
-
 }
