@@ -55,9 +55,8 @@ public class SleepServiceImpl implements SleepService {
 		return new GetSleepRes(ResMessage.SUCCESS.getCode(), //
 				ResMessage.SUCCESS.getMessage(), list);
 	}
-
+	//搜尋日期
 	@Override
-
 	public GetSleepRes getDateSleep(GetDateSleepReq req) {
 		// 驗證 token 是否有效 及 解析出 userId
 		ExtractUserTokenRes res = jwtUtil.extractUserToken(req.getToken());
@@ -66,7 +65,7 @@ public class SleepServiceImpl implements SleepService {
 		}
 		// 取得 userId
 		int userId = res.getUserId();
-		List<Sleep> list = sleepDao.GetAllByUserId(userId);
+		List<Sleep> list = sleepDao.GetSleepbyDate(userId,req.getDate());
 		return new GetSleepRes(ResMessage.SUCCESS.getCode(), //
 				ResMessage.SUCCESS.getMessage(), list);
 
