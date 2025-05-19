@@ -12,7 +12,7 @@ public class SportsReq{
 	private String sportsType;
 
 	@NotBlank(message= ResMessage.ConstantsMessage.PARAM_CONSUME_ERROR)
-	private int consume;
+	private double consume;
 
 	public String getSportsName() {
 		return sportsName;
@@ -22,7 +22,7 @@ public class SportsReq{
 		return sportsType;
 	}
 
-	public int getConsume() {
+	public double getConsume() {
 		return consume;
 	}
 }

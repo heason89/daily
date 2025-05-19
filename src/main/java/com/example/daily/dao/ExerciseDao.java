@@ -25,7 +25,7 @@ public interface ExerciseDao extends JpaRepository<Exercise, Integer> {
 			@Param("date")LocalDate date, //
 			@Param("duration")int duration, //
 			@Param("exerciseName")String exerciseName,//
-			@Param("totalConsumed")int totalConsumed);
+			@Param("totalConsumed")double totalConsumed);
 	
 	@Modifying
 	@Transactional
@@ -38,7 +38,7 @@ public interface ExerciseDao extends JpaRepository<Exercise, Integer> {
 			@Param("date")LocalDate date, //
 			@Param("duration")int duration,//
 			@Param("exerciseName")String exerciseName,//
-			@Param("totalConsumed")int totalConsumed);
+			@Param("totalConsumed")double totalConsumed);
 	
 	@Query(value="select * from exercise where user_id = ?1 ",nativeQuery = true)
 	public List<Exercise> getByUserId(int userId);

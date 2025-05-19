@@ -18,13 +18,13 @@ public interface SportsDao extends JpaRepository<Sports, String> {
 	@Transactional
 	@Query(value = "insert into sports (sports_name, sports_type, consume)"
 			 + "values(?1, ?2, ?3)" , nativeQuery = true)
-	public void insertSports(String sportsName,String sports_type,int consume);
+	public void insertSports(String sportsName,String sports_type,double consume);
 
 	@Modifying
 	@Transactional
 	@Query(value = "update sports set sports_name = ?1, sports_type = ?2, consume =?3 " +
 			" where sports_name = ?1", nativeQuery = true)
-	public void updateSports(String sportsName,String sports_type,int consume);
+	public void updateSports(String sportsName,String sports_type,double consume);
 
 	@Modifying
 	@Transactional

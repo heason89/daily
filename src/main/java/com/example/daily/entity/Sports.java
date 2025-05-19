@@ -23,12 +23,12 @@ public class Sports {
 
     @Min(value = 1, message = ResMessage.ConstantsMessage.PARAM_CONSUME_ERROR)
     @Column(name ="consume")
-    private int consume;
+    private double consume;
 
 	public Sports() {
 	}
 
-	public Sports(String sportsName, String sportsType, int consume) {
+	public Sports(String sportsName, String sportsType, double consume) {
 		this.sportsName = sportsName;
 		this.sportsType = sportsType;
 		this.consume = consume;
@@ -50,11 +50,11 @@ public class Sports {
 		this.sportsType = sportsType;
 	}
 
-	public int getConsume() {
+	public double getConsume() {
 		return consume;
 	}
 
-	public void setConsume(int consume) {
+	public void setConsume(double consume) {
 		this.consume = consume;
 	}
 }

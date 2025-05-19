@@ -37,13 +37,13 @@ public class Exercise {
     private String exerciseName;
 
     @Column(name ="total_consumed")
-    private int totalConsumed;
+    private double totalConsumed;
 
     public Exercise() {
     }
 
     public Exercise(int exerciseId, int userId, LocalDate date,//
-                    int duration, String exerciseName, int totalConsumed) {
+                    int duration, String exerciseName, double totalConsumed) {
         this.exerciseId = exerciseId;
         this.userId = userId;
         this.date = date;
@@ -92,11 +92,11 @@ public class Exercise {
         this.exerciseName = exerciseName;
     }
 
-    public int getTotalConsumed() {
+    public double getTotalConsumed() {
         return totalConsumed;
     }
 
-    public void setTotalConsumed(int totalConsumed) {
+    public void setTotalConsumed(double totalConsumed) {
         this.totalConsumed = totalConsumed;
     }
 }
