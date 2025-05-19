@@ -4,6 +4,8 @@ import com.example.daily.vo.*;
 
 public interface FeedbackService {
 
+    public GetDataRes getDataByDate(GetByDateReq req);
+
     public BasicRes fillInDailyFeedback(FeedbackReq req);
 
     public BasicRes fillInWeeklyFeedback(FeedbackReq req);

@@ -16,6 +16,11 @@ public class FeedbackController {
     @Autowired
     private FeedbackService feedbackService;
 
+    @PostMapping(value ="feedback/get_data_by_date")
+    public GetDataRes getDataByDate(@Valid @RequestBody GetByDateReq req){
+        return feedbackService.getDataByDate(req);
+    }
+
     @PostMapping(value ="feedback/fill_in_daily")
     public BasicRes fillInDailyFeedback(@Valid @RequestBody FeedbackReq req){
         return feedbackService.fillInDailyFeedback(req);

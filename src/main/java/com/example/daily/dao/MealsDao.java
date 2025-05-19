@@ -44,7 +44,7 @@ public interface MealsDao extends JpaRepository<Meals, Integer> {
 			@Param("mealsId") int mealsId, //
 			@Param("mealsName") String mealsName, //
 			@Param("eatTime") LocalDate eatTime,//
-			@Param("mealsType") String mealsTypr
+			@Param("mealsType") String mealsType
 	);
 
 	@Modifying
