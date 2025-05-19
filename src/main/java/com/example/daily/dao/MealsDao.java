@@ -5,7 +5,6 @@ import com.example.daily.entity.Meals;
 import jakarta.transaction.Transactional;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -20,7 +19,7 @@ public interface MealsDao extends JpaRepository<Meals, Integer> {
 	@Modifying
 	@Transactional
 	@Query(value = "insert into meals (user_id, meals_name, eat_time, meals_type )"
-			+ "values( :userId, :mealsName, :eatTime )", nativeQuery = true)
+			+ "values( :userId, :mealsName, :eatTime, :mealsType)", nativeQuery = true)
 	public void insertMeals(//
 			@Param("userId") int userId, //
 			@Param("mealsName") String mealsName, //
