@@ -22,7 +22,4 @@ public class GetDateExerciseReq {
 	public String getToken() {
 		return token;
 	}
-	
-	
-
 }

@@ -31,20 +31,15 @@ public class Meals {
     @NotNull(message = ResMessage.ConstantsMessage.PARAM_EAT_TIME_ERROR)
     @Column(name ="eat_time")
     private LocalDate eatTime;
-    
-    @NotNull(message = ResMessage.ConstantsMessage.PARAM_MEALS_TYPE_ERROR)
+
+	@NotBlank(message = ResMessage.ConstantsMessage.PARAM_MEALS_TYPE_ERROR)
     @Column(name ="meals_type")
     private String mealsType;
 
 	public Meals() {
-		super();
-		// TODO Auto-generated constructor stub
 	}
 
-	public Meals(int mealsId, @NotNull(message = "Param user_id error!") int userId,
-			@NotBlank(message = "Param meals_name error!") String mealsName,
-			@NotNull(message = "Param eat_time error!") LocalDate eatTime,
-			@NotNull(message = "Param eat_time error!") String mealsType) {
+	public Meals(int mealsId, int userId, String mealsName, LocalDate eatTime, String mealsType) {
 		super();
 		this.mealsId = mealsId;
 		this.userId = userId;

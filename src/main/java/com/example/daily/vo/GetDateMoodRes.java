@@ -7,13 +7,10 @@ public class GetDateMoodRes extends BasicRes{
 	private Mood mood;
 
 	public GetDateMoodRes() {
-		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public GetDateMoodRes(int code, String message) {
 		super(code, message);
-		
 	}
 
 	public GetDateMoodRes(int code, String message, Mood mood) {

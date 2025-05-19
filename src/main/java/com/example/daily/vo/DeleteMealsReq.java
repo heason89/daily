@@ -19,9 +19,4 @@ public class DeleteMealsReq {
 	public String getToken() {
 		return token;
 	}
-
-
-
-	
-
 }

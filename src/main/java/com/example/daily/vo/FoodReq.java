@@ -97,8 +97,4 @@ public class FoodReq {
 	public String getUnit() {
 		return unit;
 	}
-
-	
-
-	
 }

@@ -14,5 +14,5 @@ public interface MoodService {
 	
 	public GetMoodRes getMood(GetUserDataReq req);
 	
-	public GetMoodRes getMonthMood(SearcMoodInMonthReq req);
+	public GetMoodRes getMonthMood(SearchMoodInMonthReq req);
 }

@@ -18,7 +18,7 @@ public class MealsReq {
 	@NotNull(message= ResMessage.ConstantsMessage.PARAM_EAT_TIME_ERROR)
 	private LocalDate eatTime;
 	
-	@NotNull(message= ResMessage.ConstantsMessage.PARAM_MEALS_TYPE_ERROR)
+	@NotBlank(message= ResMessage.ConstantsMessage.PARAM_MEALS_TYPE_ERROR)
 	private String mealsType;
 
 	public String getToken() {
@@ -52,7 +52,4 @@ public class MealsReq {
 	public void setMealsType(String mealsType) {
 		this.mealsType = mealsType;
 	}
-
-	
-	
 }

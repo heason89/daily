@@ -20,8 +20,8 @@ public class UpdateMealsReq {
 
 	@NotNull(message = ResMessage.ConstantsMessage.PARAM_EAT_TIME_ERROR)
 	private LocalDate eatTime;
-	
-	@NotNull(message= ResMessage.ConstantsMessage.PARAM_MEALS_TYPE_ERROR)
+
+	@NotBlank(message= ResMessage.ConstantsMessage.PARAM_MEALS_TYPE_ERROR)
 	private String mealsType;
 
 	public int getMealsId() {

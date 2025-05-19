@@ -47,7 +47,7 @@ public class MoodServiceController {
 
 	@Operation(summary = "查詢某月心情紀錄", description = "根據年月查詢該月使用者所有心情資料")
 	@PostMapping(value = "mood/get_month_mood")
-	public GetMoodRes getMonthMood(@Valid @RequestBody SearcMoodInMonthReq req) {
+	public GetMoodRes getMonthMood(@Valid @RequestBody SearchMoodInMonthReq req) {
 		return moodService.getMonthMood(req);
 	}
 	@Operation(summary = "查詢某天心情紀錄", description = "根據當天查詢該天使用者所有心情資料")

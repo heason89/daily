@@ -22,6 +22,4 @@ public class GetDateSleepReq {
 	public String getToken() {
 		return token;
 	}
-	
-
 }

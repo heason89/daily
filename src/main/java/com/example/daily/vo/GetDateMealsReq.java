@@ -27,6 +27,4 @@ public class GetDateMealsReq {
 	public void setDate(LocalDate date) {
 		this.date = date;
 	}
-
-	
 }

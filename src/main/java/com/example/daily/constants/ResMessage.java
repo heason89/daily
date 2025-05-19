@@ -22,7 +22,6 @@ public enum ResMessage {
 	TOKEN_ERROR(400, "Token error!"),//
 	;
 
-
 	private int code;
 
 	private String message;

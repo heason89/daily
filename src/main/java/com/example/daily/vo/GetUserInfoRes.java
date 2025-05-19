@@ -1,8 +1,6 @@
 package com.example.daily.vo;
 
 import com.example.daily.dto.UserDto;
-import com.example.daily.entity.User;
-
 
 public class GetUserInfoRes extends BasicRes{
 
