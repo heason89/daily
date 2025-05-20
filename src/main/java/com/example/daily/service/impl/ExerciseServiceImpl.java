@@ -1,5 +1,7 @@
 package com.example.daily.service.impl;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.temporal.TemporalAdjusters;
@@ -52,7 +54,11 @@ public class ExerciseServiceImpl implements ExerciseService{
 		// 取得該運動消耗的卡路里並計算總消耗
 		User user = userDao.getByUserId(userId);
 		Sports sports = sportsDao.getBySportsName(req.getExerciseName());
-		double totalConsumed = sports.getConsume()*req.getDuration()*user.getWeight();
+		//取到小數點後第二位
+		double result = sports.getConsume() * req.getDuration() * user.getWeight() /60;
+		BigDecimal bd = new BigDecimal(result);
+		bd = bd.setScale(2, RoundingMode.HALF_UP);
+		double totalConsumed = bd.doubleValue();
 		exerciseDao.insertExercise(userId, req.getDate(),//
 				req.getDuration(), req.getExerciseName(),totalConsumed);
 		return new BasicRes(ResMessage.SUCCESS.getCode(), //
