@@ -33,12 +33,12 @@ public class MoodServiceImpl implements MoodService {
 		// 取得 userId
 		int userId = res.getUserId();
 		// 填寫的資料日期要在7天內
-		LocalDate Date = LocalDate.now();
-		LocalDate sevenDaysAgo = Date.minusDays(7);
-		if (sevenDaysAgo.isAfter(req.getDate())) {
-			return new BasicRes(ResMessage.DATE_EXPIRED.getCode(), //
-					ResMessage.DATE_EXPIRED.getMessage());
-		}
+//		LocalDate Date = LocalDate.now();
+//		LocalDate sevenDaysAgo = Date.minusDays(7);
+//		if (sevenDaysAgo.isAfter(req.getDate())) {
+//			return new BasicRes(ResMessage.DATE_EXPIRED.getCode(), //
+//					ResMessage.DATE_EXPIRED.getMessage());
+//		}
 		moodDao.insertMood(userId, req.getDate(), req.getMood(), req.getDiary());
 		return new BasicRes(ResMessage.SUCCESS.getCode(), //
 				ResMessage.SUCCESS.getMessage());

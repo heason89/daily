@@ -32,11 +32,11 @@ public class SleepServiceImpl implements SleepService {
 		// 取得 userId
 		int userId = res.getUserId();
 		// 檢查時間
-		BasicRes date = checkReq(req.getSleepTime(), req.getAwakeTime());
-		if (date.getCode() == 400) {
-			return date;
-		}
-		sleepDao.insertSleep(userId, req.getSleepTime(), req.getAwakeTime(), req.getInsomnia(), req.getSleepLatency(),
+//		BasicRes date = checkReq(req.getSleepTime(), req.getAwakeTime());
+//		if (date.getCode() == 400) {
+//			return date;
+//		}
+		sleepDao.insertSleep(userId, req.getSleepTime().plusHours(8), req.getAwakeTime().plusHours(8), req.getInsomnia(), req.getSleepLatency(),
 				req.getPhone(), req.getHours());
 		return new BasicRes(ResMessage.SUCCESS.getCode(), //
 				ResMessage.SUCCESS.getMessage());
