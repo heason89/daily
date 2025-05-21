@@ -138,14 +138,14 @@ public class UserServiceImpl implements UserService {
     @Override
     public BasicRes sendResetPasswordEmail(SendEmailReq req) {
         // 檢查 email 是否已存在
-        User userEmail =userDao.getByEmail(req.getToken());
+        User userEmail =userDao.getByEmail(req.getEmail());
         // 呼叫 checkmail 檢查
         BasicRes res = checkmail(userEmail);
         if(res.getCode()==400){
             return res;
         }
-        String token = jwtUtil.generateResetPasswordToken(req.getToken());
-        emailService.sendResetPasswordEmail(req.getToken(), token);
+        String token = jwtUtil.generateResetPasswordToken(req.getEmail());
+        emailService.sendResetPasswordEmail(req.getEmail(), token);
         return new BasicRes(ResMessage.SUCCESS.getCode(),//
                 ResMessage.SUCCESS.getMessage());
     }
