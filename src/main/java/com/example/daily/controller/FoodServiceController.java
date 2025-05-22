@@ -24,6 +24,11 @@ public class FoodServiceController {
 		return foodService.updateFood(req);
 	}
 
+	@PostMapping(value ="food/update_food_photo")
+	public BasicRes updateFoodPhoto(@Valid @RequestBody FoodPhotoReq req) {
+		return foodService.updateFoodPhoto(req);
+	}
+
 	@PostMapping(value ="food/delete_food")
 	public BasicRes deleteFood(@Valid @RequestBody DeleteFoodReq req) {
 		return foodService.deleteFood(req);

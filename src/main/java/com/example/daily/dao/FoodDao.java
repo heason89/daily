@@ -50,7 +50,7 @@ public interface FoodDao extends JpaRepository<Food, FoodId> {
             " type = :type, calorie = :calorie, total_fat = :totalFat, trans_fat = :transFat, " +
             " saturated_fat = :saturatedFat, total_carbohydrate = :totalCarbohydrate, sugar = :sugar, " +
             " dietary_fiber = :dietaryFiber, protein = :protein, sodium = :sodium, " +
-            " cholesterol = :cholesterol, photo = :photo where food_name = :foodName  and " +
+            " cholesterol = :cholesterol, photo = :photo, unit = :unit where food_name = :foodName  and " +
             " cooking_method = :cookingMethod", nativeQuery =true)
     public void updateFood(
             @Param("foodName") String foodName,//
@@ -69,6 +69,16 @@ public interface FoodDao extends JpaRepository<Food, FoodId> {
             @Param("photo") String photo,//
             @Param("unit") String unit//
             );
+
+    @Modifying
+    @Transactional
+    @Query(value ="update food set photo = :photo where food_name = :foodName  and " +
+            " cooking_method = :cookingMethod", nativeQuery =true)
+    public void updateFoodPhoto(
+            @Param("foodName") String foodName,//
+            @Param("cookingMethod") String cookingMethod,//
+            @Param("photo") String photo//
+    );
 
     @Modifying
     @Transactional

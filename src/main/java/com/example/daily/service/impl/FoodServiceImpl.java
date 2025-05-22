@@ -54,6 +54,21 @@ public class FoodServiceImpl implements FoodService {
     }
 
     @Override
+    public BasicRes updateFoodPhoto(FoodPhotoReq req) {
+        // 檢查食物是否已存在
+        Food foodName = foodDao.getByFoodName(req.getFoodName(),req.getCookingMethod());
+        // 食物不存在
+        if (foodName == null){
+            return new BasicRes(ResMessage.FOOD_NOT_EXISTED.getCode(),//
+                    ResMessage.FOOD_NOT_EXISTED.getMessage());
+        }
+        // 更新食物
+        foodDao.updateFoodPhoto(req.getFoodName(),req.getCookingMethod(),req.getPhoto());
+        return new BasicRes(ResMessage.SUCCESS.getCode(),//
+                ResMessage.SUCCESS.getMessage());
+    }
+
+    @Override
     public BasicRes deleteFood(DeleteFoodReq req) {
         // 檢查食物是否已存在
         Food foodName = foodDao.getByFoodName(req.getFoodName(),req.getCookingMethod());

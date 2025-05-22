@@ -89,7 +89,10 @@ public class ExerciseServiceImpl implements ExerciseService{
 		// 取得該運動消耗的卡路里並計算總消耗
 		User user = userDao.getByUserId(userId);
 		Sports sports = sportsDao.getBySportsName(req.getExerciseName());
-		double totalConsumed = sports.getConsume()*req.getDuration()*user.getWeight();
+		double result = sports.getConsume() * req.getDuration() * user.getWeight() /60;
+		BigDecimal bd = new BigDecimal(result);
+		bd = bd.setScale(2, RoundingMode.HALF_UP);
+		double totalConsumed = bd.doubleValue();
 		exerciseDao.updateByExercise(req.getExerciseId(),req.getDate(),//
 				req.getDuration(),req.getExerciseName(),totalConsumed);
 		return new BasicRes(ResMessage.SUCCESS.getCode(), //

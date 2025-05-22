@@ -8,6 +8,8 @@ public interface FoodService {
 
     public BasicRes updateFood(FoodReq req);
 
+    public BasicRes updateFoodPhoto(FoodPhotoReq req);
+
     public BasicRes deleteFood(DeleteFoodReq req);
     
     public GetFoodRes searchFood(SearchFoodReq req);
