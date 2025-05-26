@@ -65,4 +65,10 @@ public class UserServiceController {
     public BasicRes logout(@Valid @RequestBody LogoutReq req) {
         return userService.logout(req);
     }
+
+    @Operation(summary = "更新體重", description = "記錄體重")
+    @PostMapping("daily/update_weight")
+    public BasicRes updateWeight(@Valid @RequestBody WeightReq req) {
+        return userService.updateWeight(req);
+    }
 }

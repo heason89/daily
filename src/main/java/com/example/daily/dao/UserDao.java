@@ -27,6 +27,11 @@ public interface UserDao extends JpaRepository<User, Integer> {
 
     @Modifying
     @Transactional
+    @Query(value ="update user set weight = ?2 where user_id = ?1", nativeQuery =true)
+    public void updateWeight(int userId,double weight);
+
+    @Modifying
+    @Transactional
     @Query(value ="insert into user(user_name, email, password, admin, enable, birthdate, height, " +
             " weight, work_type, gender, photo, note, body_type, version) values (:name, :email, " +
             " :password, :admin, :enable, :birthdate, :height, :weight, :workType, :gender, " +

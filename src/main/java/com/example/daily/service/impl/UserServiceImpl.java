@@ -170,6 +170,21 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public BasicRes updateWeight(WeightReq req) {
+        // 驗證 token 是否有效 及 解析出 userId
+        ExtractUserTokenRes res = jwtUtil.extractUserToken(req.getToken());
+        if(res.getCode()!=200)
+        {
+            return new BasicRes(res.getCode(),res.getMessage());
+        }
+        // 取得 userId
+        int userId = res.getUserId();
+        userDao.updateWeight(userId,req.getWeight());
+        return new BasicRes(ResMessage.SUCCESS.getCode(),//
+                ResMessage.SUCCESS.getMessage());
+    }
+
+    @Override
     public GetUserInfoRes getUserInfo(GetUserDataReq req) {
         // 驗證 token 是否有效 及 解析出 userId
         ExtractUserTokenRes res = jwtUtil.extractUserToken(req.getToken());

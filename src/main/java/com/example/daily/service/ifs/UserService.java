@@ -19,4 +19,6 @@ public interface UserService {
     public BasicRes verifyToken(VerifyTokenReq req);
 
     public BasicRes verifyTokenUpdatePassword(ResetPasswordReq req);
+
+    public BasicRes updateWeight(WeightReq req);
 }
