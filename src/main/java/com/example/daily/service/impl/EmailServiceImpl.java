@@ -22,13 +22,14 @@ public class EmailServiceImpl implements EmailService {
     @Override
     public BasicRes sendVerificationEmail(String receiver, String token) {
         JavaMailSenderImpl mailSender = getMailSender();
-        SimpleMailMessage message = getVerificationMessage(receiver, token);
+        String senderEmail = sender.getEmail();
+        SimpleMailMessage message = getVerificationMessage(senderEmail,receiver, token);
         mailSender.send(message);
         return new BasicRes(ResMessage.SUCCESS.getCode(),//
                 ResMessage.SUCCESS.getMessage());
     }
 
-    private static SimpleMailMessage getVerificationMessage(String receiver, String token) {
+    private static SimpleMailMessage getVerificationMessage(String senderEmail,String receiver, String token) {
         String link = "http://localhost:4200/confirm?token=" + token;
 
         String subject = "請驗證您的帳號 - HealthyDiaryApp";
@@ -39,6 +40,7 @@ public class EmailServiceImpl implements EmailService {
                 "祝您使用愉快，\n" +
                 "HealthyDiaryApp 團隊";
         SimpleMailMessage message = new SimpleMailMessage();
+        message.setFrom(senderEmail);
         message.setTo(receiver);                          // 設定收件人
         message.setSubject(subject);           // 設定信件標題
         message.setText(content); // 信件正文（文字）
@@ -48,14 +50,14 @@ public class EmailServiceImpl implements EmailService {
     @Override
     public BasicRes sendResetPasswordEmail(String receiver, String token) {
         JavaMailSenderImpl mailSender = getMailSender();
-        SimpleMailMessage message = getResetPasswordMessage(receiver, token);
+        String senderEmail = sender.getEmail();
+        SimpleMailMessage message = getResetPasswordMessage(senderEmail,receiver, token);
         mailSender.send(message);
-
         return new BasicRes(ResMessage.SUCCESS.getCode(),
                 ResMessage.SUCCESS.getMessage());
     }
 
-    private static SimpleMailMessage getResetPasswordMessage(String receiver, String token) {
+    private static SimpleMailMessage getResetPasswordMessage(String senderEmail,String receiver, String token) {
         String link = "http://localhost:4200/editpassword?token=" + token;
 
         String subject = "重設您的密碼 - HealthyDiaryApp";
@@ -67,6 +69,7 @@ public class EmailServiceImpl implements EmailService {
                 "HealthyDiaryApp 團隊";
 
         SimpleMailMessage message = new SimpleMailMessage();
+        message.setFrom(senderEmail);
         message.setTo(receiver);
         message.setSubject(subject);
         message.setText(content);
