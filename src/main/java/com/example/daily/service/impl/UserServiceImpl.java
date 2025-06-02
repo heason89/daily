@@ -71,8 +71,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public BasicRes register(RegisterReq req) {
-        // 檢查 email 格式
-
         // 檢查 email 是否已存在
         User userEmail =userDao.getByEmail(req.getEmail());
         // email 已存在且啟用中
