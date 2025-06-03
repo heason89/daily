@@ -22,7 +22,7 @@ public interface FoodDao extends JpaRepository<Food, FoodId> {
     @Modifying
     @Transactional
     @Query(value ="insert into food(food_name, cooking_method, type, calorie, total_fat, trans_fat, " +
-            " saturated_fat, total_carbohydrate, sugar, dietary_fiber, protein, sodium, cholesterol, photo) " +
+            " saturated_fat, total_carbohydrate, sugar, dietary_fiber, protein, sodium, cholesterol, photo, unit) " +
             " values (:foodName, :cookingMethod, :type, :calorie, :totalFat, :transFat, :saturatedFat, " +
             " :totalCarbohydrate, :sugar, :dietaryFiber, :protein, :sodium, :cholesterol, :photo, :unit)"
             , nativeQuery =true)
