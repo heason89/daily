@@ -117,7 +117,7 @@ public class MoodServiceImpl implements MoodService {
 	}
     //取得一天
 	@Override
-	public GetDateMoodRes getDateMood(MoodReq req) {
+	public GetDateMoodRes getDateMood(GetDateMoodReq req) {
 		// 驗證 token 是否有效 及 解析出 userId
 		ExtractUserTokenRes res = jwtUtil.extractUserToken(req.getToken());
 		if (res.getCode() != 200) {

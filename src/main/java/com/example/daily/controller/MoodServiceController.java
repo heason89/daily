@@ -52,7 +52,7 @@ public class MoodServiceController {
 	}
 	@Operation(summary = "查詢某天心情紀錄", description = "根據當天查詢該天使用者所有心情資料")
 	@PostMapping(value = "mood/get_date_mood")
-	public GetDateMoodRes getDateMood(@Valid @RequestBody MoodReq req) {
+	public GetDateMoodRes getDateMood(@Valid @RequestBody GetDateMoodReq req) {
 		return moodService.getDateMood(req);
 	}
 }

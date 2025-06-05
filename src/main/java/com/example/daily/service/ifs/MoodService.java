@@ -10,7 +10,7 @@ public interface MoodService {
 	
 	public BasicRes deleteMood(DeleteMoodReq req);
 	
-	public GetDateMoodRes getDateMood(MoodReq req);
+	public GetDateMoodRes getDateMood(GetDateMoodReq req);
 	
 	public GetMoodRes getMood(GetUserDataReq req);
 	
