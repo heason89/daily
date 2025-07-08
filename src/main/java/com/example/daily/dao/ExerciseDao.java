@@ -26,6 +26,16 @@ public interface ExerciseDao extends JpaRepository<Exercise, Integer> {
 			@Param("duration")int duration, //
 			@Param("exerciseName")String exerciseName,//
 			@Param("totalConsumed")double totalConsumed);
+
+	@Modifying
+	@Transactional
+	@Query(value = "insert into exercise (user_id, date, exercise_name,frequency)"
+			+ "values( :userId, :date, :exerciseName, :frequency)" , nativeQuery = true)
+	public void insertWeightTraining(//
+			@Param("userId") int userId,//
+			@Param("date")LocalDate date, //
+			@Param("exerciseName")String exerciseName,//
+			@Param("frequency")int frequency);
 	
 	@Modifying
 	@Transactional

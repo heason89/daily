@@ -58,6 +58,7 @@ public enum ResMessage {
 		public static final String PARAM_EAT_DATE_ERROR = "Param eat_date error!";
 		public static final String PARAM_DATE_ERROR = "Param date error!"; // 運動開始時間
 		public static final String PARAM_DURATION_ERROR = "Param duration error!";
+		public static final String PARAM_FREQUENCY_ERROR = "Param frequency error!";
 		public static final String PARAM_EXERCISE_NAME_ERROR = "Param exercise_name error!";
 		public static final String PARAM_EXERCISE_ID_ERROR = "Param exercise_id error!";
 		public static final String PARAM_SPORTS_NAME_ERROR = "Param sports_name error!";

@@ -24,5 +24,4 @@ public class WebMvcConfig implements WebMvcConfigurer {
 		corsConfiguration.setAllowCredentials(true);
 		return corsConfiguration;
 	}
-
 }

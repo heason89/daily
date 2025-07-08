@@ -54,13 +54,20 @@ public class ExerciseServiceImpl implements ExerciseService{
 		// 取得該運動消耗的卡路里並計算總消耗
 		User user = userDao.getByUserId(userId);
 		Sports sports = sportsDao.getBySportsName(req.getExerciseName());
-		//取到小數點後第二位
-		double result = sports.getConsume() * req.getDuration() * user.getWeight() /60;
-		BigDecimal bd = new BigDecimal(result);
-		bd = bd.setScale(2, RoundingMode.HALF_UP);
-		double totalConsumed = bd.doubleValue();
-		exerciseDao.insertExercise(userId, req.getDate(),//
-				req.getDuration(), req.getExerciseName(),totalConsumed);
+		if(!"重訓".equals(sports.getSportsType()))
+		{
+			//取到小數點後第二位
+			double result = sports.getConsume() * req.getDuration() * user.getWeight() /60;
+			BigDecimal bd = new BigDecimal(result);
+			bd = bd.setScale(2, RoundingMode.HALF_UP);
+			double totalConsumed = bd.doubleValue();
+			exerciseDao.insertExercise(userId, req.getDate(),//
+					req.getDuration(), req.getExerciseName(),totalConsumed);
+		}
+		else {
+			exerciseDao.insertWeightTraining(userId, req.getDate(),//
+					req.getExerciseName(),req.getFrequency());
+		}
 		return new BasicRes(ResMessage.SUCCESS.getCode(), //
 				ResMessage.SUCCESS.getMessage());
 	}
