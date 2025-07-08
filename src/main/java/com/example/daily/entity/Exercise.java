@@ -39,17 +39,21 @@ public class Exercise {
     @Column(name ="total_consumed")
     private double totalConsumed;
 
+    @Column(name ="frequency")
+    private int frequency;
+
     public Exercise() {
     }
 
     public Exercise(int exerciseId, int userId, LocalDate date,//
-                    int duration, String exerciseName, double totalConsumed) {
+                    int duration, String exerciseName, double totalConsumed,int frequency) {
         this.exerciseId = exerciseId;
         this.userId = userId;
         this.date = date;
         this.duration = duration;
         this.exerciseName = exerciseName;
         this.totalConsumed = totalConsumed;
+        this.frequency = frequency;
     }
 
     public int getExerciseId() {
@@ -98,5 +102,13 @@ public class Exercise {
 
     public void setTotalConsumed(double totalConsumed) {
         this.totalConsumed = totalConsumed;
+    }
+
+    public int getFrequency() {
+        return frequency;
+    }
+
+    public void setFrequency(int frequency) {
+        this.frequency = frequency;
     }
 }

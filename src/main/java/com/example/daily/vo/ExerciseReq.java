@@ -20,6 +20,9 @@ public class ExerciseReq{
 	@NotBlank(message= ResMessage.ConstantsMessage.PARAM_EXERCISE_NAME_ERROR)
 	private String exerciseName;
 
+	@NotNull(message= ResMessage.ConstantsMessage.PARAM_FREQUENCY_ERROR)
+	private int frequency;
+
 	public String getToken() {
 		return token;
 	}
@@ -34,5 +37,9 @@ public class ExerciseReq{
 
 	public String getExerciseName() {
 		return exerciseName;
+	}
+
+	public int getFrequency() {
+		return frequency;
 	}
 }

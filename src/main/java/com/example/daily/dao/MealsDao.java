@@ -36,6 +36,7 @@ public interface MealsDao extends JpaRepository<Meals, Integer> {
 	//當天
 	@Query(value = "select * from meals where user_id = ?1 and date(eat_time) = ?2", nativeQuery = true)
 	public List<Meals> GetDateMeals(int userId,LocalDate eatDate);
+
 	@Modifying
 	@Transactional
 	@Query(value = "update meals set meals_name = :mealsName, eat_time = :eatTime, meals_type = :mealsType "
