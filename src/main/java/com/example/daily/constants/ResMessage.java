@@ -16,6 +16,7 @@ public enum ResMessage {
 	TOKEN_EXPIRED(400, "Token expired!"),//
 	DATE_EXPIRED(400, "Date expired!"),//
 	PARAM_DURATION_ERROR(400, "Param duration error!"),//
+	PARAM_FREQENCY_ERROR(400, "Param frequency error!"),//
 	ID_MISMATCH(400, "Id mismatch!"),//
 	FEEDBACK_EXISTED(400, "Feedback existed!"),//
 	INVALID_TOKEN(400, "Invalid token!"),//

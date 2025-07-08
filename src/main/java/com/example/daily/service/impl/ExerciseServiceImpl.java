@@ -56,6 +56,10 @@ public class ExerciseServiceImpl implements ExerciseService{
 		Sports sports = sportsDao.getBySportsName(req.getExerciseName());
 		if(!"重訓".equals(sports.getSportsType()))
 		{
+			if(req.getDuration() < 0) {
+				return new BasicRes(ResMessage.PARAM_DURATION_ERROR.getCode(), //
+						ResMessage.PARAM_DURATION_ERROR.getMessage());
+			}
 			//取到小數點後第二位
 			double result = sports.getConsume() * req.getDuration() * user.getWeight() /60;
 			BigDecimal bd = new BigDecimal(result);
@@ -65,6 +69,10 @@ public class ExerciseServiceImpl implements ExerciseService{
 					req.getDuration(), req.getExerciseName(),totalConsumed);
 		}
 		else {
+			if(req.getFrequency() < 0) {
+				return new BasicRes(ResMessage.PARAM_FREQENCY_ERROR.getCode(), //
+						ResMessage.PARAM_FREQENCY_ERROR.getMessage());
+			}
 			exerciseDao.insertWeightTraining(userId, req.getDate(),//
 					req.getExerciseName(),req.getFrequency());
 		}

@@ -28,7 +28,6 @@ public class Exercise {
     @Column(name ="date")
     private LocalDate date;
 
-    @Min(value = 1, message = ResMessage.ConstantsMessage.PARAM_DURATION_ERROR)
     @Column(name ="duration")
     private int duration;
 
