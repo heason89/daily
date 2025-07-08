@@ -33,12 +33,14 @@ public class MealsServiceImpl implements MealsService {
 		}
 		// 取得 userId
 		int userId = res.getUserId();
-		// 呼叫 checkDate 檢查日期
-//		BasicRes date = checkDate(req.getEatTime());
-//		if (date.getCode() == 400) {
-//			return date;
-//		}
-		mealsDao.insertMeals(userId, req.getMealsName(), req.getEatTime(),req.getMealsType());
+		Meals meal = mealsDao.GetDateTypeMeals(userId, req.getEatTime(), req.getMealsType());
+		if(meal == null) {
+			mealsDao.insertMeals(userId, req.getMealsName(), req.getEatTime(), req.getMealsType());
+		}
+		else {
+			mealsDao.updateMeals(meal.getMealsId(), req.getMealsName(), req.getEatTime(), req.getMealsType());
+		}
+		
 		return new BasicRes(ResMessage.SUCCESS.getCode(), //
 				ResMessage.SUCCESS.getMessage());
 	}

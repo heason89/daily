@@ -52,8 +52,6 @@ public enum ResMessage {
 		public static final String EMAIL_FORMAT_ERROR = "Email format error!";
 		public static final String PARAM_PASSWORD_ERROR = "Param password error!";
 		public static final String PARAM_SLEEP_ID_ERROR = "Param sleep_id error!";
-		public static final String PARAM_SLEEP_TIME_ERROR = "Param sleep_time error!";
-		public static final String PARAM_AWAKE_TIME_ERROR = "Param awake_time error!";
 		public static final String PARAM_MEALS_NAME_ERROR = "Param meals_name error!";
 		public static final String PARAM_MEALS_ID_ERROR = "Param meals_id error!";
 		public static final String PARAM_EAT_TIME_ERROR = "Param eat_time error!";

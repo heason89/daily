@@ -1,21 +1,21 @@
 package com.example.daily.vo;
 
 import com.example.daily.constants.ResMessage;
+
+
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+
 
 public class SleepReq{
 
 	@NotBlank(message= ResMessage.ConstantsMessage.PARAM_TOKEN_ERROR)
 	private String token;
 
-	@NotNull(message= ResMessage.ConstantsMessage.PARAM_SLEEP_TIME_ERROR)
-	private LocalDateTime sleepTime;
-
-	@NotNull(message= ResMessage.ConstantsMessage.PARAM_AWAKE_TIME_ERROR)
-	private LocalDateTime awakeTime;
+	@NotNull(message = ResMessage.ConstantsMessage.PARAM_DATE_ERROR)
+    private LocalDate date;
 	
 	@NotNull(message= ResMessage.ConstantsMessage.PARAM_HOURS_ERROR)
 	private double hours;
@@ -26,16 +26,30 @@ public class SleepReq{
 
 	private Boolean phone = false;
 
+	public SleepReq() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public SleepReq(@NotBlank(message = "Param token error!") String token,
+			@NotNull(message = "Param date error!") LocalDate date,
+			@NotNull(message = "Param hours error!") double hours, Boolean insomnia, Boolean sleepLatency,
+			Boolean phone) {
+		super();
+		this.token = token;
+		this.date = date;
+		this.hours = hours;
+		this.insomnia = insomnia;
+		this.sleepLatency = sleepLatency;
+		this.phone = phone;
+	}
+
 	public String getToken() {
 		return token;
 	}
 
-	public LocalDateTime getSleepTime() {
-		return sleepTime;
-	}
-
-	public LocalDateTime getAwakeTime() {
-		return awakeTime;
+	public LocalDate getDate() {
+		return date;
 	}
 
 	public double getHours() {
@@ -54,5 +68,6 @@ public class SleepReq{
 		return phone;
 	}
 
+	
 	
 }

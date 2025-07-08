@@ -5,7 +5,7 @@ import com.example.daily.entity.Sleep;
 import jakarta.transaction.Transactional;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
+
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -16,48 +16,43 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface SleepDao extends JpaRepository<Sleep, Integer> {
-	
+
 	@Modifying
 	@Transactional
-	@Query(value = "insert into sleep (user_id,sleep_time,awake_time, insomnia, sleep_latency, phone, hours)"
-			 + "values( :userId, :sleepTime, :awakeTime, :insomnia, :sleepLatency, :phone, :hours)" , nativeQuery = true)
-	public void insertSleep(//			
-			@Param("userId") int userId,//
-			@Param("sleepTime")LocalDateTime sleepTime, //
-			@Param("awakeTime")LocalDateTime awakeTime,//
-			@Param("insomnia")boolean insomnia,//
-			@Param("sleepLatency")boolean sleepLatency,//
-	        @Param("phone")boolean phone,//
-	        @Param("hours")double hours
-	        );
-	
+	@Query(value = "insert into sleep (user_id, date, insomnia, sleep_latency, phone, hours)"
+			+ "values( :userId, :date, :insomnia, :sleepLatency, :phone, :hours)", nativeQuery = true)
+	public void insertSleep(//
+			@Param("userId") int userId, //
+			@Param("date") LocalDate date, //
+			@Param("insomnia") boolean insomnia, //
+			@Param("sleepLatency") boolean sleepLatency, //
+			@Param("phone") boolean phone, //
+			@Param("hours") double hours);
+
 	@Modifying
 	@Transactional
-	@Query(value="update sleep set sleep_time = :sleepTime, awake_time = :awakeTime,"
+	@Query(value = "update sleep set sleep_time = :sleepTime, awake_time = :awakeTime,"
 			+ " insomnia = :insomnia, sleep_latency = :sleepLatency, phone = :phone,"
-			+ " hours = :hours where  sleep_id = :sleepId"
-			,nativeQuery = true)
+			+ " hours = :hours where  sleep_id = :sleepId", nativeQuery = true)
 	public void updateSleep(//
-			@Param("sleepId") int sleepId, //			
-			@Param("sleepTime")LocalDateTime sleepTime, //
-			@Param("awakeTime")LocalDateTime awakeTime,//
-			@Param("insomnia")boolean insomnia,//
-			@Param("sleepLatency")boolean sleepLatency,//
-			@Param("phone")boolean phone,//
-			@Param("hours")double hours
-			);
-	
+			@Param("sleepId") int sleepId, //
+			@Param("date") LocalDate date, //
+			@Param("insomnia") boolean insomnia, //
+			@Param("sleepLatency") boolean sleepLatency, //
+			@Param("phone") boolean phone, //
+			@Param("hours") double hours);
+
 	@Modifying
 	@Transactional
-	@Query(value="delete from sleep where sleep_id = ?1 and user_id = ?2 ",nativeQuery = true)
-	public void deleteSleep(int sleepId,int userId);
-			
-	@Query(value="select * from sleep where user_id = ?1 ",nativeQuery = true)
+	@Query(value = "delete from sleep where sleep_id = ?1 and user_id = ?2 ", nativeQuery = true)
+	public void deleteSleep(int sleepId, int userId);
+
+	@Query(value = "select * from sleep where user_id = ?1 ", nativeQuery = true)
 	public List<Sleep> GetAllByUserId(int userId);
-	
-	@Query(value="select * from sleep where user_id = ?1 and date(awake_time) = ?2",nativeQuery = true)
+
+	@Query(value = "select * from sleep where user_id = ?1 and date = ?2", nativeQuery = true)
 	public List<Sleep> GetSleepByDate(int userId, LocalDate date);
-	
-	@Query(value="select * from sleep where sleep_id = ?1 and user_id = ?2 ",nativeQuery = true)
-	public Sleep GetBySleepId(int sleepId,int userId);
+
+	@Query(value = "select * from sleep where sleep_id = ?1 and user_id = ?2 ", nativeQuery = true)
+	public Sleep GetBySleepId(int sleepId, int userId);
 }

@@ -1,6 +1,6 @@
 package com.example.daily.service.impl;
 
-import java.time.LocalDateTime;
+
 import java.util.List;
 
 import com.example.daily.util.JwtUtil;
@@ -31,12 +31,8 @@ public class SleepServiceImpl implements SleepService {
 		}
 		// 取得 userId
 		int userId = res.getUserId();
-		// 檢查時間
-//		BasicRes date = checkReq(req.getSleepTime(), req.getAwakeTime());
-//		if (date.getCode() == 400) {
-//			return date;
-//		}
-		sleepDao.insertSleep(userId, req.getSleepTime().plusHours(8), req.getAwakeTime().plusHours(8), req.getInsomnia(), req.getSleepLatency(),
+		
+		sleepDao.insertSleep(userId, req.getDate(), req.getInsomnia(), req.getSleepLatency(),
 				req.getPhone(), req.getHours());
 		return new BasicRes(ResMessage.SUCCESS.getCode(), //
 				ResMessage.SUCCESS.getMessage());
@@ -79,19 +75,7 @@ public class SleepServiceImpl implements SleepService {
 			return new GetSleepRes(res.getCode(), res.getMessage());
 		}
 		// 取得 userId
-		int userId = res.getUserId();
-		Sleep list = sleepDao.GetBySleepId(req.getSleepId(), userId);
-		// 檢查時間
-		BasicRes date = checkReq(req.getSleepTime(), req.getAwakeTime());
-		if (date.getCode() == 400) {
-			return date;
-		}
-		// 檢查日期是否在7天內
-		if (LocalDateTime.now().minusDays(7).isAfter(list.getSleepTime())) {
-			return new BasicRes(ResMessage.DATE_EXPIRED.getCode(), //
-					ResMessage.DATE_EXPIRED.getMessage());
-		}
-		sleepDao.updateSleep(req.getSleepId(), req.getSleepTime(), req.getAwakeTime(), req.getInsomnia(),
+		sleepDao.updateSleep(req.getSleepId(), req.getDate(), req.getInsomnia(),
 				req.getSleepLatency(), req.getPhone(), req.getHours());
 		return new BasicRes(ResMessage.SUCCESS.getCode(), //
 				ResMessage.SUCCESS.getMessage());
@@ -106,30 +90,11 @@ public class SleepServiceImpl implements SleepService {
 		}
 		// 取得 userId
 		int userId = res.getUserId();
-		Sleep list = sleepDao.GetBySleepId(req.getSleepId(), userId);
-		// 檢查日期是否在7天內
-		if (LocalDateTime.now().minusDays(7).isAfter(list.getSleepTime())) {
-			return new BasicRes(ResMessage.DATE_EXPIRED.getCode(), //
-					ResMessage.DATE_EXPIRED.getMessage());
-		}
 		sleepDao.deleteSleep(req.getSleepId(), userId);
 		return new BasicRes(ResMessage.SUCCESS.getCode(), //
 				ResMessage.SUCCESS.getMessage());
 	}
 
-	private BasicRes checkReq(LocalDateTime SleepTime, LocalDateTime awakeTime) {
-		// 檢查日期是否在7天內
-		if (SleepTime.isBefore(LocalDateTime.now().minusDays(7))) {
-			return new BasicRes(ResMessage.DATE_EXPIRED.getCode(), //
-					ResMessage.DATE_EXPIRED.getMessage());
-		}
-		// 檢查起床時間有沒有比起床時間晚
-		if (SleepTime.isAfter(awakeTime)) {
-			return new BasicRes(ResMessage.PARAM_DATE_TIME_ERROR.getCode(), //
-					ResMessage.PARAM_DATE_TIME_ERROR.getMessage());
-		}
-		return new BasicRes(ResMessage.SUCCESS.getCode(), //
-				ResMessage.SUCCESS.getMessage());
-	}
+	
 
 }
