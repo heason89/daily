@@ -46,11 +46,6 @@ public class ExerciseServiceImpl implements ExerciseService{
 		}
 		// 取得 userId
 		int userId = res.getUserId();
-		// 檢查 req 的 date 和 duration
-//		BasicRes date = checkReq(req);
-//		if(date.getCode()==400){
-//			return date;
-//		}
 		// 取得該運動消耗的卡路里並計算總消耗
 		User user = userDao.getByUserId(userId);
 		Sports sports = sportsDao.getBySportsName(req.getExerciseName());
@@ -60,6 +55,11 @@ public class ExerciseServiceImpl implements ExerciseService{
 				return new BasicRes(ResMessage.PARAM_DURATION_ERROR.getCode(), //
 						ResMessage.PARAM_DURATION_ERROR.getMessage());
 			}
+			// 檢查 req 的 date 和 duration
+//			BasicRes date = checkReq(req);
+//			if(date.getCode()==400){
+//				return date;
+//			}
 			//取到小數點後第二位
 			double result = sports.getConsume() * req.getDuration() * user.getWeight() /60;
 			BigDecimal bd = new BigDecimal(result);
@@ -96,20 +96,32 @@ public class ExerciseServiceImpl implements ExerciseService{
 			return new BasicRes(ResMessage.ID_MISMATCH.getCode(), //
 					ResMessage.ID_MISMATCH.getMessage());
 		}
-		// 檢查 req 的 date 和 duration
-		BasicRes date = checkReq(req);
-		if(date.getCode()==400){
-			return date;
-		}
 		// 取得該運動消耗的卡路里並計算總消耗
 		User user = userDao.getByUserId(userId);
 		Sports sports = sportsDao.getBySportsName(req.getExerciseName());
-		double result = sports.getConsume() * req.getDuration() * user.getWeight() /60;
-		BigDecimal bd = new BigDecimal(result);
-		bd = bd.setScale(2, RoundingMode.HALF_UP);
-		double totalConsumed = bd.doubleValue();
-		exerciseDao.updateByExercise(req.getExerciseId(),req.getDate(),//
-				req.getDuration(),req.getExerciseName(),totalConsumed);
+		if(!"重訓".equals(sports.getSportsType()))
+		{
+			// 檢查 req 的 date 和 duration
+//			BasicRes date = checkReq(req);
+//			if(date.getCode()==400){
+//				return date;
+//			}
+			double result = sports.getConsume() * req.getDuration() * user.getWeight() /60;
+			BigDecimal bd = new BigDecimal(result);
+			bd = bd.setScale(2, RoundingMode.HALF_UP);
+			double totalConsumed = bd.doubleValue();
+			exerciseDao.updateByExercise(req.getExerciseId(),req.getDate(),//
+					req.getDuration(),req.getExerciseName(),totalConsumed);
+		}
+		else {
+			if(req.getFrequency() < 0) {
+				return new BasicRes(ResMessage.PARAM_FREQENCY_ERROR.getCode(), //
+						ResMessage.PARAM_FREQENCY_ERROR.getMessage());
+			}
+			exerciseDao.updateByWeightTraining(req.getExerciseId(),req.getDate(),//
+					req.getExerciseName(),req.getFrequency());
+		}
+
 		return new BasicRes(ResMessage.SUCCESS.getCode(), //
 				ResMessage.SUCCESS.getMessage());
 	}
