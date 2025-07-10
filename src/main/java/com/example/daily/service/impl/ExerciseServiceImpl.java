@@ -46,11 +46,6 @@ public class ExerciseServiceImpl implements ExerciseService{
 		}
 		// 取得 userId
 		int userId = res.getUserId();
-		// 檢查 req 的 date 和 duration
-//		BasicRes date = checkReq(req);
-//		if(date.getCode()==400){
-//			return date;
-//		}
 		// 取得該運動消耗的卡路里並計算總消耗
 		User user = userDao.getByUserId(userId);
 		Sports sports = sportsDao.getBySportsName(req.getExerciseName());
@@ -73,8 +68,12 @@ public class ExerciseServiceImpl implements ExerciseService{
 				return new BasicRes(ResMessage.PARAM_FREQENCY_ERROR.getCode(), //
 						ResMessage.PARAM_FREQENCY_ERROR.getMessage());
 			}
+			double result = sports.getConsume() * req.getFrequency() * user.getWeight() /60;
+			BigDecimal bd = new BigDecimal(result);
+			bd = bd.setScale(2, RoundingMode.HALF_UP);
+			double totalConsumed = bd.doubleValue();
 			exerciseDao.insertWeightTraining(userId, req.getDate(),//
-					req.getExerciseName(),req.getFrequency());
+					req.getExerciseName(),req.getFrequency(),totalConsumed);
 		}
 		return new BasicRes(ResMessage.SUCCESS.getCode(), //
 				ResMessage.SUCCESS.getMessage());
