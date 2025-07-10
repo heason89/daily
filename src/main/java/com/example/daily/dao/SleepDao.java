@@ -55,4 +55,7 @@ public interface SleepDao extends JpaRepository<Sleep, Integer> {
 
 	@Query(value = "select * from sleep where sleep_id = ?1 and user_id = ?2 ", nativeQuery = true)
 	public Sleep GetBySleepId(int sleepId, int userId);
+	
+	@Query(value = "select * from sleep where user_id = ?1 and date = ?2", nativeQuery = true)
+	public Sleep GetSleepDate(int userId, LocalDate date);
 }

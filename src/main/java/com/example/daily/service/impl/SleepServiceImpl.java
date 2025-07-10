@@ -30,9 +30,9 @@ public class SleepServiceImpl implements SleepService {
 		}
 		// 取得 userId
 		int userId = res.getUserId();
-		List<Sleep> sleep = sleepDao.GetSleepByDate(userId, req.getDate());
+		Sleep sleep = sleepDao.GetSleepDate(userId, req.getDate());
 		if (sleep != null) {
-			sleepDao.updateSleep(sleep.getLast().getSleepId(), //
+			sleepDao.updateSleep(sleep.getSleepId(), //
 					req.getDate(), req.getInsomnia(), req.getSleepLatency(), req.getPhone(), req.getHours());
 		} else {
 			sleepDao.insertSleep(userId, req.getDate(), req.getInsomnia(), req.getSleepLatency(), req.getPhone(),
