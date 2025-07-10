@@ -31,7 +31,7 @@ public interface SleepDao extends JpaRepository<Sleep, Integer> {
 
 	@Modifying
 	@Transactional
-	@Query(value = "update sleep set sleep_time = :sleepTime, awake_time = :awakeTime,"
+	@Query(value = "update sleep set date = :date ,"
 			+ " insomnia = :insomnia, sleep_latency = :sleepLatency, phone = :phone,"
 			+ " hours = :hours where  sleep_id = :sleepId", nativeQuery = true)
 	public void updateSleep(//
