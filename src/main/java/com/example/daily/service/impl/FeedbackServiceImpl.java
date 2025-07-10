@@ -46,7 +46,7 @@ public class FeedbackServiceImpl implements FeedbackService {
         LocalDate date =req.getDate();
         List<Exercise> exerciseList = exerciseDao.getByDate(userId,date);
         List<Meals> mealsList = mealsDao.GetDateMeals(userId,date);
-        List<Sleep> sleepList = sleepDao.GetSleepByDate(userId,date);
+        Sleep sleepList = sleepDao.GetSleepByDate(userId,date);
         return new GetDataRes(ResMessage.SUCCESS.getCode(), //
                 ResMessage.SUCCESS.getMessage(),exerciseList,mealsList,sleepList);
     }

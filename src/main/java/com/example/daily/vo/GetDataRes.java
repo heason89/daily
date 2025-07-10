@@ -12,7 +12,7 @@ public class GetDataRes extends BasicRes{
 
     private List<Meals> mealsList;
 
-    private List<Sleep> sleepList;
+    private Sleep sleepList;
 
     public GetDataRes() {
     }
@@ -22,7 +22,7 @@ public class GetDataRes extends BasicRes{
     }
 
     public GetDataRes(int code, String message, List<Exercise> exerciseList, List<Meals> mealsList,//
-                      List<Sleep> sleepList) {
+                      Sleep sleepList) {
         super(code, message);
         this.exerciseList = exerciseList;
         this.mealsList = mealsList;
@@ -45,11 +45,11 @@ public class GetDataRes extends BasicRes{
         this.mealsList = mealsList;
     }
 
-    public List<Sleep> getSleepList() {
+    public Sleep getSleepList() {
         return sleepList;
     }
 
-    public void setSleepList(List<Sleep> sleepList) {
+    public void setSleepList(Sleep sleepList) {
         this.sleepList = sleepList;
     }
 }

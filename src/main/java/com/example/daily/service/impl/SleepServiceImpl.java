@@ -1,6 +1,5 @@
 package com.example.daily.service.impl;
 
-
 import java.util.List;
 
 import com.example.daily.util.JwtUtil;
@@ -31,27 +30,33 @@ public class SleepServiceImpl implements SleepService {
 		}
 		// 取得 userId
 		int userId = res.getUserId();
-		
-		sleepDao.insertSleep(userId, req.getDate(), req.getInsomnia(), req.getSleepLatency(),
-				req.getPhone(), req.getHours());
+		Sleep sleep = sleepDao.GetSleepByDate(userId, req.getDate());
+		if (sleep != null) {
+			sleepDao.updateSleep(sleep.getSleepId(), //
+					req.getDate(), req.getInsomnia(), req.getSleepLatency(), req.getPhone(), req.getHours());
+		} else {
+			sleepDao.insertSleep(userId, req.getDate(), req.getInsomnia(), req.getSleepLatency(), req.getPhone(),
+					req.getHours());
+		}
 		return new BasicRes(ResMessage.SUCCESS.getCode(), //
 				ResMessage.SUCCESS.getMessage());
 	}
 
 	@Override
-	public GetSleepRes getSleep(GetUserDataReq req) {
+	public GetSleepAllRes getSleep(GetUserDataReq req) {
 		// 驗證 token 是否有效 及 解析出 userId
 		ExtractUserTokenRes res = jwtUtil.extractUserToken(req.getToken());
 		if (res.getCode() != 200) {
-			return new GetSleepRes(res.getCode(), res.getMessage());
+			return new GetSleepAllRes(res.getCode(), res.getMessage());
 		}
 		// 取得 userId
 		int userId = res.getUserId();
 		List<Sleep> list = sleepDao.GetAllByUserId(userId);
-		return new GetSleepRes(ResMessage.SUCCESS.getCode(), //
+		return new GetSleepAllRes(ResMessage.SUCCESS.getCode(), //
 				ResMessage.SUCCESS.getMessage(), list);
 	}
-	//取得當天
+
+	// 取得當天
 	@Override
 	public GetSleepRes getDateSleep(GetDateSleepReq req) {
 		// 驗證 token 是否有效 及 解析出 userId
@@ -61,7 +66,7 @@ public class SleepServiceImpl implements SleepService {
 		}
 		// 取得 userId
 		int userId = res.getUserId();
-		List<Sleep> list = sleepDao.GetSleepByDate(userId,req.getDate());
+		Sleep list = sleepDao.GetSleepByDate(userId, req.getDate());
 		return new GetSleepRes(ResMessage.SUCCESS.getCode(), //
 				ResMessage.SUCCESS.getMessage(), list);
 
@@ -75,8 +80,8 @@ public class SleepServiceImpl implements SleepService {
 			return new GetSleepRes(res.getCode(), res.getMessage());
 		}
 		// 取得 userId
-		sleepDao.updateSleep(req.getSleepId(), req.getDate(), req.getInsomnia(),
-				req.getSleepLatency(), req.getPhone(), req.getHours());
+		sleepDao.updateSleep(req.getSleepId(), req.getDate(), req.getInsomnia(), req.getSleepLatency(), req.getPhone(),
+				req.getHours());
 		return new BasicRes(ResMessage.SUCCESS.getCode(), //
 				ResMessage.SUCCESS.getMessage());
 	}
@@ -94,7 +99,5 @@ public class SleepServiceImpl implements SleepService {
 		return new BasicRes(ResMessage.SUCCESS.getCode(), //
 				ResMessage.SUCCESS.getMessage());
 	}
-
-	
 
 }

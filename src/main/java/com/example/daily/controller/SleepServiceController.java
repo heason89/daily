@@ -29,7 +29,7 @@ public class SleepServiceController {
 
 	@Operation(summary = "取得睡眠紀錄", description = "取得使用者睡眠資料")
 	@PostMapping(value ="sleep/get_sleep")
-	public GetSleepRes getSleep(@Valid @RequestBody GetUserDataReq req) {
+	public GetSleepAllRes getSleep(@Valid @RequestBody GetUserDataReq req) {
 		return sleepService.getSleep(req);
 	}
 	@Operation(summary = "取得當天睡眠紀錄", description = "取得使用者當天睡眠資料")

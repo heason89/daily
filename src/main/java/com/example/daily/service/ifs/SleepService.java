@@ -6,7 +6,7 @@ public interface SleepService {
 	
 	public BasicRes fillInSleep(SleepReq req);
 	
-	public GetSleepRes getSleep(GetUserDataReq req);
+	public GetSleepAllRes getSleep(GetUserDataReq req);
 	
 	public GetSleepRes getDateSleep(GetDateSleepReq req);
 	
