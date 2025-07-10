@@ -2,11 +2,13 @@ package com.example.daily.vo;
 
 
 
+import java.util.List;
+
 import com.example.daily.entity.Sleep;
 
 public class GetSleepRes extends BasicRes{
 	
-	private Sleep sleeplist;
+	private List<Sleep> sleeplist;
 
 	public GetSleepRes() {
 		super();
@@ -16,16 +18,16 @@ public class GetSleepRes extends BasicRes{
 		super(code, message);
 	}
 
-	public GetSleepRes(int code, String message, Sleep sleeplist) {
+	public GetSleepRes(int code, String message, List<Sleep> sleeplist) {
 		super(code, message);
 		this.sleeplist = sleeplist;
 	}
 
-	public Sleep getSleeplist() {
+	public List<Sleep> getSleeplist() {
 		return sleeplist;
 	}
 
-	public void setSleeplist(Sleep sleeplist) {
+	public void setSleeplist(List<Sleep> sleeplist) {
 		this.sleeplist = sleeplist;
 	}
 

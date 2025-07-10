@@ -6,7 +6,7 @@ import com.example.daily.entity.Sleep;
 
 public class GetSleepAllRes extends BasicRes {
 
-	private List<Sleep> sleepList;
+	private List<Sleep> sleeplist;
 
 	public GetSleepAllRes() {
 
@@ -17,13 +17,13 @@ public class GetSleepAllRes extends BasicRes {
 
 	}
 
-	public GetSleepAllRes(int code, String message, List<Sleep> sleepList) {
+	public GetSleepAllRes(int code, String message, List<Sleep> sleeplist) {
 		super(code, message);
-		this.sleepList = sleepList;
+		this.sleeplist = sleeplist;
 	}
 
 	public List<Sleep> getSleepList() {
-		return sleepList;
+		return sleeplist;
 	}
 
 }
